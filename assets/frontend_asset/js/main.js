@@ -428,10 +428,16 @@
 	/* -----------------------------------------------------------
     				tooltip
    ----------------------------------------------------------- */
+
    $(document).ready(function () {
 	$('[data-toggle="tooltip"]').tooltip();
 	$('[data-toggle="tooltip"]').hover(function(){
 		$('.tooltip-inner').css('color', 'green');
+	});
+
+
+	$(".niceCountryInputSelector").each(function(i,e){
+		new NiceCountryInput(e).init();
 	});
  });
 
@@ -441,6 +447,7 @@
 		$('#status').fadeOut();
 		$('#preloader').delay(350).fadeOut('slow');
 	});
+
 
 
 }(jQuery));

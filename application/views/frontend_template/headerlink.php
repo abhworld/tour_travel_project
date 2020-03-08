@@ -25,6 +25,8 @@
     <link rel="stylesheet" href="<?php echo base_url();?>assets/frontend_asset/css/nice-select.css">
     <!--Slicknav css-->
     <link rel="stylesheet" href="<?php echo base_url();?>assets/frontend_asset/css/slicknav.min.css">
+    <!--niceCountryInput css-->
+    <link rel="stylesheet" href="<?php echo base_url();?>assets/frontend_asset/css/niceCountryInput.css">
     <!--Site Main Style css-->
     <link rel="stylesheet" href="<?php echo base_url();?>assets/frontend_asset/css/style.css">
     <!--Responsive css-->
