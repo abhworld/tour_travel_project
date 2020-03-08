@@ -17,7 +17,22 @@
 <!-- Breadcrumb Area End -->
 
 
-
+<div class="country-search-area">
+   <div class="container">
+      <div class="row justify-content-center">
+         <div class="col-lg-8">
+            <div class="visa-search-wrapper">
+               <p>Apply for visa to countries that do not have diplomatic mission in Bangladesh.</p>
+               <h2>Need Visa Information ?</h2>
+               <div class="niceCountryInputSelector" data-selectedcountry="US" data-showspecial="false"
+                  data-showflags="false" data-i18nall="All selected" data-i18nnofilter="No selection"
+                  data-i18nfilter="Filter" data-onchangecallback="onChangeCallback">
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
 
 
 <div class="visa-area">

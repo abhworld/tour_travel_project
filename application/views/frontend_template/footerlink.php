@@ -20,6 +20,8 @@
     <script src="<?php echo base_url();?>assets/frontend_asset/js/waypoints-min.js"></script>
     <!-- Sticky sidebar JS -->
     <script src="<?php echo base_url();?>assets/frontend_asset/js/jquery.sticky-sidebar.min.js"></script>
+    <!-- niceCountryInput js -->
+    <script src="<?php echo base_url();?>assets/frontend_asset/js/niceCountryInput.js"></script>
     <!--Main js-->
     <script src="<?php echo base_url();?>assets/frontend_asset/js/main.js"></script>
 
@@ -37,4 +39,10 @@
     c.type='text/javascript';c.charset='utf-8';c.async=true;
     c.src='https://www.smartsuppchat.com/loader.js?';s.parentNode.insertBefore(c,s);
     })(document);
+    </script>
+    <script>
+        function onChangeCallback(ctr){
+            console.log("The country was changed: " + ctr);
+            //$("#selectionSpan").text(ctr);
+        }
     </script>

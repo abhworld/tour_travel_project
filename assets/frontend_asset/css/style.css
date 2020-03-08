@@ -6377,3 +6377,60 @@ h3.hotel-address {
     text-transform: uppercase;
     margin-bottom: 0;
 }
+
+/* Visa search area */
+
+.visa-search-wrapper {
+	background: linear-gradient(60deg, #f79533, #f37055, #ef4e7b, #a166ab, #5073b8, #1098ad, #07b39b, #6fba82);
+	background-size: 400% 400%;
+	-webkit-animation: gradient 15s ease infinite;
+	animation: gradient 5s ease infinite;
+	box-shadow: 7px 5px 30px rgba(72, 73, 121, .15);
+	-webkit-box-shadow: 7px 5px 30px rgba(72, 73, 121, .15);
+	border-radius: 5px;
+	margin-top: 30px;
+	color: #fff;
+	padding: 50px;
+}
+
+.visa-search-wrapper p {
+    font-size: 25px;
+    border-bottom: 1px solid #fff;
+	padding-bottom: 20px;
+	text-align: center;
+}
+
+.visa-search-wrapper h2 {
+	margin: 20px 0;
+	text-align: center;
+	font-weight: 700;
+}
+
+.visa-search-wrapper .niceCountryInputMenuDropdown {
+    line-height: 37px;
+	top: 0px;
+	height: 40px;
+}
+
+.visa-search-wrapper .niceCountryInputMenu {
+    border-radius: 5px;
+	display: flex;
+	line-height: 40px;
+}
+
+.visa-search-wrapper .niceCountryInputMenuDefaultText {
+    width: 100%;
+}
+
+.visa-search-wrapper .niceCountryInputMenu a {
+    float: left;
+}
+
+.visa-search-wrapper .niceCountryInputMenuFilter input {
+    border-radius: 5px;
+}
+
+.niceCountryInputSelector {
+    background: #fff;
+    border-radius: 5px;
+}
