@@ -4,10 +4,10 @@
         <div class="container">
             <div class="col-lg-12">
                 <div class="breadcrumb-box">
-                    <h2>Omrah List</h2>
+                    <h2>OMRAH</h2>
                     <ul class="breadcrumb-inn">
                         <li><a href="index.html">Home</a></li>
-                        <li class="active"><a href="#">Omrah List</a></li>
+                        <li class="active"><a href="#">Omrah</a></li>
                     </ul>
                 </div>
             </div>
@@ -16,280 +16,166 @@
 </section>
 <!-- Breadcrumb Area End -->
 
-<!-- Popular Tours Area Start -->
-<section class="abh-popular-tours-area section_70 hajj-list-area">
+
+<!-- Promo Packages Area Start -->
+<section class="abh-promo-package-area section_70">
     <div class="container">
         <div class="row">
-            <div class="col-lg-4">
-                <div class="single-popular-tour">
-                    <div class="popular-tour-image">
-                        <a href="<?php echo base_url();?>assets/frontend_asset/img/umrah-package-07-days.jpg" class="popup-img">
-                            <img src="<?php echo base_url();?>assets/frontend_asset/img/umrah-package-07-days.jpg" alt="Popular Tours" />
+            <div class="col-md-12">
+                <div class="site-heading">
+                    <h2>Omrah Packages</h2>
+                    <p>Lorem ipsum dolor sit amet, conseetuer adipiscing elit. Aenan comdo igula eget. Aenean massa cum
+                        sociis Theme natoque.</p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 pad-right">
+                <div class="single-promo-package">
+                    <div class="promo-package-img img-style-1">
+                        <a href="#">
+                            <img class="img-fluid" src="<?php echo base_url();?>assets/frontend_asset/img/promo-pack1.jpg" alt="Promo Packages" />
                         </a>
                     </div>
-                    <div class="popular-tour-desc">
-                        <div class="tour-desc-top">
-                            <h3><a href="omrah-details.php">Umrah Package - 07 Days</a></h3>
-                            <div class="tour_duration">
-                                <p>
-                                    <i class="fa fa-user-o"></i>
-                                    Starts from BDT. 84,000 per person
-                                </p>
+                    <div class="promo-package-desc">
+                        <div class="package-desc-title">
+                            <h3><a href="omrah-list.php">Economy Regular Package</a></h3>
+                        </div>
+                        <!-- <div class="promo-pack-inner">
+                                <div class="package-desc-meta">
+                                    <p><span>2</span> Adults, <span>1</span> Kid</p>
+                                    <ul>
+                                        <li><i class="fa fa-star"></i></li>
+                                        <li><i class="fa fa-star"></i></li>
+                                        <li><i class="fa fa-star"></i></li>
+                                        <li><i class="fa fa-star"></i></li>
+                                        <li><i class="fa fa-star-o"></i></li>
+                                    </ul>
+                                </div>
+                                <div class="package-desc-price">
+                                    <p>Price <span>$840</span></p>
+                                </div>
+                            </div> -->
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-8">
+                <div class="row">
+                    <div class="col-lg-5 pad-left">
+                        <div class="single-promo-package">
+                            <div class="promo-package-img">
+                                <a href="#">
+                                    <img class="img-fluid" src="<?php echo base_url();?>assets/frontend_asset/img/promo-pack2.jpg" alt="Promo Packages" />
+                                </a>
+                            </div>
+                            <div class="promo-package-desc">
+                                <div class="package-desc-title">
+                                    <h3><a href="omrah-list.php">Deluxe Green Package </a></h3>
+                                </div>
+                                <!-- <div class="promo-pack-inner">
+                                        <div class="package-desc-meta">
+                                            <p><span>2</span> Adults, <span>1</span> Kid</p>
+                                            <ul>
+                                                <li><i class="fa fa-star"></i></li>
+                                                <li><i class="fa fa-star"></i></li>
+                                                <li><i class="fa fa-star"></i></li>
+                                                <li><i class="fa fa-star"></i></li>
+                                                <li><i class="fa fa-star-o"></i></li>
+                                            </ul>
+                                        </div>
+                                        <div class="package-desc-price">
+                                            <p>Price <span>$760</span></p>
+                                        </div>
+                                    </div> -->
                             </div>
                         </div>
-                        <div class="tour-desc-bottom">
-                            <div class="tour-details fullwidth-btn">
-                                <a href="omrah-details.php"> Book Now</a>
+                    </div>
+                    <div class="col-lg-7">
+                        <div class="single-promo-package">
+                            <div class="promo-package-img">
+                                <a href="#">
+                                    <img class="img-fluid" src="<?php echo base_url();?>assets/frontend_asset/img/promo-pack3.jpg" alt="Promo Packages" />
+                                </a>
+                            </div>
+                            <div class="promo-package-desc">
+                                <div class="package-desc-title">
+                                    <h3><a href="omrah-list.php">Super Deluxe Silver Package</a></h3>
+                                </div>
+                                <!-- <div class="promo-pack-inner">
+                                        <div class="package-desc-meta">
+                                            <p><span>2</span> Adults, <span>1</span> Kid</p>
+                                            <ul>
+                                                <li><i class="fa fa-star"></i></li>
+                                                <li><i class="fa fa-star"></i></li>
+                                                <li><i class="fa fa-star"></i></li>
+                                                <li><i class="fa fa-star"></i></li>
+                                                <li><i class="fa fa-star-o"></i></li>
+                                            </ul>
+                                        </div>
+                                        <div class="package-desc-price">
+                                            <p>Price <span>$620</span></p>
+                                        </div>
+                                    </div> -->
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-lg-4">
-                <div class="single-popular-tour">
-                    <div class="popular-tour-image">
-                        <a href="<?php echo base_url();?>assets/frontend_asset/img/umrah-package-10-days.jpg" class="popup-img">
-                            <img src="<?php echo base_url();?>assets/frontend_asset/img/umrah-package-10-days.jpg" alt="Popular Tours" />
-                        </a>
-                    </div>
-                    <div class="popular-tour-desc">
-                        <div class="tour-desc-top">
-                            <h3><a href="omrah-details.php">Umrah Package - 10 Days</a></h3>
-                            <div class="tour_duration">
-                                <p>
-                                    <i class="fa fa-user-o"></i>
-                                    Starts from BDT. 84,000 per person
-                                </p>
+                <div class="row">
+                    <div class="col-lg-7 pad-left">
+                        <div class="single-promo-package bottom_pack">
+                            <div class="promo-package-img">
+                                <a href="#">
+                                    <img class="img-fluid" src="<?php echo base_url();?>assets/frontend_asset/img/promo-pack-4.jpg" alt="Promo Packages" />
+                                </a>
                             </div>
-                        </div>
-                        <div class="tour-desc-bottom">
-                            <div class="tour-details fullwidth-btn">
-                                <a href="omrah-details.php"> Book Now</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4">
-                <div class="single-popular-tour">
-                    <div class="popular-tour-image">
-                        <a href="<?php echo base_url();?>assets/frontend_asset/img/umrah-package-15-days.jpg" class="popup-img">
-                            <img src="<?php echo base_url();?>assets/frontend_asset/img/umrah-package-15-days.jpg" alt="Popular Tours" />
-                        </a>
-                    </div>
-                    <div class="popular-tour-desc">
-                        <div class="tour-desc-top">
-                            <h3><a href="omrah-details.php">Umrah Package - 15 Days</a></h3>
-                            <div class="tour_duration">
-                                <p>
-                                    <i class="fa fa-user-o"></i>
-                                    Starts from BDT. 84,000 per person
-                                </p>
-                            </div>
-                        </div>
-                        <div class="tour-desc-bottom">
-                            <div class="tour-details fullwidth-btn">
-                                <a href="omrah-details.php"> Book Now</a>
+                            <div class="promo-package-desc">
+                                <div class="package-desc-title">
+                                    <h3><a href="omrah-list.php">Super Deluxe Gold Package</a></h3>
+                                </div>
+                                <!-- <div class="promo-pack-inner">
+                                        <div class="package-desc-meta">
+                                            <p><span>2</span> Adults, <span>1</span> Kid</p>
+                                            <ul>
+                                                <li><i class="fa fa-star"></i></li>
+                                                <li><i class="fa fa-star"></i></li>
+                                                <li><i class="fa fa-star"></i></li>
+                                                <li><i class="fa fa-star"></i></li>
+                                                <li><i class="fa fa-star"></i></li>
+                                            </ul>
+                                        </div>
+                                        <div class="package-desc-price">
+                                            <p>Price <span>$1100</span></p>
+                                        </div>
+                                    </div> -->
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-            <div class="col-lg-4">
-                <div class="single-popular-tour">
-                    <div class="popular-tour-image">
-                        <a href="<?php echo base_url();?>assets/frontend_asset/img/umrah-dubai-package-15-days.jpg" class="popup-img">
-                            <img src="<?php echo base_url();?>assets/frontend_asset/img/umrah-dubai-package-15-days.jpg" alt="Popular Tours" />
-                        </a>
-                    </div>
-                    <div class="popular-tour-desc">
-                        <div class="tour-desc-top">
-                            <h3><a href="omrah-details.php">Umrah & Dubai Package - 15 Days</a></h3>
-                            <div class="tour_duration">
-                                <p>
-                                    <i class="fa fa-user-o"></i>
-                                    Starts from BDT. 1,25,000 per person
-                                </p>
+                    <div class="col-lg-5">
+                        <div class="single-promo-package bottom_pack">
+                            <div class="promo-package-img">
+                                <a href="#">
+                                    <img class="img-fluid" src="<?php echo base_url();?>assets/frontend_asset/img/promo-pack5.jpg" alt="Promo Packages" />
+                                </a>
                             </div>
-                        </div>
-                        <div class="tour-desc-bottom">
-                            <div class="tour-details fullwidth-btn">
-                                <a href="omrah-details.php"> Book Now</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4">
-                <div class="single-popular-tour">
-                    <div class="popular-tour-image">
-                        <a href="<?php echo base_url();?>assets/frontend_asset/img/umrah-egypt-package-15-days.jpg" class="popup-img">
-                            <img src="<?php echo base_url();?>assets/frontend_asset/img/umrah-egypt-package-15-days.jpg" alt="Popular Tours" />
-                        </a>
-                    </div>
-                    <div class="popular-tour-desc">
-                        <div class="tour-desc-top">
-                            <h3><a href="omrah-details.php">Umrah & Egypt Package - 15 Days</a></h3>
-                            <div class="tour_duration">
-                                <p>
-                                    <i class="fa fa-user-o"></i>
-                                    Starts from BDT. 1,43,000 per person
-                                </p>
-                            </div>
-                        </div>
-                        <div class="tour-desc-bottom">
-                            <div class="tour-details fullwidth-btn">
-                                <a href="omrah-details.php"> Book Now</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4">
-                <div class="single-popular-tour">
-                    <div class="popular-tour-image">
-                        <a href="<?php echo base_url();?>assets/frontend_asset/img/umrah-package-07-days.jpg" class="popup-img">
-                            <img src="<?php echo base_url();?>assets/frontend_asset/img/umrah-package-07-days.jpg" alt="Popular Tours" />
-                        </a>
-                    </div>
-                    <div class="popular-tour-desc">
-                        <div class="tour-desc-top">
-                            <h3><a href="omrah-details.php">Umrah & Turkey Package - 15 Days</a></h3>
-                            <div class="tour_duration">
-                                <p>
-                                    <i class="fa fa-user-o"></i>
-                                    Starts from BDT. 1,60,000 per person
-                                </p>
-                            </div>
-                        </div>
-                        <div class="tour-desc-bottom">
-                            <div class="tour-details fullwidth-btn">
-                                <a href="omrah-details.php"> Book Now</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4">
-                <div class="single-popular-tour">
-                    <div class="popular-tour-image">
-                        <a href="<?php echo base_url();?>assets/frontend_asset/img/ramadan-umrah-package-07-days.jpg" class="popup-img">
-                            <img src="<?php echo base_url();?>assets/frontend_asset/img/ramadan-umrah-package-07-days.jpg" alt="Popular Tours" />
-                        </a>
-                    </div>
-                    <div class="popular-tour-desc">
-                        <div class="tour-desc-top">
-                            <h3><a href="omrah-details.php">Ramadan Umrah Package - 07 Days </a></h3>
-                            <div class="tour_duration">
-                                <p>
-                                    <i class="fa fa-user-o"></i>
-                                    Starts from BDT. 90,000 Per person
-                                </p>
-                            </div>
-                        </div>
-                        <div class="tour-desc-bottom">
-                            <div class="tour-details fullwidth-btn">
-                                <a href="omrah-details.php"> Book Now</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4">
-                <div class="single-popular-tour">
-                    <div class="popular-tour-image">
-                        <a href="<?php echo base_url();?>assets/frontend_asset/img/ramadan-umrah-package-10-days.jpg" class="popup-img">
-                            <img src="<?php echo base_url();?>assets/frontend_asset/img/ramadan-umrah-package-10-days.jpg" alt="Popular Tours" />
-                        </a>
-                    </div>
-                    <div class="popular-tour-desc">
-                        <div class="tour-desc-top">
-                            <h3><a href="omrah-details.php">Ramadan Umrah Package - 10 Days </a></h3>
-                            <div class="tour_duration">
-                                <p>
-                                    <i class="fa fa-user-o"></i>
-                                    Starts from BDT. 95,000 per person
-                                </p>
-                            </div>
-                        </div>
-                        <div class="tour-desc-bottom">
-                            <div class="tour-details fullwidth-btn">
-                                <a href="omrah-details.php"> Book Now</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4">
-                <div class="single-popular-tour">
-                    <div class="popular-tour-image">
-                        <a href="<?php echo base_url();?>assets/frontend_asset/img/ramadan-umrah-package-15-days.jpg" class="popup-img">
-                            <img src="<?php echo base_url();?>assets/frontend_asset/img/ramadan-umrah-package-15-days.jpg" alt="Popular Tours" />
-                        </a>
-                    </div>
-                    <div class="popular-tour-desc">
-                        <div class="tour-desc-top">
-                            <h3><a href="omrah-details.php">Ramadan Umrah Package - 15 Days </a></h3>
-                            <div class="tour_duration">
-                                <p>
-                                    <i class="fa fa-user-o"></i>
-                                    Starts from BDT. 99,900 per person
-                                </p>
-                            </div>
-                        </div>
-                        <div class="tour-desc-bottom">
-                            <div class="tour-details fullwidth-btn">
-                                <a href="omrah-details.php"> Book Now</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4">
-                <div class="single-popular-tour">
-                    <div class="popular-tour-image">
-                        <a href="<?php echo base_url();?>assets/frontend_asset/img/eid-in-makkah-11-days.jpg" class="popup-img">
-                            <img src="<?php echo base_url();?>assets/frontend_asset/img/eid-in-makkah-11-days.jpg" alt="Popular Tours" />
-                        </a>
-                    </div>
-                    <div class="popular-tour-desc">
-                        <div class="tour-desc-top">
-                            <h3><a href="omrah-details.php">Eid In Makkah - 11 Days</a></h3>
-                            <div class="tour_duration">
-                                <p>
-                                    <i class="fa fa-user-o"></i>
-                                    Starts from BDT. 1,10,000 per person
-                                </p>
-                            </div>
-                        </div>
-                        <div class="tour-desc-bottom">
-                            <div class="tour-details fullwidth-btn">
-                                <a href="omrah-details.php"> Book Now</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4">
-                <div class="single-popular-tour">
-                    <div class="popular-tour-image">
-                        <a href="<?php echo base_url();?>assets/frontend_asset/img/eid-in-madinah-11-days.jpg" class="popup-img">
-                            <img src="<?php echo base_url();?>assets/frontend_asset/img/eid-in-madinah-11-days.jpg" alt="Popular Tours" />
-                        </a>
-                    </div>
-                    <div class="popular-tour-desc">
-                        <div class="tour-desc-top">
-                            <h3><a href="omrah-details.php">Eid In Madinah - 11 Days</a></h3>
-                            <div class="tour_duration">
-                                <p>
-                                    <i class="fa fa-user-o"></i>
-                                    Starts from BDT. 1,08,000 per person
-                                </p>
-                            </div>
-                        </div>
-                        <div class="tour-desc-bottom">
-                            <div class="tour-details fullwidth-btn">
-                                <a href="omrah-details.php"> Book Now</a>
+                            <div class="promo-package-desc">
+                                <div class="package-desc-title">
+                                    <h3><a href="omrah-list.php">Deluxe Elite Package</a></h3>
+                                </div>
+                                <!-- <div class="promo-pack-inner">
+                                        <div class="package-desc-meta">
+                                            <p><span>2</span> Adults, <span>1</span> Kid</p>
+                                            <ul>
+                                                <li><i class="fa fa-star"></i></li>
+                                                <li><i class="fa fa-star"></i></li>
+                                                <li><i class="fa fa-star"></i></li>
+                                                <li><i class="fa fa-star"></i></li>
+                                                <li><i class="fa fa-star-o"></i></li>
+                                            </ul>
+                                        </div>
+                                        <div class="package-desc-price">
+                                            <p>Price <span>$550</span></p>
+                                        </div>
+                                    </div> -->
                             </div>
                         </div>
                     </div>
@@ -298,4 +184,4 @@
         </div>
     </div>
 </section>
-<!-- Popular Tours Area End -->
+<!-- Promo Packages Area End -->

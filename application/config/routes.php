@@ -88,10 +88,73 @@ $route['login']       = 'login';
 $route['check-login'] = 'login/checkLogin';
 //End Admin Login Section
 
-//Book Section
+//admin Book Section
 $route['booking-list']        = 'admin/booking_list';
 $route['view-booking/(:any)'] = 'admin/view_booking/$1';
 
-//Request Section
+//admin Request Section
 $route['request-list']        = 'admin/request_list';
 $route['view-request/(:any)'] = 'admin/view_request/$1';
+
+//admin Countries Section
+$route['countries-list']        = 'admin/country_list';
+$route['edit-country']          = 'admin/edit_country/$1';
+$route['delete-country/(:any)'] = 'admin/delete_country/$1';
+
+//admin Cities Section
+$route['cities-list']        = 'admin/cities_list';
+$route['edit-city/(:any)']   = 'admin/edit_city/$1';
+$route['delete-city/(:any)'] = 'admin/delete_city/$1';
+
+//Search Data
+$route['search-data']       = 'search/search_data';
+$route['search-hotel-tour'] = 'search/hotel_tour_search';
+$route['search-tour']       = 'search/tour_search';
+
+//admin Hajj Section
+$route['add-hajj']         = 'hajj/add_hajj';
+$route['list-hajj']        = 'hajj/all_hajj';
+$route['edit-hajj/(:any)'] = 'hajj/edit_hajj/$1';
+//End Hajj Section
+
+//Tour Section
+$route['add-tour']         = 'tour/add_tour';
+$route['list-tour']        = 'tour/all_tour';
+$route['edit-tour/(:any)'] = 'tour/edit_tour/$1';
+//End Tour Section
+
+//Hotel Section
+$route['add-hotel']         = 'hotel/add_hotel';
+$route['list-hotel']        = 'hotel/all_hotel';
+$route['edit-hotel/(:any)'] = 'hotel/edit_hotel/$1';
+//End Hotel Section
+
+//delete
+$route['delete-image/(:any)/(:any)']      = 'hotel/delete_image/$1/$2';
+$route['delete-tour-image/(:any)/(:any)'] = 'tour/delete_image/$1/$2';
+$route['delete-hajj-image/(:any)/(:any)'] = 'hajj/delete_image/$1/$2';
+$route['delete-umra-image/(:any)/(:any)'] = 'umra/delete_image/$1/$2';
+
+//Slider Section
+$route['add-slider']           = 'admin/add_slider';
+$route['slider-list']          = 'admin/all_slider';
+$route['edit-slider/(:any)']   = 'admin/edit_slider/$1';
+$route['update_slider']        = 'admin/update_slider';
+$route['delete-slider/(:any)'] = 'admin/delete_slider/$1';
+//Slider Section
+
+//Countries Section
+$route['countries-list']        = 'admin/country_list';
+$route['edit-country']          = 'admin/edit_country/$1';
+$route['delete-country/(:any)'] = 'admin/delete_country/$1';
+
+//Cities Section
+$route['cities-list']        = 'admin/cities_list';
+$route['edit-city/(:any)']   = 'admin/edit_city/$1';
+$route['delete-city/(:any)'] = 'admin/delete_city/$1';
+
+//Set type to hot
+$route['set-hot/(:any)/(:any)']     = 'admin/change_type/$1/$2';
+$route['delete-data/(:any)/(:any)'] = 'admin/delete_data/$1/$2';
+$route['edit-company-info']         = 'admin/edit_company_info';
+$route['edit-company-data']         = 'admin/edit_company_data';
