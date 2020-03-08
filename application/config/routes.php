@@ -117,6 +117,12 @@ $route['list-hajj']        = 'hajj/all_hajj';
 $route['edit-hajj/(:any)'] = 'hajj/edit_hajj/$1';
 //End Hajj Section
 
+//Umra Section
+$route['add-umra']         = 'umra/add_umra';
+$route['list-umra']        = 'umra/all_umra';
+$route['edit-umra/(:any)'] = 'umra/edit_umra/$1';
+//End Umra Section
+
 //Tour Section
 $route['add-tour']         = 'tour/add_tour';
 $route['list-tour']        = 'tour/all_tour';
@@ -128,6 +134,12 @@ $route['add-hotel']         = 'hotel/add_hotel';
 $route['list-hotel']        = 'hotel/all_hotel';
 $route['edit-hotel/(:any)'] = 'hotel/edit_hotel/$1';
 //End Hotel Section
+
+//Visa Section
+$route['add-visa']         = 'visa/add_visa';
+$route['list-visa']        = 'visa/all_visa';
+$route['edit-visa/(:any)'] = 'visa/edit_visa/$1';
+//End Visa Section
 
 //delete
 $route['delete-image/(:any)/(:any)']      = 'hotel/delete_image/$1/$2';
@@ -158,3 +170,6 @@ $route['set-hot/(:any)/(:any)']     = 'admin/change_type/$1/$2';
 $route['delete-data/(:any)/(:any)'] = 'admin/delete_data/$1/$2';
 $route['edit-company-info']         = 'admin/edit_company_info';
 $route['edit-company-data']         = 'admin/edit_company_data';
+
+//Flight Section
+$route['all-airport'] = 'flight/all_airport';
