@@ -201,9 +201,19 @@
                             </div>
                         </div>
                     </div>
+
+
                 </div>
 
-                 <div class="form-row">
+                <h6 style="display: block;width: 100%;text-align: left;">
+                    Tour Description
+                </h6>
+                <div class="tab-pane fade show active" aria-labelledby="nav-home-tab">
+                    <textarea id="editor" class="mb-3 editor" name="tour_description"></textarea>
+                    <input type="hidden" name="">
+                </div>
+
+                <!--  <div class="form-row">
                     <div class="col-md-6" id="">
                         <div class="form-group">
                             <div class="input-group">
@@ -220,9 +230,9 @@
                                         <?php }?>
                                 </select>
                             </div>
-                        </div><!-- end form-group -->
+                        </div>
                     </div> 
-                </div>
+                </div> -->
                 
                 <div class="optionBox">
 
@@ -230,46 +240,58 @@
                         <!--<span class="remove btn btn-danger" style="margin-bottom: 10px;">Remove Option</span>-->
                     </div>
                 </div>
-                
+
                 <div class="form-row">
-                    
                     <h6 style="display: block;width: 100%;text-align: left;">
-                        Epic journeys
+                        Accommodation
                     </h6>
-                    
                     <div class="col-md">
-                        <label class="checkbox-inline">
-                            <input type="checkbox" name="insurance" value="1"> Insurance
-                        </label>
-                    </div>
-                    <div class="col-md">
-                        <label class="checkbox-inline">
-                            <input type="checkbox" name="all_drink_included" value="1"> All Drink Included
-                        </label>
-                    </div>
-                    <div class="col-md">
-                        <label class="checkbox-inline">
-                            <input type="checkbox" name="restaurant" value="1"> Lunch in Restaurant
-                        </label>
-                    </div>
-                    <div class="col-md">
-                        <label class = "checkbox-inline">
-                            <input type="checkbox" name="all_ticket" value="1"> All Tickets Museum
-                        </label>
-                    </div>
-                    <div class="col-md">
-                        <label class="checkbox-inline">
-                            <input type="checkbox" name="tour_guide" value="1"> Tour Guide
-                        </label>
-                    </div>
-                    <div class="col-md">
-                        <label class="checkbox-inline">
-                            <input type="checkbox" name="travel_insurance" value="1"> Travel Insurance
+                        <label class="checkbox-inline" style="float: left;">
+                            <input type="checkbox" name="all_inclusive" value="1"> All Inclusive
                         </label>
                     </div>
                 </div>
                 
-                <h6 style="text-align: left;">Related Hotels</h6>
+                <div class="form-row">
+                    
+                    <h6 style="display: block;width: 100%;text-align: left;">
+                        What's Included
+                    </h6>
+                    
+                    
+                    <div class="col-md">
+                        <label class="checkbox-inline">
+                            <input type="checkbox" name="insurance" value="1">Travel Insurance
+                        </label>
+                    </div>
+                    <div class="col-md">
+                        <label class="checkbox-inline">
+                            <input type="checkbox" name="five_star_accommodation" value="1"> 5 Star Accommodation
+                        </label>
+                    </div>
+                    <div class="col-md">
+                        <label class="checkbox-inline">
+                            <input type="checkbox" name="airport_transfer" value="1"> Airport Transfer
+                        </label>
+                    </div>
+                    <div class="col-md">
+                        <label class = "checkbox-inline">
+                            <input type="checkbox" name="breakfast" value="1"> Breakfast
+                        </label>
+                    </div>
+                    <div class="col-md">
+                        <label class="checkbox-inline">
+                            <input type="checkbox" name="personal_guide" value="1"> Personal Guide
+                        </label>
+                    </div>
+                    <div class="col-md">
+                        <label class="checkbox-inline">
+                            <input type="checkbox" name="two_days_long_city_tour" value="1"> Two Days Long City Tour
+                        </label>
+                    </div>
+                </div>
+                
+                <h6 style="text-align: left;">Related Tours</h6>
                 <ul id="related_data" class="">
                     <?php $i = 1;foreach ($get_all_tour as $row) {?>
                     <li>
@@ -286,7 +308,7 @@
                     <?php $i++;}?>
                 </ul>
 
-            
+            <!-- 
                 <h6 style="text-align: left;">
                 
                     <label class="checkbox-inline">
@@ -300,6 +322,16 @@
                             <label for="inputGroupSelect07" class="">Discount Amount:</label>
                             <input type="text" class="form-control integerPositive" name="tour_discount" id="">
                         </div>
+                    </div>
+                </div> -->
+
+                <div class="form-row">
+                    
+                    <div class="col-md-6" id="tour_name">
+                        <div class="form-group">
+                            <label for="inputGroupSelect07" class="">Gallery:</label>
+                            <input type="file" multiple="" class="form-control" name="image[]" required id="">
+                        </div><!-- end form-group -->
                     </div>
                 </div>
 

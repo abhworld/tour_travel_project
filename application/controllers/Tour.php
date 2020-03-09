@@ -58,6 +58,7 @@ class Tour extends CI_Controller {
         }
         
         $this->form_validation->set_rules('tour_price', 'tour price', 'required');
+        // $this->form_validation->set_rules('tour_description', 'tour description', 'required');
         
         if ($this->form_validation->run() == false) {
             $errors = array();
@@ -78,30 +79,37 @@ class Tour extends CI_Controller {
             $data['package_name'] = str_replace('-', '',$post['package_name']);
             $data['tour_price'] = $post['tour_price'];
             $data['no_of_day'] = $post['no_of_day'];
-            $data['discount_amount'] = $post['tour_discount'];
+            // $data['discount_amount'] = $post['tour_discount'];
+            $data['tour_description'] = $post['tour_description'];
             $data['tour_image'] = $get_tour_file[0];
-            $data['type_id'] = $post['type_id'];
+            // $data['type_id'] = $post['type_id'];
+
+            // echo '<pre>'; print_r($post);die;
 
             if(isset($post['is_discount'])){
                 $data['is_discount'] = $post['is_discount'];
             }
+
+            if(isset($post['all_inclusive'])){
+                $data['all_inclusive'] = $post['all_inclusive'];
+            }
             if(isset($post['insurance'])){
                 $data['insurance'] = $post['insurance'];
             }
-            if(isset($post['all_drink_included'])){
-                $data['all_drink_included'] = $post['all_drink_included'];
+            if(isset($post['five_star_accommodation'])){
+                $data['five_star_accommodation'] = $post['five_star_accommodation'];
             }
-            if(isset($post['restaurant'])){
-                $data['restaurant'] = $post['restaurant'];
+            if(isset($post['airport_transfer'])){
+                $data['airport_transfer'] = $post['airport_transfer'];
             }
-            if(isset($post['all_ticket'])){
-                $data['all_ticket'] = $post['all_ticket'];
+            if(isset($post['breakfast'])){
+                $data['breakfast'] = $post['breakfast'];
             }
-            if(isset($post['tour_guide'])){
-                $data['tour_guide'] = $post['tour_guide'];
+            if(isset($post['personal_guide'])){
+                $data['personal_guide'] = $post['personal_guide'];
             }
-            if(isset($post['travel_insurance'])){
-                $data['travel_insurance'] = $post['travel_insurance'];
+            if(isset($post['two_days_long_city_tour'])){
+                $data['two_days_long_city_tour'] = $post['two_days_long_city_tour'];
             }
             
             if(isset($post['related_tour_id'])){
@@ -334,6 +342,15 @@ class Tour extends CI_Controller {
             $data['package_name'] = str_replace('-', '',$post['package_name']);
             $data['tour_price'] = $post['tour_price'];
             $data['discount_amount'] = $post['tour_discount'];
+            $data['tour_description'] = $post['tour_description'];
+
+            $data['all_inclusive'] = $post['all_inclusive'];
+            $data['insurance'] = $post['insurance'];
+            $data['five_star_accommodation'] = $post['five_star_accommodation'];
+            $data['airport_transfer'] = $post['airport_transfer'];
+            $data['breakfast'] = $post['breakfast'];
+            $data['personal_guide'] = $post['personal_guide'];
+            $data['two_days_long_city_tour'] = $post['two_days_long_city_tour'];
             $data['type_id'] = $post['type_id'];
             $data['no_of_day'] = $post['no_of_day'];
             $data['tour_image'] = $post['prev_tour_image'];

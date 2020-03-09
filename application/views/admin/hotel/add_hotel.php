@@ -156,7 +156,7 @@
             <div id="error_message" style="margin-left: 43px;"></div>
             <div id="success_msg" style="margin-left: 43px;"></div>
             
-            <form class="text-center" id="add_hotel_info" action="hotel/save_hotel_info" method="post" enctype="multipart/form-data">
+            <form class="text-center" id="add_hotel_info">
                 
                 <div class="form-row">
                     <div class="col-md" id="country_id">
@@ -205,15 +205,16 @@
                     <div class="col-md" style="margin-bottom: 1rem;">
                         <nav>
                             <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
-                              <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Hotel Overview</a>
+                              <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Hotel Description</a>
                               <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Hotel Address</a>
-                              <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">Attraction Nearby Hotel</a>
+                               <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">Hotel Facilities</a>
+                              <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact1" role="tab" aria-controls="nav-contact" aria-selected="false">Hotel Itinerary</a>
                             </div>
                           </nav>
                           <div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
                             <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
                                 <textarea name="" id="editor" class="mb-3 editor"></textarea>
-                                <input type="hidden" name="hotel_overview">
+                                <input type="hidden" name="hotel_description">
                             </div>
                             <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
                                 <div class="form-group">
@@ -246,7 +247,12 @@
                                 </div>
                             </div>
                             <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
-                                <textarea name="attract_nearby" id="editor" class="mb-3 editor1"></textarea>
+                                <textarea name="" id="editor" class="mb-3 editor"></textarea>
+                                <input type="hidden" name="hotel_facilities">
+                            </div>
+                            <div class="tab-pane fade" id="nav-contact1" role="tabpanel" aria-labelledby="nav-contact-tab">
+                                <textarea name="" id="editor" class="mb-3 editor"></textarea>
+                                <input type="hidden" name="hotel_itinerary">
                             </div>
                             
                           </div><!-- end detail-tabs -->
@@ -291,27 +297,21 @@
                 <div class="form-row">
                     
                     <h6 style="display: block;width: 100%;text-align: left;">
-                        Hotel Service
+                        Hotel Facilities
                     </h6>
-                    
-                    <div class="col-md">
-                        <label class="checkbox-inline">
-                            <input type="checkbox" name="fitness_center" value="1"> Fitness Center
-                        </label>
-                    </div>
-                    <div class="col-md">
-                        <label class="checkbox-inline">
-                            <input type="checkbox" name="coffee_shop" value="1"> Coffee Shop
-                        </label>
-                    </div>
                     <div class="col-md">
                         <label class="checkbox-inline">
                             <input type="checkbox" name="restaurant" value="1"> Restaurant
                         </label>
                     </div>
                     <div class="col-md">
-                        <label class = "checkbox-inline">
-                            <input type="checkbox" name="baby_care" value="1"> Baby Care
+                        <label class="checkbox-inline">
+                            <input type="checkbox" name="swimming_pool" value="1"> Swimming Pool
+                        </label>
+                    </div>
+                    <div class="col-md">
+                        <label class="checkbox-inline">
+                            <input type="checkbox" name="fitness_center" value="1"> Fitness Center
                         </label>
                     </div>
                     <div class="col-md">
@@ -321,7 +321,12 @@
                     </div>
                     <div class="col-md">
                         <label class="checkbox-inline">
-                            <input type="checkbox" name="wifi_free" value="1"> Wifi Free
+                            <input type="checkbox" name="coffee_shop" value="1"> Coffee Shop
+                        </label>
+                    </div>
+                    <div class="col-md">
+                        <label class="checkbox-inline">
+                            <input type="checkbox" name="wifi" value="1"> Wifi Free
                         </label>
                     </div>
                 </div>
@@ -340,7 +345,7 @@
                                         <div class="input-group-prepend">
                                             <label class="input-group-text" for="inputGroupSelect00" style="width: 120px;">Room Type:</label>
                                         </div>
-                                        <select class="custom-select" name="room_type[1][]" id="inputGroupSelect00">
+                                        <select class="custom-select" name="room_type[]" id="inputGroupSelect00">
                                             <option value="">Choose</option>
                                             <?php foreach ($room_type as $type) {?>
                                             <option value="<?php echo $type['room_type_id'];?>"><?php echo $type['room_type'];?></option>
@@ -356,7 +361,7 @@
                                         <div class="input-group-prepend">
                                             <label class="input-group-text" for="inputGroupSelect00">Room Condition:</label>
                                         </div>
-                                        <select class="custom-select" name="room_condition[1][]" id="inputGroupSelect00">
+                                        <select class="custom-select" name="room_condition[]" id="inputGroupSelect00">
                                             <option value="">Choose</option>
                                             <option value="1">AC</option>
                                             <option value="2">Non-AC</option>
@@ -371,7 +376,7 @@
                                         <div class="input-group-prepend">
                                             <label class="input-group-text" for="inputGroupSelect00">Meal:</label>
                                         </div>
-                                        <select class="custom-select" name="meal_type[1][]" id="inputGroupSelect00">
+                                        <select class="custom-select" name="meal_type[]" id="inputGroupSelect00">
                                             <option value="">Choose</option>
                                             <option value="1">Yes</option>
                                             <option value="2">No</option>
@@ -387,22 +392,27 @@
                             <div class="col">
                                 <div class="form-group">
                                     <label for="inputGroupSelect07" class="">No. Of Guest:</label>
-                                    <input type="text" class="form-control" name="no_of_guest[1][]" required id="">
+                                    <input type="text" class="form-control" name="no_of_guest[]" required id="">
                                 </div><!-- end form-group -->
                             </div><!-- end column -->
                             <div class="col">
                                 <div class="form-group">
                                     <label for="inputGroupSelect07" class="" style="width: 90px;">Adult:</label>
-                                    <input type="text" class="form-control" name="no_of_adult[1][]" required id="">
+                                    <input type="text" class="form-control" name="no_of_adult[]" required id="">
                                 </div><!-- end form-group -->
                             </div><!-- end column -->
                             <div class="col">
                                 <div class="form-group">
                                     <label for="inputGroupSelect07" class="" style="width: 90px;">Child:</label>
-                                    <input type="text" class="form-control" name="no_of_child[1][]" required id="">
+                                    <input type="text" class="form-control" name="no_of_child[]" required id="">
                                 </div><!-- end form-group -->
                             </div><!-- end column -->
-
+                             <div class="col">
+                            <div class="form-group">
+                                    <label for="inputGroupSelect07" class="" style="width: 90px;">Infant:</label>
+                                    <input type="text" class="form-control" name="no_of_infant[]" required id="">
+                                </div><!-- end form-group -->
+                            </div><!-- end column -->
                         </div>
                         
                         <div class="form-row">
@@ -411,7 +421,7 @@
                                 <div id="transportation_div">
                                     <div class="form-group">
                                         <label for="inputGroupSelect07" class="">Rent Per Night:</label>
-                                        <input type="text" class="form-control" name="rent_per_night[1][]" required id="">
+                                        <input type="text" class="form-control" name="rent_per_night[]" required id="">
                                     </div><!-- end form-group -->
                                 </div><!-- end form-group -->
                             </div><!-- end column -->
@@ -419,14 +429,14 @@
                             <div class="col-md">
                                 <div class="form-group">
                                     <label for="inputGroupSelect07" class="">Room Image:</label>
-                                    <input type="file" class="form-control" name="room_image[1][]" multiple required id="">
+                                    <input type="file" class="form-control" name="room_image[]" required id="">
                                 </div>
                             </div>
                             
                         </div><!-- end form-row -->
                         
                         <div class="form-group">
-                            <textarea class="form-control textarea text-left p-3 h-100" name="room_detail[1][]" id="exampleFormControlTextarea1" rows="2" placeholder="Room Details"></textarea>
+                            <textarea class="form-control textarea text-left p-3 h-100" name="room_detail[]" id="exampleFormControlTextarea1" rows="2" placeholder="Room Details"></textarea>
                         </div><!-- end form-group -->
                         
                         <div class="appenddata1"></div>
@@ -435,22 +445,22 @@
 
                 </div>
 
-                <h6 style="text-align: left;">Related Hotels</h6>
+<!--                <h6 style="text-align: left;">Related Hotels</h6>
                 <ul id="related_data" class="">
-                    <?php $i = 1;foreach ($get_all_hotel as $row) {?>
+                    <?php // $i = 1;foreach ($get_all_hotel as $row) {?>
                     <li>
-                        <input type="checkbox" id="hotel<?=$i?>" name="related_hotel_id[]" value="<?php echo $row['id'];?>"/>
-                        <label for="hotel<?=$i?>">
-                            <img src="uploads/hotel/thumbnail/<?php echo $row['hotel_image'];?>" alt=""/>
+                        <input type="checkbox" id="hotel<?php // echo $i?>" name="related_hotel_id[]" value="<?php // echo $row['id'];?>"/>
+                        <label for="hotel<?php // echo $i?>">
+                            <img src="uploads/hotel/thumbnail/<?php // echo $row['hotel_image'];?>" alt=""/>
                             <div class="caption" style="padding: 0px; margin-top: 5px;">
                                 <p>
-                                    <?php echo $row['hotel_name'];?>
+                                    <?php // echo $row['hotel_name'];?>
                                 </p>
                             </div>
                         </label>
                     </li>
-                    <?php $i++;}?>
-                </ul>
+                    <?php // $i++;}?>
+                </ul>-->
 
                 <ul class="list-inline">
                     <li class="list-inline-item">
@@ -472,8 +482,10 @@
 
 <script>
     $("#add_hotel").click(function (){
-        $('[name="hotel_overview"]').val($( 'textarea.editor' ).val());
-        $('[name="attract_nearby"]').val($( 'textarea.editor1' ).val());
+        $('[name="hotel_description"]').val($( 'textarea.editor' ).val());
+        // $('[name="hotel_address"]').val($( 'textarea.editor' ).val());
+        $('[name="hotel_facilities"]').val($( 'textarea.editor' ).val());
+        $('[name="hotel_itinerary"]').val($( 'textarea.editor' ).val());
 //        form_data.append('hotel_overivew', editor.getData());
         var form_data = new FormData($("#add_hotel_info")[0]);
 //        var content = $( 'textarea.editor' ).val();
@@ -545,7 +557,7 @@
                                                     <div class="input-group-prepend">\n\
                                                         <label class="input-group-text" for="inputGroupSelect00">Room Type:</label>\n\
                                                     </div>\n\
-                                                    <select class="custom-select" name="room_type['+id+'][]" id="inputGroupSelect00">\n\
+                                                    <select class="custom-select" name="room_type[]" id="inputGroupSelect00">\n\
                                                         <option value="">Choose</option>\n\
                                                         <?php foreach ($room_type as $type) {?>\n\
                                                         <option value="<?php echo $type['room_type_id']?>"><?php echo $type['room_type']?></option>\n\
@@ -561,7 +573,7 @@
                                                     <div class="input-group-prepend">\n\
                                                         <label class="input-group-text" for="inputGroupSelect00">Room Condition:</label>\n\
                                                     </div>\n\
-                                                    <select class="custom-select" name="room_condition['+id+'][]" id="inputGroupSelect00">\n\
+                                                    <select class="custom-select" name="room_condition[]" id="inputGroupSelect00">\n\
                                                         <option value="">Choose</option>\n\
                                                         <option value="1">AC</option>\n\
                                                         <option value="2">Non-AC</option>\n\
@@ -576,7 +588,7 @@
                                                     <div class="input-group-prepend">\n\
                                                         <label class="input-group-text" for="inputGroupSelect00">Meal:</label>\n\
                                                     </div>\n\
-                                                    <select class="custom-select" name="meal_type['+id+'][]" id="inputGroupSelect00">\n\
+                                                    <select class="custom-select" name="meal_type[]" id="inputGroupSelect00">\n\
                                                         <option value="">Choose</option>\n\
                                                         <option value="1">Yes</option>\n\
                                                         <option value="2">No</option>\n\
@@ -590,19 +602,19 @@
                                         <div class="col-md">\n\
                                             <div class="form-group">\n\
                                                 <label for="inputGroupSelect07" class="">No. Of Guest:</label>\n\
-                                                <input type="text" class="form-control" name="no_of_guest['+id+'][]" required id="">\n\
+                                                <input type="text" class="form-control" name="no_of_guest[]" required id="">\n\
                                             </div>\n\
                                         </div>\n\
                                         <div class="col">\n\
                                             <div class="form-group">\n\
                                                 <label for="inputGroupSelect07" class="" style="width: 90px;">Adult:</label>\n\
-                                                <input type="text" class="form-control" name="no_of_adult['+id+'][]" required id="">\n\
+                                                <input type="text" class="form-control" name="no_of_adult[]" required id="">\n\
                                             </div>\n\
                                         </div>\n\
                                         <div class="col">\n\
                                             <div class="form-group">\n\
                                                 <label for="inputGroupSelect07" class="" style="width: 90px;">Child:</label>\n\
-                                                <input type="text" class="form-control" name="no_of_child['+id+'][]" required id="">\n\
+                                                <input type="text" class="form-control" name="no_of_child[]" required id="">\n\
                                             </div>\n\
                                         </div>\n\
                                     </div>\n\
@@ -611,19 +623,19 @@
                                             <div id="transportation_div">\n\
                                                 <div class="form-group">\n\
                                                     <label for="inputGroupSelect07" class="">Rent Per Night:</label>\n\
-                                                    <input type="text" class="form-control" name="rent_per_night['+id+'][]" required id="">\n\
+                                                    <input type="text" class="form-control" name="rent_per_night[]" required id="">\n\
                                                 </div>\n\
                                             </div>\n\
                                         </div>\n\
                                         <div class="col-md">\n\
                                             <div class="form-group">\n\
                                                 <label for="inputGroupSelect07" class="">Room Image:</label>\n\
-                                                <input type="file" multiple="" class="form-control" name="room_image['+id+'][]" required id="">\n\
+                                                <input type="file" class="form-control" name="room_image[]" required id="">\n\
                                             </div>\n\
                                         </div>\n\
                                     </div>\n\
                                     <div class="form-group">\n\
-                                        <textarea class="form-control textarea text-left p-3 h-100" name="room_detail['+id+'][]" id="exampleFormControlTextarea1" rows="2" placeholder="Room Details"></textarea>\n\
+                                        <textarea class="form-control textarea text-left p-3 h-100" name="room_detail[]" id="exampleFormControlTextarea1" rows="2" placeholder="Room Details"></textarea>\n\
                                     </div>\n\
                                     <div class="appenddata' + id + '"></div>\n\
                                     <span class="remove btn btn-danger" style="margin-bottom: 10px;">Remove Option</span>\n\
