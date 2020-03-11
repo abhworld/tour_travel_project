@@ -230,6 +230,9 @@ class Home extends CI_Controller {
 	{	
 		$data = array();
 
+		$data['all_tour'] = $this->home_model->getAllInfo('tour');
+		// echo '<pre>'; print_r($data['all_tour']); die;
+
 		$data['company_info'] = $this->home_model->getRow('company_info', 'id', 1);
 		// echo '<pre>'; print_r($data['company_info']); die;
 		$data['title'] = 'Tour-Home |';
@@ -244,9 +247,17 @@ class Home extends CI_Controller {
 		$this->load->view('home/home_main_content', $data);
 	}
 
-	public function tour_detail()
+	public function tour_detail($name)
 	{	
 		$data = array();
+
+		$tour_info = $this->home_model->getInfo('tour', 'package_name', str_replace('-', ' ', $name));
+        // echo '<pre>'; print_r($tour_info); die;
+        $id = $tour_info[0]['tour_id'];
+        // echo '<pre>'; print_r($id); die;
+        $data['tour_detail'] = $this->home_model->get_tour_detail($id);
+        $data['tour_destination'] = $this->home_model->get_destination($id);
+        // echo '<pre>'; print_r($data['tour_destination']); die;
 
 		$data['company_info'] = $this->home_model->getRow('company_info', 'id', 1);
 		// echo '<pre>'; print_r($data['company_info']); die;

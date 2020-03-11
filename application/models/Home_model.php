@@ -180,6 +180,22 @@ class Home_model extends CI_Model{
         $query = $this->db->get();
         return $query->result_array();
     }
+
+    public function get_destination($id)
+    {
+        $this->db->select('countries.name  AS country_name, cities.name AS city_name');
+
+        $this->db->from('tour');
+
+        $this->db->join('tour_detail', 'tour.tour_id = tour_detail.tour_pri_id', 'LEFT');
+        $this->db->join('countries', 'tour_detail.country_id = countries.id', 'LEFT');
+        $this->db->join('cities', 'tour_detail.city_id = cities.id', 'LEFT');
+
+        $this->db->where('tour.tour_id', $id);
+
+        $query = $this->db->get();
+        return $query->row_array();
+    }
     
     public function get_related_tour($country_id, $tour_id) {
         $this->db->select('tour.*, tour_detail.*');
@@ -209,9 +225,9 @@ class Home_model extends CI_Model{
 
     public function get_tour_type() {
         $this->db->select('*');
-        $this->db->from('package_type');
-        
-        $this->db->join('tour_type', 'package_type.type_id = tour_type.type_id', 'LEFT');
+        // $this->db->from('package_type');
+        // 
+        // $this->db->join('tour_type', 'package_type.type_id = tour_type.type_id', 'LEFT');
         
         $query = $this->db->get();
         return $query->result_array();

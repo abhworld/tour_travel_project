@@ -74,8 +74,8 @@ $route['hotel-detail']    = 'home/hotel_detail';
 
 
 //frontend tour
-$route['tour-homepage']   = 'home/tour_homepage';
-$route['tour-detail']     = 'home/tour_detail';
+$route['tour-homepage']          = 'home/tour_homepage';
+$route['tour-detail/(:any)']     = 'home/tour_detail/$1';
 
 //frontend home Content
 $route['contact']         = 'home/contact';

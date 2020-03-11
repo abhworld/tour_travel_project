@@ -24,27 +24,25 @@
                <div class="col-lg-8">
                   <div class="tour-details-left">
                      <div class="tour-details-head">
-                        <h3>Super Maldives Trip <span> <span class="tour_price">$560</span> / per person </span></h3>
-                        <div class="tour-rating">
-                           <ul>
-                              <li><i class="fa fa-star"></i></li>
-                              <li><i class="fa fa-star"></i></li>
-                              <li><i class="fa fa-star"></i></li>
-                              <li><i class="fa fa-star"></i></li>
-                              <li><i class="fa fa-star-o"></i></li>
-                           </ul>
-                           <p>(2 Review) </p>
-                        </div>
+                        <h3><?php echo $tour_detail[0]['package_name'];?> <span> <span class="tour_price"><?php echo $tour_detail[0]['tour_price'];?></span> / per person </span></h3>
+                        <div class="tour_duration">
+                                    <p>
+                                        <i class="fa fa-hourglass-half"></i>
+                                        <?php echo $tour_detail[0]['no_of_day'];?> Days / <?php echo $tour_detail[0]['no_of_day']+1;?> Nights
+                                    </p>
+                                </div>
                      </div>
                      <div class="tour-details-image">
                         <img src="<?php echo base_url();?>assets/frontend_asset/img/popular-6.jpg" alt="Tour" />
                      </div>
-                     <p>Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt. Duis leo.</p>
+                     <p><?php echo $tour_detail[0]['tour_description'];?></p>
                      <ul class="tour-offer clearfix">
-                        <li><span>Destination </span>Canada</li>
-                        <li><span>Departure </span>Los Angeles International Airport</li>
-                        <li><span>Departure Time </span>Sunday 14 of May, 20:30 hs</li>
+                        <li><span>Country </span><?php echo $tour_destination['country_name'];?></li>
+                        <li><span>City </span><?php echo $tour_destination['city_name'];?></li>
+                        <!-- <li><span>Departure Time </span>Sunday 14 of May, 20:30 hs</li> -->
+                        <?php if(isset($tour_detail[0]['all_inclusive'])){?>
                         <li><span>Accommodation </span>All Inclusive</li>
+                        <?php } ?>
                         <li>
                            <span>What´s Included</span>
                            <ul>
