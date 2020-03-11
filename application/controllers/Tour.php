@@ -341,7 +341,7 @@ class Tour extends CI_Controller {
             
             $data['package_name'] = str_replace('-', '',$post['package_name']);
             $data['tour_price'] = $post['tour_price'];
-            $data['discount_amount'] = $post['tour_discount'];
+            // $data['discount_amount'] = $post['tour_discount'];
             $data['tour_description'] = $post['tour_description'];
 
             $data['all_inclusive'] = $post['all_inclusive'];
