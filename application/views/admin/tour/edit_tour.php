@@ -1,4 +1,3 @@
-
 <style>
     ul {
         list-style-type: none;
@@ -367,9 +366,7 @@
                         <input id="check" type="checkbox" name="is_discount" value="1" <?php if($tour_detail[0]['is_discount'] == 1) {echo 'checked';}?>> Discount
                     </label> 
                 </h6> 
-
                 
-
                 <div id="discount_checkbox" class="form-row" <?php if($tour_detail[0]['discount_amount'] == 0){echo "style='display: none' ";}?>>
                     <div class="col-md-6" id="tour_discount">
                         <div class="form-group">

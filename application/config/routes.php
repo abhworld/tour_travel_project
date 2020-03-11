@@ -173,3 +173,20 @@ $route['edit-company-data']         = 'admin/edit_company_data';
 
 //Flight Section
 $route['all-airport'] = 'flight/all_airport';
+
+//Page Section
+$route['admin/about-us'] = 'admin/about_us';
+$route['admin/home-page'] = 'admin/home_page';
+$route['admin/contact-us'] = 'admin/contact_us';
+$route['admin/hotel-content'] = 'admin/hotel_content';
+$route['admin/tour-content'] = 'admin/tour_content';
+$route['admin/visa-content'] = 'admin/visa_content';
+$route['admin/umrah-content'] = 'admin/umrah_content';
+$route['admin/footer-content'] = 'admin/footer_content';
+$route['page-list'] = 'admin/page_list';
+$route['edit-page/(:any)'] = 'admin/edit_page/$1';
+
+//news section
+$route['add-news'] = 'news/add_news';
+$route['all-news'] = 'news/all_news';
+$route['edit-news/(:any)'] = 'news/edit_news/$1';

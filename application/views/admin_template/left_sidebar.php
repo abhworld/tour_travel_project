@@ -255,6 +255,20 @@
             </a>
         </li>
         <?php }?>
+
+         <li class="nav-item">
+            <a href="#News-Listing" class="items-list" data-toggle="collapse" aria-expanded="false">
+                <span>
+                    <i class="fas fa-torii-gate" data-toggle="tooltip" data-html="true" title="News"></i>
+                </span>
+                <span class="items-list-text">News Listing</span>
+                <span><i class="fa fa-chevron-down arrow"></i></span>
+            </a>
+            <div class="collapse sub-menu" id="News-Listing">
+                <a class="items-list3" href="add-news">Create</a>
+                <a class="items-list3" href="all-news">All News</a>
+            </div>
+        </li>
 <!--        <li class="nav-item">
             <a href="reviews.html" class="items-list">
                 <span><i class="fas fa-sync-alt" data-toggle="tooltip" data-html="true"

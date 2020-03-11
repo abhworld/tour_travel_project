@@ -310,8 +310,8 @@ class Admin extends CI_Controller{
         
         $data['get_all_tour'] = $this->admin_model->get_all_tour_details();
         
-        $data['get_all_tour_international'] = $this->admin_model->get_all_tour_international();
-        $data['get_all_tour_domestic'] = $this->admin_model->get_all_tour_domestic();
+        $data['get_all_tour'] = $this->admin_model->get_all_tour();
+        // $data['get_all_tour_domestic'] = $this->admin_model->get_all_tour_domestic();
 
         // echo "<pre>"; print_r($data['get_all_tour_international']); die;
 
@@ -348,7 +348,7 @@ class Admin extends CI_Controller{
 //        echo '<pre>';print_r($json_decode_data);die;
     }
 
-    public function set_tour_data_international() {
+    public function set_tour_data() {
         $post = $this->input->post();
         // echo "<pre>"; print_r($post['tour_id']); die;
 
@@ -364,21 +364,21 @@ class Admin extends CI_Controller{
 //        echo '<pre>';print_r($json_decode_data);die;
     }
     
-    public function set_tour_data_domestic() {
-        $post = $this->input->post();
-        // echo "<pre>"; print_r($post['tour_id']); die;
+//     public function set_tour_data_domestic() {
+//         $post = $this->input->post();
+//         // echo "<pre>"; print_r($post['tour_id']); die;
 
-        $get_info = $this->admin_model->get_section_info('Section 4', 'Home');
-         // echo "<pre>"; print_r($get_info); die;
-        $json_decode_data = json_decode($get_info['section_content'], true);
-        $json_decode_data['tour_id'] = implode(',', $post['tour_id']);
+//         $get_info = $this->admin_model->get_section_info('Section 4', 'Home');
+//          // echo "<pre>"; print_r($get_info); die;
+//         $json_decode_data = json_decode($get_info['section_content'], true);
+//         $json_decode_data['tour_id'] = implode(',', $post['tour_id']);
         
-        $data['section_content'] = json_encode($json_decode_data);
-        $this->admin_model->update_section_data('Section 4', 'Home', $data);
+//         $data['section_content'] = json_encode($json_decode_data);
+//         $this->admin_model->update_section_data('Section 4', 'Home', $data);
         
-        redirect('admin/home-page');
-//        echo '<pre>';print_r($json_decode_data);die;
-    }
+//         redirect('admin/home-page');
+// //        echo '<pre>';print_r($json_decode_data);die;
+//     }
     
     public function get_section_data() {
         $post = $this->input->post();

@@ -25,6 +25,17 @@ class Common_model extends CI_Model{
         return $query->result_array();
     }
 
+    public function get_all_news() {
+        $this->db->select('*');
+        $this->db->from('news');
+        
+        $this->db->join('categories', 'news.category_id = categories.id', 'LEFT');
+        $this->db->join('users', 'news.created_by = users.id', 'LEFT');
+        
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+
     public function getAllOrderInfo($table, $order_col, $order_by)
     {
         $this->db->select('*');

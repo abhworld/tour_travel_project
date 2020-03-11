@@ -208,19 +208,19 @@ class Admin_model extends CI_Model{
     
 
     //according to tour type
-    public function get_all_tour_international()
+    public function get_all_tour()
     {
         $this->db->select('*');
         $this->db->from('tour');
 
-        $this->db->join('package_type', 'tour.tour_id = package_type.tour_id', 'LEFT');
-        $this->db->join('tour_type', 'tour_type.type_id = package_type.type_id', 'LEFT');
+        // $this->db->join('package_type', 'tour.tour_id = package_type.tour_id', 'LEFT');
+        // $this->db->join('tour_type', 'tour_type.type_id = package_type.type_id', 'LEFT');
         $this->db->join('hotel_images', 'tour.tour_id = hotel_images.hotel_id', 'LEFT');
 
         $this->db->where('hotel_images.is_main_image', '1');
         $this->db->where('hotel_images.type', '2');
 
-        $this->db->where('tour_type.type_id', '2');
+        // $this->db->where('tour_type.type_id', '2');
 
         $this->db->order_by('tour.tour_id', 'DESC');
 
@@ -228,25 +228,25 @@ class Admin_model extends CI_Model{
         return $query->result_array();
     }
 
-    public function get_all_tour_domestic()
-    {
-        $this->db->select('*');
-        $this->db->from('tour');
+    // public function get_all_tour_domestic()
+    // {
+    //     $this->db->select('*');
+    //     $this->db->from('tour');
 
-        $this->db->join('package_type', 'tour.tour_id = package_type.tour_id', 'LEFT');
-        $this->db->join('tour_type', 'tour_type.type_id = package_type.type_id', 'LEFT');
-        $this->db->join('hotel_images', 'tour.tour_id = hotel_images.hotel_id', 'LEFT');
+    //     $this->db->join('package_type', 'tour.tour_id = package_type.tour_id', 'LEFT');
+    //     $this->db->join('tour_type', 'tour_type.type_id = package_type.type_id', 'LEFT');
+    //     $this->db->join('hotel_images', 'tour.tour_id = hotel_images.hotel_id', 'LEFT');
 
-        $this->db->where('hotel_images.is_main_image', '1');
-        $this->db->where('hotel_images.type', '2');
+    //     $this->db->where('hotel_images.is_main_image', '1');
+    //     $this->db->where('hotel_images.type', '2');
 
-        $this->db->where('tour_type.type_id', '1');
+    //     $this->db->where('tour_type.type_id', '1');
 
-        $this->db->order_by('tour.tour_id', 'DESC');
+    //     $this->db->order_by('tour.tour_id', 'DESC');
 
-        $query = $this->db->get();
-        return $query->result_array();
-    }
+    //     $query = $this->db->get();
+    //     return $query->result_array();
+    // }
     
     public function get_all_menu_details($select, $table, $type) {
         $this->db->select($select);

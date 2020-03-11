@@ -211,15 +211,16 @@
                     <div class="col-md" style="margin-bottom: 1rem;">
                         <nav>
                             <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
-                              <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Hotel Overview</a>
+                              <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Hotel Description</a>
                               <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Hotel Address</a>
-                              <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">Attraction Nearby Hotel</a>
+                              <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">Hotel Facilities</a>
+                              <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact1" role="tab" aria-controls="nav-contact" aria-selected="false">Hotel Itinerary</a>
                             </div>
                           </nav>
                           <div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
                             <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-                                <textarea name="" id="editor" class="mb-3 editor"><?php echo $hotel_info[0]['hotel_overview']?></textarea>
-                                <input type="hidden" name="hotel_overview">
+                                <textarea name="" id="editor" class="mb-3 editor"><?php echo $hotel_info[0]['hotel_description']?></textarea>
+                                <input type="hidden" name="hotel_description">
                             </div>
                             <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
                                 <div class="form-group">
@@ -252,7 +253,10 @@
                                 </div>
                             </div>
                             <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
-                                <textarea name="attract_nearby" id="editor" class="mb-3 editor1"><?php echo $hotel_info[0]['attract_nearby']?></textarea>
+                                <textarea name="hotel_facilities" id="editor" class="mb-3 editor"><?php echo $hotel_info[0]['hotel_facilities']?></textarea>
+                            </div>
+                            <div class="tab-pane fade" id="nav-contact1" role="tabpanel" aria-labelledby="nav-contact-tab">
+                                <textarea name="hotel_itinerary" id="editor" class="mb-3 editor"><?php echo $hotel_info[0]['hotel_itinerary']?></textarea>
                             </div>
                             
                           </div>
@@ -314,37 +318,38 @@
                 <div class="form-row">
                     
                     <h6 style="display: block;width: 100%;text-align: left;">
-                        Hotel Service
+                        Hotel Facilities
                     </h6>
                     
+                    <div class="col-md">
+                        <label class="checkbox-inline">
+                            <input type="checkbox" name="restaurant" value="1" <?php if($hotel_info[0]['restaurant'] == 1){echo 'checked';}?>>  Restaurant
+                        </label>
+                    </div>
+                    <div class="col-md">
+                        <label class="checkbox-inline">
+                            <input type="checkbox" name="swimming_pool" value="1" <?php if($hotel_info[0]['swimming_pool'] == 1){echo 'checked';}?>> Swimming Pool
+                        </label>
+                    </div>
                     <div class="col-md">
                         <label class="checkbox-inline">
                             <input type="checkbox" name="fitness_center" value="1" <?php if($hotel_info[0]['fitness_center'] == 1){echo 'checked';}?>> Fitness Center
                         </label>
                     </div>
-                    <div class="col-md">
-                        <label class="checkbox-inline">
-                            <input type="checkbox" name="coffee_shop" value="1" <?php if($hotel_info[0]['coffee_shop'] == 1){echo 'checked';}?>> Coffee Shop
-                        </label>
-                    </div>
-                    <div class="col-md">
-                        <label class="checkbox-inline">
-                            <input type="checkbox" name="restaurant" value="1" <?php if($hotel_info[0]['restaurant'] == 1){echo 'checked';}?>> Restaurant
-                        </label>
-                    </div>
-                    <div class="col-md">
-                        <label class = "checkbox-inline">
-                            <input type="checkbox" name="baby_care" value="1" <?php if($hotel_info[0]['baby_care'] == 1){echo 'checked';}?>> Baby Care
-                        </label>
-                    </div>
+                    
                     <div class="col-md">
                         <label class="checkbox-inline">
                             <input type="checkbox" name="service_room" value="1" <?php if($hotel_info[0]['service_room'] == 1){echo 'checked';}?>> Service Room
                         </label>
                     </div>
                     <div class="col-md">
+                        <label class = "checkbox-inline">
+                            <input type="checkbox" name="coffee_shop" value="1" <?php if($hotel_info[0]['coffee_shop'] == 1){echo 'checked';}?>> Coffee Shop
+                        </label>
+                    </div>
+                    <div class="col-md">
                         <label class="checkbox-inline">
-                            <input type="checkbox" name="wifi_free" value="1" <?php if($hotel_info[0]['wifi_free'] == 1){echo 'checked';}?>> Wifi Free
+                            <input type="checkbox" name="wifi" value="1" <?php if($hotel_info[0]['wifi'] == 1){echo 'checked';}?>> Wifi Free
                         </label>
                     </div>
                 </div>
@@ -353,10 +358,10 @@
                     <div class="block" style="text-align: left;">
                         <span class="add btn btn-success" style="margin: 10px 0px;">Add Option</span>
                     </div>
-                    <?php $i = 1;foreach ($room_detail_info as $key => $room_detail) {?>
-                    <input type="hidden" name="room_id[<?=$i?>][]" value="<?php echo $room_detail[0]['room_detail_id']?>">
-                    
+                    <?php $i = 1;foreach ($room_detail_info as $room_detail) {?>
+                    <input type="hidden" name="room_id[]" value="<?php echo $room_detail['room_detail_id']?>">
                     <div class="block" style="text-align: left;">
+                        <h6>Serial <?php echo $i;?></h6>
                         <div class="form-row">
                             <div class="col">
                                 <div class="form-group">
@@ -364,69 +369,75 @@
                                         <div class="input-group-prepend">
                                             <label class="input-group-text" for="inputGroupSelect00" style="width: 120px;">Room Type:</label>
                                         </div>
-                                        <select class="custom-select" name="room_type[<?=$i?>][]" id="inputGroupSelect00">
+                                        <select class="custom-select" name="room_type[]" id="inputGroupSelect00">
                                             <option value="">Choose</option>
-                                            <?php foreach ($room_type as $type) {?>
-                                            <option value="<?php echo $type['room_type_id'];?>" <?php if($room_detail[0]['room_type_id'] == $type['room_type_id']){echo 'selected';}?>>
-                                                <?php echo $type['room_type'];?>
-                                            </option>
-                                            <?php }?>
+                                            <option value="1" <?php if($room_detail['room_type'] == 1){echo 'selected';}?>>Yes</option>
+                                            <option value="2">No</option>
                                         </select>
                                         <i class="fas fa-angle-down"></i>
                                     </div>
-                                </div>
-                            </div>
+                                </div><!-- end form-group -->
+                            </div><!-- end column -->
                             <div class="col">
                                 <div class="form-group">
                                     <div class="input-group">
                                         <div class="input-group-prepend">
                                             <label class="input-group-text" for="inputGroupSelect00">Room Condition:</label>
                                         </div>
-                                        <select class="custom-select" name="room_condition[<?=$i?>][]" id="inputGroupSelect00">
+                                        <select class="custom-select" name="room_condition[]" id="inputGroupSelect00">
                                             <option value="">Choose</option>
-                                            <option value="1" <?php if($room_detail[0]['room_condition'] == 1){echo 'selected';}?>>AC</option>
-                                            <option value="2" <?php if($room_detail[0]['room_condition'] == 2){echo 'selected';}?>>Non-AC</option>
+                                            <option value="1" <?php if($room_detail['room_condition'] == 1){echo 'selected';}?>>AC</option>
+                                            <option value="2" <?php if($room_detail['room_condition'] == 2){echo 'selected';}?>>Non-AC</option>
                                         </select>
                                         <i class="fas fa-angle-down"></i>
                                     </div>
-                                </div>
-                            </div>
+                                </div><!-- end form-group -->
+                            </div><!-- end column -->
                             <div class="col">
                                 <div class="form-group">
                                     <div class="input-group">
                                         <div class="input-group-prepend">
                                             <label class="input-group-text" for="inputGroupSelect00">Meal:</label>
                                         </div>
-                                        <select class="custom-select" name="meal_type[<?=$i?>][]" id="inputGroupSelect00">
+                                        <select class="custom-select" name="meal_type[]" id="inputGroupSelect00">
                                             <option value="">Choose</option>
-                                            <option value="1" <?php if($room_detail[0]['meal_type'] == 1){echo 'selected';}?>>Yes</option>
+                                            <option value="1" <?php if($room_detail['meal_type'] == 1){echo 'selected';}?>>Yes</option>
                                             <option value="2">No</option>
                                         </select>
                                         <i class="fas fa-angle-down"></i>
                                     </div>
-                                </div>
-                            </div>
+                                </div><!-- end form-group -->
+                            </div><!-- end column -->
+
                         </div>
                         
                         <div class="form-row">
                             <div class="col">
                                 <div class="form-group">
                                     <label for="inputGroupSelect07" class="">No. Of Guest:</label>
-                                    <input type="text" class="form-control" name="no_of_guest[<?=$i?>][]" required id="" value="<?php echo $room_detail[0]['no_of_guest']?>">
-                                </div>
-                            </div>
+                                    <input type="text" class="form-control" name="no_of_guest[]" required id="" value="<?php echo $room_detail['no_of_guest']?>">
+                                </div><!-- end form-group -->
+                            </div><!-- end column -->
                             <div class="col">
                                 <div class="form-group">
                                     <label for="inputGroupSelect07" class="" style="width: 90px;">Adult:</label>
-                                    <input type="text" class="form-control" name="no_of_adult[<?=$i?>][]" required id="" value="<?php echo $room_detail[0]['no_of_adult']?>">
-                                </div>
-                            </div>
+                                    <input type="text" class="form-control" name="no_of_adult[]" required id="" value="<?php echo $room_detail['no_of_adult']?>">
+                                </div><!-- end form-group -->
+                            </div><!-- end column -->
                             <div class="col">
                                 <div class="form-group">
                                     <label for="inputGroupSelect07" class="" style="width: 90px;">Child:</label>
-                                    <input type="text" class="form-control" name="no_of_child[<?=$i?>][]" required id="" value="<?php echo $room_detail[0]['no_of_child']?>">
-                                </div>
-                            </div>
+                                    <input type="text" class="form-control" name="no_of_child[]" required id="" value="<?php echo $room_detail['no_of_child']?>">
+                                </div><!-- end form-group -->
+                            </div><!-- end column -->
+
+                            <div class="col">
+                                <div class="form-group">
+                                    <label for="inputGroupSelect07" class="" style="width: 90px;">Infant:</label>
+                                    <input type="text" class="form-control" name="no_of_infant[]" required id="" value="<?php echo $room_detail['no_of_infant']?>">
+                                </div><!-- end form-group -->
+                            </div><!-- end column -->
+
                         </div>
                         
                         <div class="form-row">
@@ -435,25 +446,23 @@
                                 <div id="transportation_div">
                                     <div class="form-group">
                                         <label for="inputGroupSelect07" class="">Rent Per Night:</label>
-                                        <input type="text" class="form-control" name="rent_per_night[<?=$i?>][]" required id="" value="<?php echo $room_detail[0]['rent_per_night']?>">
-                                    </div>
-                                </div>
-                            </div>
+                                        <input type="text" class="form-control" name="rent_per_night[]" required id="" value="<?php echo $room_detail['rent_per_night']?>">
+                                    </div><!-- end form-group -->
+                                </div><!-- end form-group -->
+                            </div><!-- end column -->
                             
                             <div class="col-md">
                                 <div class="form-group">
                                     <label for="inputGroupSelect07" class="">Room Image:</label>
-                                    <input type="file" class="form-control" name="room_image[<?=$i?>][]" required id="">
+                                    <input type="file" class="form-control" name="room_image[]" required id="">
                                 </div>
                             </div>
                             
-                        </div>
+                        </div><!-- end form-row -->
                         
                         <div class="form-group">
-                            <textarea class="form-control textarea text-left p-3 h-100" name="room_detail[<?=$i?>][]" id="exampleFormControlTextarea1" rows="2" placeholder="Room Details"><?php echo $room_detail[0]['room_detail']?></textarea>
+                            <textarea class="form-control textarea text-left p-3 h-100" name="room_detail[]" id="exampleFormControlTextarea1" rows="2" placeholder="Room Details"><?php echo $room_detail['room_detail']?></textarea>
                         </div><!-- end form-group -->
-                        
-                        
                         
                         <div class="appenddata1"></div>
                         <?php if($i > 1){?>
@@ -463,26 +472,6 @@
                     <?php $i++;}?>
 
                 </div>
-
-                <h6 style="text-align: left;">Related Hotels</h6>
-                <?php 
-                $related_hotel = explode(', ', $hotel_info[0]['related_hotel']);
-                ?>
-                <ul id="related_data" class="">
-                    <?php $i = 1;foreach ($get_all_hotel as $row) {?>
-                    <li>
-                        <input type="checkbox" id="hotel<?=$i?>" name="related_hotel_id[]" value="<?php echo $row['id'];?>" <?php if($hotel_info[0]['related_hotel'] && in_array($row['id'], $related_hotel)){echo 'checked';}?>/>
-                        <label for="hotel<?=$i?>">
-                            <img src="uploads/hotel/thumbnail/<?php echo $row['hotel_image'];?>" alt=""/>
-                            <div class="caption" style="padding: 0px; margin-top: 5px;">
-                                <p>
-                                    <?php echo $row['hotel_name'];?>
-                                </p>
-                            </div>
-                        </label>
-                    </li>
-                    <?php $i++;}?>
-                </ul>
 
                 <ul class="list-inline">
                     <li class="list-inline-item">
@@ -534,8 +523,10 @@
     });
     
     $("#add_hotel").click(function (){
-        $('[name="hotel_overview"]').val($( 'textarea.editor' ).val());
-        $('[name="attract_nearby"]').val($( 'textarea.editor1' ).val());
+        $('[name="hotel_description"]').val($( 'textarea.editor' ).val());
+        // $('[name="hotel_address"]').val($( 'textarea.editor' ).val());
+        $('[name="hotel_facilities"]').val($( 'textarea.editor' ).val());
+        $('[name="hotel_itinerary"]').val($( 'textarea.editor' ).val());
 //        form_data.append('hotel_overivew', editor.getData());
         var form_data = new FormData($("#add_hotel_info")[0]);
 //        var content = $( 'textarea.editor' ).val();
