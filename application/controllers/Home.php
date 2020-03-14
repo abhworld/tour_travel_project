@@ -257,8 +257,9 @@ class Home extends CI_Controller {
         // echo '<pre>'; print_r($id); die;
         $data['tour_detail'] = $this->home_model->get_tour_detail($id);
         $data['tour_destination'] = $this->home_model->get_destination($id);
-        // echo '<pre>'; print_r($data['tour_destination']); die;
-
+        // echo '<pre>'; print_r($data['tour_detail']); die;
+        $data['tour_gallery'] = $this->home_model->get_gallery($id);
+        // echo '<pre>'; print_r($data['tour_gallery']); die;
 		$data['company_info'] = $this->home_model->getRow('company_info', 'id', 1);
 		// echo '<pre>'; print_r($data['company_info']); die;
 		$data['title'] = 'Tour-Detail |';

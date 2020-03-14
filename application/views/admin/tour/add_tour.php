@@ -202,7 +202,6 @@
                         </div>
                     </div>
 
-
                 </div>
 
                 <h6 style="display: block;width: 100%;text-align: left;">
@@ -325,15 +324,15 @@
                     </div>
                 </div> -->
 
-               <!--  <div class="form-row">
+               <div class="form-row">
                     
-                    <div class="col-md-6" id="tour_name">
-                        <div class="form-group">
-                            <label for="inputGroupSelect07" class="">Gallery:</label>
-                            <input type="file" multiple="" class="form-control" name="image[]" required id="">
-                        </div>
+                    <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Upload Gallery</label>
+                        <input type="file" multiple="" class="form-control" name="gallery_image[]">
                     </div>
-                </div> -->
+                  </div>
+                </div> 
 
                 <ul class="list-inline">
                     <li class="list-inline-item">

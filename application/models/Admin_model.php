@@ -152,6 +152,17 @@ class Admin_model extends CI_Model{
         $query = $this->db->get();
         return $query->result_array();
     }
+
+     public function getGalleryImages($id) {
+        $this->db->select('*');
+        $this->db->from('gallery');
+        
+        $this->db->where('tour_id', $id);
+        // $this->db->where('type', $type);
+        
+        $query = $this->db->get();
+        return $query->result_array();
+    }
     
     public function get_all_hotel_details() {
         $this->db->select('hotel.*, countries.name AS country_name, cities.name AS city_name');
@@ -202,7 +213,7 @@ class Admin_model extends CI_Model{
         $this->db->order_by('tour.tour_id', 'DESC');
         
         $query = $this->db->get();
-//        echo $this->db->last_query();
+       // echo $this->db->last_query();die;
         return $query->result_array();
     }
     

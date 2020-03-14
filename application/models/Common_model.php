@@ -8,6 +8,11 @@ class Common_model extends CI_Model{
         return $this->db->insert_id();
     }
 
+    // public function add_gallery($data) 
+    // {
+    //     $this->db->insert('gallery', $data);
+    // }
+
     public function insertId($table, $data)
     {
         $this->db->insert($table, $data);

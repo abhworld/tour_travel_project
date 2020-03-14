@@ -33,168 +33,59 @@
                                 </div>
                      </div>
                      <div class="tour-details-image">
-                        <img src="<?php echo base_url();?>assets/frontend_asset/img/popular-6.jpg" alt="Tour" />
+                        <img src="<?php echo base_url();?>uploads/tour/<?php echo $tour_detail[0]['tour_image'];?>" alt="Tour" />
                      </div>
                      <p><?php echo $tour_detail[0]['tour_description'];?></p>
                      <ul class="tour-offer clearfix">
                         <li><span>Country </span><?php echo $tour_destination['country_name'];?></li>
                         <li><span>City </span><?php echo $tour_destination['city_name'];?></li>
                         <!-- <li><span>Departure Time </span>Sunday 14 of May, 20:30 hs</li> -->
-                        <?php if(isset($tour_detail[0]['all_inclusive'])){?>
+                        <?php if(isset($tour_detail[0]['all_inclusive']) && $tour_detail[0]['all_inclusive']){?>
                         <li><span>Accommodation </span>All Inclusive</li>
                         <?php } ?>
                         <li>
                            <span>What´s Included</span>
                            <ul>
-                              <li><i class="fa fa-check-circle"></i> Travel Insurance</li>
-                              <li><i class="fa fa-check-circle"></i> 5 Star Accommodation</li>
-                              <li><i class="fa fa-check-circle"></i> Airport Transfer </li>
+                              <?php if(isset($tour_detail[0]['insurance']) && $tour_detail[0]['insurance']){?>
+                              <li><i class="fa fa-check-circle"></i>Travel Insurance</li>
+                              <?php } ?>
+                              <?php if(isset($tour_detail[0]['five_star_accommodation']) && $tour_detail[0]['five_star_accommodation']){?>
+                              <li><i class="fa fa-check-circle"></i> 5 star Accommodation</li>
+                              <?php } ?>
+                               <?php if(isset($tour_detail[0]['airport_transfer']) && $tour_detail[0]['airport_transfer']){?>
+                              <li><i class="fa fa-check-circle"></i>Airport Transfer</li>
+                              <?php } ?>
+                               <?php if(isset($tour_detail[0]['breakfast']) && $tour_detail[0]['breakfast']){?>
                               <li><i class="fa fa-check-circle"></i> Breakfast</li>
+                              <?php } ?>
+                               <?php if(isset($tour_detail[0]['personal_guide']) && $tour_detail[0]['personal_guide']){?>
                               <li><i class="fa fa-check-circle"></i> Personal Guide </li>
+                              <?php } ?>
+                               <?php if(isset($tour_detail[0]['two_days_long_city_tour']) && $tour_detail[0]['two_days_long_city_tour']){?>
                               <li><i class="fa fa-check-circle"></i> Two days long City tour </li>
+                              <?php }?>
                            </ul>
                         </li>
-                        <li>
-                           <span>Not Included</span>
-                           <ul>
-                              <li><i class="fa fa-times-circle"></i> Gallery Ticket </li>
-                              <li><i class="fa fa-times-circle"></i> Non-stop flight to Amsterdam</li>
-                           </ul>
-                        </li>
+               
                      </ul>
+                     
                      <div class="tour-gallery">
                         <h3>Gallery</h3>
+                        
+                        
                         <div class="tour-gallery-slider owl-carousel">
+                            <?php $i=0; foreach($tour_gallery as $row[$i]) { ?>
                            <div class="single-gallery-tour">
-                              <img src="<?php echo base_url();?>assets/frontend_asset/img/gallery-2.jpg" alt="tour" />
-                           </div>
-                           <div class="single-gallery-tour">
-                              <img src="<?php echo base_url();?>assets/frontend_asset/img/gallery-3.jpg" alt="tour" />
-                           </div>
-                           <div class="single-gallery-tour">
-                              <img src="<?php echo base_url();?>assets/frontend_asset/img/gallery-4.jpg" alt="tour" />
-                           </div>
-                           <div class="single-gallery-tour">
-                              <img src="<?php echo base_url();?>assets/frontend_asset/img/gallery-5.jpg" alt="tour" />
-                           </div>
-                           <div class="single-gallery-tour">
-                              <img src="<?php echo base_url();?>assets/frontend_asset/img/gallery.jpg" alt="tour" />
-                           </div>
+                              <img src="<?php echo base_url();?>uploads/tour/tour_gallery/<?php echo $row[$i]['gallery_image'];?>" alt="tour" />
+                           </div>     
+                           <?php $i++;}?>
                         </div>
+                        
+                         
                      </div>
-                     <div class="abh-comment-list">
-                        <div class="comment-group-title">
-                           <h3>Tour Reviews</h3>
-                        </div>
-                        <div class="single-comment-item">
-                           <div class="single-comment-box">
-                              <div class="main-comment">
-                                 <div class="author-image">
-                                    <img src="<?php echo base_url();?>assets/frontend_asset/img/4.jpg" alt="author">
-                                 </div>
-                                 <div class="comment-text">
-                                    <div class="comment-info">
-                                       <h4>david kamal</h4>
-                                       <ul>
-                                          <li><i class="fa fa-star"></i></li>
-                                          <li><i class="fa fa-star"></i></li>
-                                          <li><i class="fa fa-star"></i></li>
-                                          <li><i class="fa fa-star"></i></li>
-                                          <li><i class="fa fa-star"></i></li>
-                                       </ul>
-                                       <p>4 minitues ago</p>
-                                    </div>
-                                    <div class="comment-text-inner">
-                                       <p>Ne erat velit invidunt his. Eum in dicta veniam interesset, harum lupta definitionem. Vocibus suscipit prodesset vim ei, equidem perpetua eu per.</p>
-                                    </div>
-                                 </div>
-                              </div>
-                           </div>
-                           <div class="single-comment-box">
-                              <div class="main-comment">
-                                 <div class="author-image">
-                                    <img src="<?php echo base_url();?>assets/frontend_asset/img/5.jpg" alt="author">
-                                 </div>
-                                 <div class="comment-text">
-                                    <div class="comment-info">
-                                       <h4>Jerix Ablin</h4>
-                                       <ul>
-                                          <li><i class="fa fa-star"></i></li>
-                                          <li><i class="fa fa-star"></i></li>
-                                          <li><i class="fa fa-star"></i></li>
-                                          <li><i class="fa fa-star"></i></li>
-                                          <li><i class="fa fa-star-o"></i></li>
-                                       </ul>
-                                       <p>12 minitues ago</p>
-                                    </div>
-                                    <div class="comment-text-inner">
-                                       <p>orem ipsum dolor sit amet, consectetur adipisicing elit. Velit omnis animi et iure laudantium vitae, praesentium optio, sapiente distinctio illo? </p>
-                                    </div>
-                                 </div>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                     <div class="abh-leave-comment">
-                        <h3>Leave a Review</h3>
-                        <form>
-                           <div class="row">
-                              <div class="col-lg-12">
-                                 <div class="comment-field">
-                                    <p>Rating :</p>
-                                    <div class="star-rating">
-                                       <input id="star-5" type="radio" name="rating" value="star-5">
-                                       <label for="star-5" title="5 stars">
-                                       <i class="active fa fa-star" aria-hidden="true"></i>
-                                       </label>
-                                       <input id="star-4" type="radio" name="rating" value="star-4">
-                                       <label for="star-4" title="4 stars">
-                                       <i class="active fa fa-star" aria-hidden="true"></i>
-                                       </label>
-                                       <input id="star-3" type="radio" name="rating" value="star-3">
-                                       <label for="star-3" title="3 stars">
-                                       <i class="active fa fa-star" aria-hidden="true"></i>
-                                       </label>
-                                       <input id="star-2" type="radio" name="rating" value="star-2">
-                                       <label for="star-2" title="2 stars">
-                                       <i class="active fa fa-star" aria-hidden="true"></i>
-                                       </label>
-                                       <input id="star-1" type="radio" name="rating" value="star-1">
-                                       <label for="star-1" title="1 star">
-                                       <i class="active fa fa-star" aria-hidden="true"></i>
-                                       </label>
-                                    </div>
-                                 </div>
-                              </div>
-                           </div>
-                           <div class="row">
-                              <div class="col-lg-12">
-                                 <div class="comment-field">
-                                    <textarea class="comment" placeholder="Comment..." name="comment"></textarea>
-                                 </div>
-                              </div>
-                           </div>
-                           <div class="row">
-                              <div class="col-lg-6">
-                                 <div class="comment-field">
-                                    <input class="ns-com-name" name="name" placeholder="Name" type="text">
-                                 </div>
-                              </div>
-                              <div class="col-lg-6">
-                                 <div class="comment-field">
-                                    <input class="ns-com-name" name="email" placeholder="Email" type="email">
-                                 </div>
-                              </div>
-                           </div>
-                           <div class="row">
-                              <div class="col-lg-12">
-                                 <div class="comment-field">
-                                    <button type="submit" class="abh-theme-btn">post comment</button>
-                                 </div>
-                              </div>
-                           </div>
-                        </form>
-                     </div>
+                    
+
+                     
                   </div>
                </div>
                <div class="col-lg-4">
@@ -247,9 +138,9 @@
                            </li>
                         </ul>
                      </div>
-                     <div class="single-sidebar">
+                     <!-- <div class="single-sidebar">
                         <img src="<?php echo base_url();?>assets/frontend_asset/img/destination.jpg" alt="destination" />
-                     </div>
+                     </div> -->
                   </div>
                </div>
             </div>

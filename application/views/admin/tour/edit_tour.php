@@ -340,7 +340,7 @@
                     </div> 
                 </div>
                 
-                <h6 style="text-align: left;">Related Hotels</h6>
+                <h6 style="text-align: left;">Related Tours</h6>
                 <?php 
                 $related_tour = explode(', ', $tour_detail[0]['related_tour']);
                 ?>
@@ -359,6 +359,38 @@
                     </li>
                     <?php $i++;}?>
                 </ul>
+
+                 <div class="form-row" style="margin-bottom: 20px;">
+                    <div class="col-md">
+                        <h6 class="text-left">Gallery Images</h6>
+                        <table class="table table-bordered" style="background-color: #fff;margin: 0px;max-width: 100%">
+                            <?php foreach ($tour_images as $image) {?>
+                            <tr>
+                                <td><img src="uploads/tour/tour_gallery/<?php echo $image['gallery_image']?>" alt="images" style="width: 100px; height: 60px;"></td>
+                                <td>
+                                    <a onclick="open_image_modal('<?php echo $image['tour_gallery_id']?>')"><i class="fas fa-edit"></i></a>
+                                    
+                                    <a href="delete-gallery-image/<?php echo $image['tour_gallery_id'].'/'.$tour_info[0]['tour_id']?>">
+                                        <i class="fas fa-trash-alt"></i>
+                                    </a>
+                                    
+                                </td>
+         
+                            </tr>
+                            <?php }?>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    
+                    <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Upload Gallery</label>
+                        <input type="file" multiple="" class="form-control" name="gallery_image[]">
+                    </div>
+                  </div>
+                </div> 
 
                <!--  <h6 style="text-align: left;">
                 
@@ -386,6 +418,15 @@
                         </div>
                     </div>
                 </div> -->
+                <!-- <div class="form-row">
+                    
+                    <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Upload Gallery</label>
+                        <input type="file" multiple="" class="form-control" name="image[]">
+                    </div>
+                  </div>
+                </div>  -->
 
                 <ul class="list-inline">
                     <li class="list-inline-item">
@@ -404,6 +445,34 @@
 </div><!-- end in-content-wrapper -->
 
 <input type="hidden" name="sentence_sequence" id="sentence_sequence" value="<?php echo $tour_detail[0]['no_of_day'];?>">
+
+<!-- Modal -->
+<div class="modal fade" id="image_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Edit Gallery Image</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="tour/update_gallery_image" method="post" enctype="multipart/form-data">
+                <div class="modal-body">
+                    <input type="hidden" name="tour_gallery_id" value="">
+
+                    <div class="form-group">
+                        <label for="inputGroupSelect07" class="">Gallery Image:</label>
+                        <input type="file" class="form-control" name="gallery_image[]" required id="" style="border: 1px solid #ced4da;">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 
 <script>
     
@@ -513,6 +582,13 @@
             $("#discount_checkbox").hide();
         }
     })
+
+    function open_image_modal(tour_gallery_id){
+        
+        $('#image_modal').modal('show'); 
+        
+        $("[name='tour_gallery_id']").val(tour_gallery_id);
+    }
 
     
 </script>

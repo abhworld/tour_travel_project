@@ -83,7 +83,7 @@ class Tour extends CI_Controller {
             $data['tour_description'] = $post['tour_description'];
             $data['tour_image'] = $get_tour_file[0];
             // $data['type_id'] = $post['type_id'];
-
+            // echo '<pre>'; print_r($data['tour_image']); die;
             // echo '<pre>'; print_r($post);die;
 
             if(isset($post['is_discount'])){
@@ -121,7 +121,25 @@ class Tour extends CI_Controller {
             } else {
                 $tour_id = $this->common_model->insertId('tour', $data);
             }
-            
+
+
+            $get_gallery_file = $this->uploadImage($_FILES['gallery_image'], 'uploads/tour/tour_gallery', 400, 270);
+            $file_data = array();
+            $i = 0;
+            if($get_gallery_file)
+            {
+                foreach ($get_gallery_file as $file_info) 
+                {
+                    if($file_info)
+                    {
+                        $file_data['tour_id'] = $tour_id;
+                        $file_data['gallery_image'] = $file_info;
+                        $tour_gallery_id = $this->common_model->insertId('gallery', $file_data);
+                    }
+                    $i++;
+                }
+            }
+    
             $get_file_info = $this->uploadImage($_FILES['userfile'], 'uploads/tour/tour_detail', 501, 250);
 //            echo '<pre>';print_r($get_file_info);die;
             $tour_detail_data = array();
@@ -282,11 +300,78 @@ class Tour extends CI_Controller {
         
 //        return $response;
     }
+
+    public function uploadGalleryImage($FILES, $path_folder) {
+        $files = $FILES;
+//        echo '<pre>';print_r($files);die;
+        $config['upload_path'] = FCPATH . '/uploads/tour/';
+        $config['allowed_types'] = '*';
+        $config['max_size'] = '0';
+        $this->load->library('upload');
+        
+        $images = array();
+        
+        foreach ($files['name'] as $key => $image) {
+            if($files['error'][$key] == 0){
+                $_FILES['image[]']['name']= $files['name'][$key];
+                $_FILES['image[]']['type']= $files['type'][$key];
+                $_FILES['image[]']['tmp_name']= $files['tmp_name'][$key];
+                $_FILES['image[]']['error']= $files['error'][$key];
+                $_FILES['image[]']['size']= $files['size'][$key];
+
+                $fileName = $files['name'][$key];
+
+                $config['file_name'] = $fileName;
+
+                $this->upload->initialize($config);
+                $this->load->library('image_lib');
+                
+                if ($this->upload->do_upload('image[]')) {
+                    $file_data = $this->upload->data();
+                    $images[] = $file_data['file_name'];
+                    
+                    $configi = array();
+                    if($key == 0){
+                        $configi['image_library'] = 'gd2';
+                        $configi['source_image'] = $file_data['full_path'];
+                        $configi['new_image'] = FCPATH .'uploads/tour/tour_main_image/' . $file_data['file_name'];
+                        $configi['maintain_ratio'] = FALSE;
+                        $configi['width'] = 370;
+                        $configi['height'] = 218;
+                        $this->image_lib->initialize($configi);
+                        $this->image_lib->resize();
+                        $this->image_lib->clear();
+                    }
+                    
+                    $config2 = array();
+                    $config2['image_library'] = 'gd2';
+                    $config2['source_image'] = $file_data['full_path'];
+                    $config2['new_image'] = FCPATH .'uploads/tour/tour_gallery/' . $file_data['file_name'];
+                    $config2['maintain_ratio'] = FALSE;
+                    $config2['width'] = 770;
+                    $config2['height'] = 438;
+                    
+                    $this->image_lib->initialize($config2);
+                    $this->image_lib->resize();
+                    $this->image_lib->clear();
+                    
+                } else {
+                    return false;
+                }
+            } else {
+                $images[] = '';
+            }
+        }
+
+        return $images;
+        
+//        return $response;
+    }
     
     public function all_tour() {
         $data['title'] = 'All Tour';
         
-        $data['all_tour'] = $this->admin_model->get_all_tour_details();
+        $data['all_tour'] = $this->home_model->getAllInfo('tour');
         
 //        echo '<pre>';print_r($data['all_tour']);die;
         $data['headerlink'] = $this->load->view('admin_template/headerlink', $data, true);
@@ -305,6 +390,9 @@ class Tour extends CI_Controller {
         $data['get_all_tour'] = $this->common_model->getAllInfo('tour');
         $data['all_country'] = $this->common_model->getAllInfo('countries');
         $data['tour_detail'] = $this->home_model->get_tour_detail($id);
+        $data['tour_images'] = $this->admin_model->getGalleryImages($id);
+        $data['tour_info'] = $this->common_model->getInfo('tour', 'tour_id', $id);
+        // echo '<pre>'; print_r($data['tour_images']); die;
 
         $data['type_info'] = $this->common_model->getInfo('tour', 'tour_id', $id);
         $data['all_type']    = $this->common_model->getAllInfo('tour_type');
@@ -458,9 +546,35 @@ class Tour extends CI_Controller {
         
         redirect('edit-tour/'.$image_info[0]['hotel_id']);
     }
+
+    public function update_gallery_image() {
+        $tour_gallery_id = $this->input->post('tour_gallery_id');
+        // echo '<pre>';print_r($tour_gallery_id);die;
+        $image_info = $this->common_model->getInfo('gallery', 'tour_gallery_id', $tour_gallery_id);
+        // echo '<pre>';print_r($image_info);die;
+        $get_file_info = $this->uploadGalleryImage($_FILES['gallery_image'], 'tour_gallery');
+        // echo '<pre>';print_r($get_file_info);die;
+        $file_path = FCPATH . 'uploads/tour/tour_gallery' . $image_info[0]['gallery_image'];
+        unlink($file_path);
+    
+        foreach ($get_file_info as $file_info) {
+            $file_data['tour_id'] = $image_info[0]['tour_id'];
+            $file_data['gallery_image'] = $file_info;
+            
+            $this->common_model->updateInfo('gallery', 'tour_gallery_id', $tour_gallery_id, $file_data);
+        }
+        
+        redirect('edit-tour/'.$image_info[0]['tour_id']);
+    }
     
     public function delete_image($id, $tour_id) {
         $this->admin_model->deleteInfo('hotel_images', 'image_id', $id);
+        $this->session->set_flashdata('success_msg', 'Image deleted successfully');
+        redirect('edit-tour/'.$tour_id);
+    }
+
+     public function delete_gallery_image($id, $tour_id) {
+        $this->admin_model->deleteInfo('gallery', 'tour_gallery_id', $id);
         $this->session->set_flashdata('success_msg', 'Image deleted successfully');
         redirect('edit-tour/'.$tour_id);
     }

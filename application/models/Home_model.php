@@ -196,6 +196,18 @@ class Home_model extends CI_Model{
         $query = $this->db->get();
         return $query->row_array();
     }
+
+    public function get_gallery($id)
+    {
+        $this->db->select('*');
+
+        $this->db->from('gallery');
+
+        $this->db->where('gallery.tour_id', $id);    
+        
+        $query = $this->db->get();
+        return $query->result_array();      
+    }
     
     public function get_related_tour($country_id, $tour_id) {
         $this->db->select('tour.*, tour_detail.*');

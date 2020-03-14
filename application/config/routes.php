@@ -144,6 +144,7 @@ $route['edit-visa/(:any)'] = 'visa/edit_visa/$1';
 //delete
 $route['delete-image/(:any)/(:any)']      = 'hotel/delete_image/$1/$2';
 $route['delete-tour-image/(:any)/(:any)'] = 'tour/delete_image/$1/$2';
+$route['delete-gallery-image/(:any)/(:any)'] = 'tour/delete_gallery_image/$1/$2';
 $route['delete-hajj-image/(:any)/(:any)'] = 'hajj/delete_image/$1/$2';
 $route['delete-umra-image/(:any)/(:any)'] = 'umra/delete_image/$1/$2';
 
