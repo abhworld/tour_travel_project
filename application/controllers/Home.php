@@ -194,8 +194,11 @@ class Home extends CI_Controller {
 	{	
 		$data = array();
 
+		$data['all_hotel'] = $this->home_model->get_all_hotel();
+		// echo '<pre>'; print_r($data['hotel_info']); die;
 		$data['company_info'] = $this->home_model->getRow('company_info', 'id', 1);
 		// echo '<pre>'; print_r($data['company_info']); die;
+
 		$data['title'] = 'Hotel-Home |';
 		$data['headerlink'] = $this->load->view('frontend_template/headerlink', $data, TRUE);
 		$data['header'] = $this->load->view('frontend_template/header', $data, TRUE);
@@ -208,9 +211,18 @@ class Home extends CI_Controller {
 		$this->load->view('home/home_main_content', $data);
 	}
 
-	public function hotel_detail()
+	public function hotel_detail($name)
 	{	
 		$data = array();
+
+		$hotel_info = $this->home_model->getInfo('hotel', 'hotel_name', str_replace('-', ' ', $name));
+		$id = $hotel_info[0]['id'];
+
+		// echo '<pre>'; print_r($hotel_info);
+		$data['hotel_detail'] = $this->home_model->get_hotel_detail($id);
+        $data['hotel_destination'] = $this->home_model->get_hotel_destination($id);
+
+        // echo '<pre>'; print_r($data['hotel_destination']); die;
 
 		$data['company_info'] = $this->home_model->getRow('company_info', 'id', 1);
 		// echo '<pre>'; print_r($data['company_info']); die;

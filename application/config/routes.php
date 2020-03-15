@@ -69,8 +69,8 @@ $route['visa-service']    = 'home/visa_service';
 $route['country-visa']    = 'home/country_visa';
 
 //frontend hotel
-$route['hotel-homepage']  = 'home/hotel_homepage';
-$route['hotel-detail']    = 'home/hotel_detail';
+$route['hotel-homepage']         = 'home/hotel_homepage';
+$route['hotel-detail/(:any)']    = 'home/hotel_detail/$1';
 
 
 //frontend tour

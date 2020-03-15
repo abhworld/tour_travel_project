@@ -156,7 +156,7 @@
             <div id="error_message" style="margin-left: 43px;"></div>
             <div id="success_msg" style="margin-left: 43px;"></div>
             
-            <form class="text-center" id="add_hotel_info">
+            <form class="text-center" id="add_hotel_info" action="hotel/save_hotel_info" method="post" enctype="multipart/form-data">
                 
                 <div class="form-row">
                     <div class="col-md" id="country_id">
@@ -201,6 +201,28 @@
                     </div><!-- end column -->
                     
                 </div><!-- end form-row -->
+
+                 <div class="form-row">
+                    <div class="col-md-6" id="">
+                        <div class="form-group">
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <label class="input-group-text" for="inputGroupSelect00">Hotel Type:</label>
+                                </div>
+                               
+                                <select class="custom-select" id="tour_type" name="hotel_type_id" >
+                                    <option value="">Choose Type</option>
+                                        <?php foreach ($all_type as $type) {?>
+                                    <option value="<?php echo $type['hotel_type_id']?>">
+                                        <?php echo $type['hotel_type_name'];?>
+                                    </option>
+                                        <?php }?>
+                                </select>
+                            </div>
+                        </div><!-- end form-group -->
+                    </div> 
+                </div>
+
                 <div class="form-row">
                     <div class="col-md" style="margin-bottom: 1rem;">
                         <nav>
@@ -288,12 +310,21 @@
                 
                 
                 <div class="form-row">
-                    <div class="col-md">
+                    <div class="col-md-12">
                         <label for="inputGroupSelect07" class="" style="display: block;text-align: left;font-weight: 600;font-size: 16px;">Main Image:</label>
                         <input type="file" id="input-file-now" class="dropify" name="userfile[]"/>
                     </div>
-                </div>
+                
 
+                    <div class="col-md-12">
+                            <div class="col-md" id="tour_name">
+                                <div class="form-group">
+                                    <label for="inputGroupSelect07" class="">Hotel Gallery:</label>
+                                    <input type="file" class="form-control" name="image[]" required id="">
+                                </div>
+                            </div>
+                    </div>
+                </div>
                 <div class="form-row">
                     
                     <h6 style="display: block;width: 100%;text-align: left;">
