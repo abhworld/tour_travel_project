@@ -311,11 +311,25 @@
                     </div>
                 </div>-->
                 
-                <div class="form-row">
+                 <div class="form-row" style="margin-bottom: 20px;">
                     <div class="col-md">
-                        <label for="inputGroupSelect07" class="" style="display: block;text-align: left;font-weight: 600;font-size: 16px;">Main Image:</label>
-                        <input type="file" id="input-file-now" class="dropify" name="userfile[]" data-default-file="uploads/hotel/<?php echo $hotel_info[0]['hotel_image']?>"/>
-                        <input type="hidden" name="prev_hotel_image" value="<?php echo $hotel_info[0]['hotel_image']?>">
+                        <h6 class="text-left"> hotel Gallery Images</h6>
+                        <table class="table table-bordered" style="background-color: #fff;margin: 0px;max-width: 100%">
+                            <?php foreach ($hotel_gallery_images as $image) {?>
+                            <tr>
+                                <td><img src="uploads/hotel/hotel_gallery/<?php echo $image['gallery_image']?>" alt="images" style="width: 100px; height: 60px;"></td>
+                                <td>
+                                    <a onclick="open_image_modal('<?php echo $image['hotel_gallery_id']?>')"><i class="fas fa-edit"></i></a>
+                                    
+                                    <a href="delete-hotel-gallery-image/<?php echo $image['hotel_gallery_id'].'/'.$hotel_info[0]['id']?>">
+                                        <i class="fas fa-trash-alt"></i>
+                                    </a>
+                                    
+                                </td>
+         
+                            </tr>
+                            <?php }?>
+                        </table>
                     </div>
                 </div>
 <!--                <div class="form-row">
@@ -332,7 +346,6 @@
                                 <img id="add_img_div" onmouseover="image_hover('#f0f5f5')" onmouseout="image_hover('')" style="height: 150px; width: 150px;" src="<?= base_url() . 'uploads/add_images.png'; ?>"
                                      alt="">
                             </a>
-
                         </div>
                     </div>
                 </div>-->
@@ -520,12 +533,12 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="hotel/update_image" method="post" enctype="multipart/form-data">
+            <form action="hotel/update_hotel_gallery_image" method="post" enctype="multipart/form-data">
                 <div class="modal-body">
-                    <input type="hidden" name="image_id" value="">
+                    <input type="hidden" name="hotel_gallery_id" value="">
                     <div class="form-group">
                         <label for="inputGroupSelect07" class="">Image:</label>
-                        <input type="file" class="form-control" name="image[]" required id="" style="border: 1px solid #ced4da;">
+                        <input type="file" class="form-control" name="gallery_image[]" required id="" style="border: 1px solid #ced4da;">
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -714,11 +727,11 @@
         $(this).parent().remove();
     });
     
-    function open_image_modal(image_id){
+    function open_image_modal(hotel_gallery_id){
         
         $('#image_modal').modal('show'); 
         
-        $("[name='image_id']").val(image_id);
+        $("[name='hotel_gallery_id']").val(hotel_gallery_id);
     }
 </script>
 

@@ -164,6 +164,17 @@ class Admin_model extends CI_Model{
         return $query->result_array();
     }
     
+    public function getHotelGalleryImages($id) {
+        $this->db->select('*');
+        $this->db->from('hotel_gallery');
+        
+        $this->db->where('hotel_id', $id);
+        // $this->db->where('type', $type);
+        
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+
     public function get_all_hotel_details() {
         $this->db->select('hotel.*, countries.name AS country_name, cities.name AS city_name');
         $this->db->from('hotel');

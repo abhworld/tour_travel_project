@@ -1,5 +1,5 @@
 <!-- Breadcrumb Area Start -->
-<section class="abh-breadcrumb-area" style="background-image: url('./assets/frontend_asset/img/hotel-banner.jpg');">
+<section class="abh-breadcrumb-area" style="background-image: url('../assets/frontend_asset/img/hotel-banner.jpg');">
     <div class="breadcrumb-top">
         <div class="container">
             <div class="col-lg-12">
@@ -26,34 +26,18 @@
                 </div>
                 <div class="hotel-image-inner">
                     <div class="details-slider owl-carousel">
+                        <?php foreach($hotel_gallery as $gallery) { ?>
                         <div class="single-destination">
                             <a href="#">
                                 <div class="destination-image">
-                                    <img class="img-fluid" src="<?php echo base_url();?>assets/frontend_asset/img/hotel-1.jpg" alt="destination" />
+                                    <img class="img-fluid" src="<?php echo base_url();?>uploads/hotel/hotel_gallery/<?php echo $gallery['gallery_image']; ?>" alt="destination" />
                                 </div>
                             </a>
                         </div>
-                        <div class="single-destination">
-                            <a href="#">
-                                <div class="destination-image">
-                                    <img class="img-fluid" src="<?php echo base_url();?>assets/frontend_asset/img/hotel-2.jpg" alt="destination" />
-                                </div>
-                            </a>
-                        </div>
-                        <div class="single-destination">
-                            <a href="#">
-                                <div class="destination-image">
-                                    <img class="img-fluid" src="<?php echo base_url();?>assets/frontend_asset/img/hotel-3.jpg" alt="destination" />
-                                </div>
-                            </a>
-                        </div>
-                        <div class="single-destination">
-                            <a href="#">
-                                <div class="destination-image">
-                                    <img class="img-fluid" src="<?php echo base_url();?>assets/frontend_asset/img/hotel-4.jpg" alt="destination" />
-                                </div>
-                            </a>
-                        </div>
+                        <?php } ?>
+                        
+                        
+                       
                     </div>
                 </div>
                 <div class="hotel-details-tab-inner">
