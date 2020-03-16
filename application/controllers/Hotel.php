@@ -20,7 +20,8 @@ class Hotel extends CI_Controller {
         $data['title'] = 'Add Hotel';
         
         $data['all_country'] = $this->common_model->getAllInfo('countries');
-        $data['room_type'] = $this->common_model->getAllInfo('room_type');
+        $data['room_type']   = $this->common_model->getAllInfo('room_type');
+        $data['all_type']    = $this->common_model->getAllInfo('hotel_type');
         
         $data['headerlink'] = $this->load->view('admin_template/headerlink', $data, true);
         $data['header'] = $this->load->view('admin_template/header', $data, true);
@@ -89,6 +90,8 @@ class Hotel extends CI_Controller {
             $data['longitude'] = $post['longitude'];
             $data['hotel_facilities'] = $post['hotel_facilities'];
             $data['hotel_itinerary'] = $post['hotel_itinerary'];
+            $data['hotel_type_id'] = $post['hotel_type_id'];
+
             
             if(isset($post['restaurant'])){
                 $data['restaurant'] = $post['restaurant'];
@@ -348,6 +351,9 @@ class Hotel extends CI_Controller {
         // echo "<pre>"; print_r($data['hotel_info']); die;
         $data['room_detail_info'] = $this->common_model->getInfo('room_detail', 'hotel_id', $id);
         $data['hotel_images'] = $this->admin_model->getImages($id, 1);
+
+        $data['type_info'] = $this->common_model->getInfo('hotel', 'id', $id);
+        $data['all_type']    = $this->common_model->getAllInfo('hotel_type');
         
 //        echo '<pre>';print_r($data['room_detail_info']);die;
         

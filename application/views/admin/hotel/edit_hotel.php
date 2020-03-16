@@ -207,6 +207,28 @@
                     </div><!-- end column -->
                     
                 </div><!-- end form-row -->
+
+                 <div class="form-row">
+                    <div class="col-md-6" id="">
+                        <div class="form-group">
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <label class="input-group-text" for="inputGroupSelect00">Hotel Type:</label>
+                                </div>
+                               
+                                <select class="custom-select" id="hotel_type" name="hotel_type_id" >
+                                    <option value="">Choose Type</option>
+                                        <?php foreach ($all_type as $type) {?>
+                                    <option value="<?php echo $type['hotel_type_id']?>" <?php if($type_info[0]['hotel_type_id'] == $type['hotel_type_id'] ){ echo 'selected';}?>>
+                                        <?php echo $type['hotel_type_name'];?>
+                                    </option>
+                                        <?php }?>
+                                </select>
+                            </div>
+                        </div><!-- end form-group -->
+                    </div> 
+                </div>
+
                 <div class="form-row">
                     <div class="col-md" style="margin-bottom: 1rem;">
                         <nav>
