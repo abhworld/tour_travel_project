@@ -65,7 +65,7 @@ $route['omrah-list']      = 'home/omrah_list';
 
 //frontend visa
 $route['visa']            = 'home/visa';
-$route['visa-service']    = 'home/visa_service';
+$route['visa-service/(:any)']    = 'home/visa_service/$1';
 $route['country-visa']    = 'home/country_visa';
 
 //frontend hotel

@@ -89,6 +89,27 @@
             <div id="success_msg" style="margin-left: 43px;"></div>
             
             <form class="text-center" id="add_hotel_info">
+
+            <div class="form-row">
+                <div class="col-md">
+                    <div class="form-group">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <label class="input-group-text" for="inputGroupSelect00">Continent:</label>
+                            </div>
+                            <select class="custom-select" id="continent_id" name="continent_id">
+                                <option value="">Choose Continent</option>
+                                <?php foreach ($continents as $continent) {?>
+                                <option value="<?php echo $continent['continent_id']?>">
+                                    <?php echo $continent['continent_name'];?>
+                                </option>
+                                <?php }?>
+                            </select>
+                            <!--<i class="fas fa-angle-down"></i>-->
+                        </div>
+                    </div><!-- end form-group -->
+                </div>
+            </div>
                 
                 <div class="form-row">
                     <div class="col-md">
@@ -97,7 +118,7 @@
                                 <div class="input-group-prepend">
                                     <label class="input-group-text" for="inputGroupSelect00">Country:</label>
                                 </div>
-                                <select class="custom-select" id="country_id" name="country_id" onchange="get_city('1')">
+                                <select class="custom-select" id="country_id" name="country_id">
                                     <option value="">Choose Country</option>
                                     <?php foreach ($all_country as $country) {?>
                                     <option value="<?php echo $country['id']?>">
@@ -178,7 +199,7 @@
         $('[name="consultancy"]').val($( 'textarea.faq' ).val());
 
         var form_data = new FormData($("#add_hotel_info")[0]);
-        
+        console.log(form_data);
         $(".error_msg").html('');
         $.ajax({
             url: "visa/save_visa_info",
@@ -205,18 +226,17 @@
         })
     });
     
-//    $("[name='country_id']").change(function (){
-////        alert(this.value);
+//    $("[name='continent_id']").change(function (){
+// //        alert(this.value);
 //        $.ajax({
-//            url: "hotel/get_city_by_country",
+//            url: "hotel/get_country_by_continent",
 //            type: 'POST',
 //            data: {
-//                country_id: this.value,
-//                city_id: ''
+//                countinent_id: this.value,
 //            },
 //            success: function (response) {
 //                var obj = JSON.parse(response);
-//                $('[name="city"]').html(obj);
+//                $('[name="country_id"]').html(obj);
 //            }
 //        })
 //    });
