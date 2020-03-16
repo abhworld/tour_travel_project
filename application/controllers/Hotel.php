@@ -45,6 +45,18 @@ class Hotel extends CI_Controller {
         echo json_encode($city);
     }
 
+    public function get_country_by_continent(){
+        $continent_id = $this->input->post('continent_id');
+        $get_all_country = $this->common_model->getInfo('countries', 'continent_id', $continent_id);
+        
+        $country = '';
+        foreach ($get_all_country as $row) {
+            $country.= '<option value="'.$row['id'].'" '.($country_id != '' && $country_id == $row['id'] ? 'selected' : '').'>'.$row['name'].'</option>';
+        }
+        
+        echo json_encode($country);
+    }
+
 
     public function save_hotel_info() {
         $this->form_validation->set_error_delimiters('', '');

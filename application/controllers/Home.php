@@ -140,6 +140,8 @@ class Home extends CI_Controller {
 		$data = array();
 
 		$data['company_info'] = $this->home_model->getRow('company_info', 'id', 1);
+		$data['continents'] = $this->home_model->getAllInfo('continents');
+
 		// echo '<pre>'; print_r($data['company_info']); die;
 		$data['title'] = 'Visa |';
 		$data['headerlink'] = $this->load->view('frontend_template/headerlink', $data, TRUE);
@@ -154,12 +156,15 @@ class Home extends CI_Controller {
 	}
 
 
-	public function visa_service()
+	public function visa_service($id)
 	{	
 		$data = array();
 
 		$data['company_info'] = $this->home_model->getRow('company_info', 'id', 1);
-		// echo '<pre>'; print_r($data['company_info']); die;
+		$data['countries'] = $this->home_model->getCountry($id);
+		
+
+		// echo '<pre>'; print_r($data['countries']); die;
 		$data['title'] = 'Visa Service |';
 		$data['headerlink'] = $this->load->view('frontend_template/headerlink', $data, TRUE);
 		$data['header'] = $this->load->view('frontend_template/header', $data, TRUE);
