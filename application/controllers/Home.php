@@ -177,12 +177,14 @@ class Home extends CI_Controller {
 		$this->load->view('home/home_main_content', $data);
 	}
 
-	public function country_visa()
+	public function country_visa($id)
 	{	
 		$data = array();
 
 		$data['company_info'] = $this->home_model->getRow('company_info', 'id', 1);
-		// echo '<pre>'; print_r($data['company_info']); die;
+		$data['country_details'] = $this->home_model->getCountryDetails($id);
+
+		// echo '<pre>'; print_r($data['country_details']); die;
 		$data['title'] = 'Country Visa |';
 		$data['headerlink'] = $this->load->view('frontend_template/headerlink', $data, TRUE);
 		$data['header'] = $this->load->view('frontend_template/header', $data, TRUE);

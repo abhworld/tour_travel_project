@@ -37,14 +37,14 @@
         ?>
             <div class="col-lg-3">
                 <div class="single-destination">
-                    <a href="country-details.php">
-                        <div class="destination-image">
-                            <img src="<?= base_url()?>uploads/visa/<?php echo $country['image']; ?>" alt="asia" />
-                            <div class="destination-title">
-                                <h3><?php echo $country["name"];?></h3>
-                            </div>
+                <a href="<?php echo base_url();?>country-visa/<?php echo $country['id']; ?>">
+                    <div class="destination-image">
+                        <img src="<?= base_url()?>uploads/visa/<?php echo $country['image']; ?>" alt="asia" />
+                        <div class="destination-title">
+                            <h3><?php echo $country["name"];?></h3>
                         </div>
-                    </a>
+                    </div>
+                </a>
                 </div>
             </div>
          <?php }  ?>
