@@ -158,15 +158,23 @@ class Home_model extends CI_Model{
 
     public function get_all_hotel()
     {
-        $this->db->select('hotel.*, countries.name AS country_name, cities.name AS city_name');
+        $this->db->select('hotel.*, countries.name AS country_name, cities.name AS city_name, hotel_gallery.gallery_image');
 
         $this->db->from('hotel');
 
         $this->db->join('countries', 'hotel.country = countries.id', 'LEFT');
         $this->db->join('cities', 'hotel.city = cities.id', 'LEFT');
+        $this->db->join('hotel_gallery', 'hotel.id = hotel_gallery.hotel_id', 'LEFT');
+
 
         $query = $this->db->get();
+        // echo $this->db->last_query();die;
         return $query->result_array();
+    }
+
+    public function get_all_hotel_gallery()
+    {
+        
     }
     
     public function get_related_hotel($country_id, $id) {
@@ -252,6 +260,32 @@ class Home_model extends CI_Model{
         $query = $this->db->get();
         return $query->result_array();      
     }
+
+    public function get_gallery_hotel($id)
+    {
+        $this->db->select('*');
+
+        $this->db->from('hotel_gallery');
+
+        $this->db->where('hotel_gallery.hotel_id', $id);    
+        
+        $query = $this->db->get();
+        return $query->result_array();      
+    }
+
+    public function get_hotel_gallery()
+    {
+        $this->db->select('*');
+
+        $this->db->from('hotel_gallery');
+
+        // $this->db->where('hotel_gallery._id', $id);    
+        
+        $query = $this->db->get();
+        return $query->result_array();      
+    }
+
+
     
     public function get_related_tour($country_id, $tour_id) {
         $this->db->select('tour.*, tour_detail.*');

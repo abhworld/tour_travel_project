@@ -119,34 +119,18 @@
                         <div class="col-lg-6">
                             <div class="hotel-image-inner">
                                 <div class="details-slider owl-carousel">
+
+                                   
                                     <div class="single-destination">
                                         <a href="hotel-detail/<?php echo str_replace(' ', '-', strtolower($row['hotel_name'])) ;?>">
                                             <div class="destination-image">
-                                                <img src="<?php echo base_url();?>assets/frontend_asset/img/Exterior-2.jpg" alt="destination" />
+                                                <img src="<?php echo base_url();?>uploads/hotel/hotel_gallery/<?php echo $row['gallery_image']; ?>" alt="destination" />
                                             </div>
                                         </a>
                                     </div>
-                                    <div class="single-destination">
-                                        <a href="hotel-details.php">
-                                            <div class="destination-image">
-                                                <img src="<?php echo base_url();?>assets/frontend_asset/img/Exterior-1.jpg" alt="destination" />
-                                            </div>
-                                        </a>
-                                    </div>
-                                    <div class="single-destination">
-                                        <a href="hotel-details.php">
-                                            <div class="destination-image">
-                                                <img src="<?php echo base_url();?>assets/frontend_asset/img/Exterior-3.jpg" alt="destination" />
-                                            </div>
-                                        </a>
-                                    </div>
-                                    <div class="single-destination">
-                                        <a href="hotel-details.php">
-                                            <div class="destination-image">
-                                                <img src="<?php echo base_url();?>assets/frontend_asset/img/Exterior-4.jpg" alt="destination" />
-                                            </div>
-                                        </a>
-                                    </div>
+                                    
+                                    
+                                  
                                 </div>
                             </div>
                         </div>

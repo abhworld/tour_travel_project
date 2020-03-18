@@ -310,20 +310,15 @@
                 
                 
                 <div class="form-row">
-                    <div class="col-md-12">
-                        <label for="inputGroupSelect07" class="" style="display: block;text-align: left;font-weight: 600;font-size: 16px;">Main Image:</label>
-                        <input type="file" id="input-file-now" class="dropify" name="userfile[]"/>
+                     <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Upload Gallery</label>
+                        <input type="file" multiple="" class="form-control" name="gallery_image[]">
                     </div>
+                  </div>
                 
 
-                    <div class="col-md-12">
-                            <div class="col-md" id="tour_name">
-                                <div class="form-group">
-                                    <label for="inputGroupSelect07" class="">Hotel Gallery:</label>
-                                    <input type="file" class="form-control" name="image[]" required id="">
-                                </div>
-                            </div>
-                    </div>
+                    
                 </div>
                 <div class="form-row">
                     
@@ -475,6 +470,7 @@
                     </div>
 
                 </div>
+                <!-- <input type="hidden" id="hotel<?php // echo $i?>" name="hotel_id" value="<?php // echo $row['id'];?>"/> -->
 
 <!--                <h6 style="text-align: left;">Related Hotels</h6>
                 <ul id="related_data" class="">
