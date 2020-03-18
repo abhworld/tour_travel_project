@@ -112,46 +112,56 @@
                 </div>
                 <div class="hotel-room-area">
                     <div class="row">
+
+                       <?php if(isset($room_detail['room_type']) && $room_detail['room_type'] == 'Double'){?>
                         <div class="col-lg-5 pad-right-0">
                             <div class="hotel-img-inner hotel-room-img-style-1">
                                 <div class="price">
-                                    <span class="price-num"> ৳ 1089 </span>
+                                    <span class="price-num"> ৳ <?php echo $room_detail['rent_per_night'];?></span>
                                     <span class="price-night-text"> / night </span>
                                 </div>
-                                <a href="<?php echo base_url();?>assets/frontend_asset/img/hotel-room1.jpg" class="popup-img">
-                                    <img class="img-fluid" src="<?php echo base_url();?>assets/frontend_asset/img/hotel-room1.jpg" alt="Hotel Room" />
+                                <a href="<?php echo base_url();?>uploads/hotel/rooms/<?php echo $room_detail['room_image'];?>" class="popup-img">
+                                    <img class="img-fluid" src="<?php echo base_url();?>uploads/hotel/rooms/<?php echo $room_detail['room_image'];?>" alt="Hotel Room" />
                                 </a>
                                 <div class="room-name">
-                                    <h3>Family Room</h3>
+                                    <h3>Double Room</h3>
                                 </div>
                             </div>
                         </div>
+                        <?php } ?>
+
                         <div class="col-lg-7">
                             <div class="hotel-four-room-inner">
                                 <div class="row">
-                                    <div class="col-lg-6">
+
+                                     <?php if(isset($room_detail['room_type']) && $room_detail['room_type'] == 'Single'){?>
+                                     <div class="col-lg-6">
                                         <div class="hotel-img-inner">
                                             <div class="price">
-                                                <span class="price-num"> ৳ 1089 </span>
+                                                <span class="price-num"> ৳ <?php echo $room_detail['rent_per_night'];?> </span>
                                                 <span class="price-night-text"> / night </span>
                                             </div>
-                                            <a href="<?php echo base_url();?>assets/frontend_asset/img/hotel-room2.jpg" class="popup-img">
-                                                <img class="img-fluid" src="<?php echo base_url();?>assets/frontend_asset/img/hotel-room2.jpg"
-                                                    alt="Hotel Room" />
+                                            <a href="<?php echo base_url();?>uploads/hotel/rooms/<?php echo $room_detail['room_image'];?>" class="popup-img">
+
+                                                <img class="img-fluid" src="<?php echo base_url();?>uploads/hotel/rooms/<?php echo $room_detail['room_image'];?>"
+                                                    alt="Hotel Room"/>
                                             </a>
                                             <div class="room-name">
                                                 <h3>Single Room</h3>
                                             </div>
                                         </div>
                                     </div>
+                                    <?php } ?>
+
+                                     <?php if(isset($room_detail['room_type']) && $room_detail['room_type'] == 'King'){?>
                                     <div class="col-lg-6 pad-left-0">
                                         <div class="hotel-img-inner">
                                             <div class="price">
-                                                <span class="price-num"> ৳ 1089 </span>
+                                                <span class="price-num"> ৳ <?php echo $room_detail['rent_per_night'];?>  </span>
                                                 <span class="price-night-text"> / night </span>
                                             </div>
-                                            <a href="<?php echo base_url();?>assets/frontend_asset/img/hotel-room3.jpg" class="popup-img">
-                                                <img class="img-fluid" src="<?php echo base_url();?>assets/frontend_asset/img/hotel-room3.jpg"
+                                            <a href="<?php echo base_url();?>uploads/hotel/rooms/<?php echo $room_detail['room_image'];?>" class="popup-img">
+                                                <img class="img-fluid" src="<?php echo base_url();?>uploads/hotel/rooms/<?php echo $room_detail['room_image'];?>"
                                                     alt="Hotel Room" />
                                             </a>
                                             <div class="room-name">
@@ -159,36 +169,43 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <?php } ?>
+
+                                     <?php if(isset($room_detail['room_type']) && $room_detail['room_type'] == 'Appartments'){?>
                                     <div class="col-lg-6">
                                         <div class="hotel-img-inner">
                                             <div class="price">
-                                                <span class="price-num"> ৳ 1089 </span>
+                                                <span class="price-num"> ৳ <?php echo $room_detail['rent_per_night'];?> </span>
                                                 <span class="price-night-text"> / night </span>
                                             </div>
-                                            <a href="<?php echo base_url();?>assets/frontend_asset/img/hotel-room3.jpg" class="popup-img">
-                                                <img class="img-fluid" src="<?php echo base_url();?>assets/frontend_asset/img/hotel-room3.jpg"
+                                            <a href="<?php echo base_url();?>uploads/hotel/rooms/<?php echo $room_detail['room_image'];?>" class="popup-img">
+                                                <img class="img-fluid" src="<?php echo base_url();?>uploads/hotel/rooms/<?php echo $room_detail['room_image'];?>"
                                                     alt="Hotel Room" />
                                             </a>
                                             <div class="room-name">
-                                                <h3>Couple Room</h3>
+                                                <h3>Appartments</h3>
                                             </div>
                                         </div>
                                     </div>
+                                    <?php } ?>
+
+                                     <?php if(isset($room_detail['room_type']) && $room_detail['room_type'] == 'Villa'){?>
                                     <div class="col-lg-6 pad-left-0">
                                         <div class="hotel-img-inner">
                                             <div class="price">
-                                                <span class="price-num"> ৳ 1089 </span>
+                                                <span class="price-num"> ৳ <?php echo $room_detail['rent_per_night'];?> </span>
                                                 <span class="price-night-text"> / night </span>
                                             </div>
-                                            <a href="<?php echo base_url();?>assets/frontend_asset/img/hotel-room2.jpg" class="popup-img">
-                                                <img class="img-fluid" src="<?php echo base_url();?>assets/frontend_asset/img/hotel-room2.jpg"
+                                            <a href="<?php echo base_url();?>uploads/hotel/rooms/thumbnail/<?php echo $room_detail['room_image'];?>" class="popup-img">
+                                                <img class="img-fluid" src="<?php echo base_url();?>uploads/hotel/rooms/<?php echo $room_detail['room_image'];?>"
                                                     alt="Hotel Room" />
                                             </a>
                                             <div class="room-name">
-                                                <h3>Business Room</h3>
+                                                <h3>Villa Room</h3>
                                             </div>
                                         </div>
                                     </div>
+                                    <?php } ?>
                                 </div>
                             </div>
                         </div>

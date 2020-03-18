@@ -269,11 +269,11 @@
                                 </div>
                             </div>
                             <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
-                                <textarea name="" id="editor" class="mb-3 editor"></textarea>
+                                <textarea name="" id="editor1" class="mb-3 editor1"></textarea>
                                 <input type="hidden" name="hotel_facilities">
                             </div>
                             <div class="tab-pane fade" id="nav-contact1" role="tabpanel" aria-labelledby="nav-contact-tab">
-                                <textarea name="" id="editor" class="mb-3 editor"></textarea>
+                                <textarea name="" id="editor2" class="mb-3 editor2"></textarea>
                                 <input type="hidden" name="hotel_itinerary">
                             </div>
                             
@@ -433,12 +433,12 @@
                                     <input type="text" class="form-control" name="no_of_child[]" required id="">
                                 </div><!-- end form-group -->
                             </div><!-- end column -->
-                             <div class="col">
+                            <!--  <div class="col">
                             <div class="form-group">
                                     <label for="inputGroupSelect07" class="" style="width: 90px;">Infant:</label>
                                     <input type="text" class="form-control" name="no_of_infant[]" required id="">
-                                </div><!-- end form-group -->
-                            </div><!-- end column -->
+                                </div>
+                            </div> -->
                         </div>
                         
                         <div class="form-row">
@@ -511,8 +511,8 @@
     $("#add_hotel").click(function (){
         $('[name="hotel_description"]').val($( 'textarea.editor' ).val());
         // $('[name="hotel_address"]').val($( 'textarea.editor' ).val());
-        $('[name="hotel_facilities"]').val($( 'textarea.editor' ).val());
-        $('[name="hotel_itinerary"]').val($( 'textarea.editor' ).val());
+        $('[name="hotel_facilities"]').val($( 'textarea.editor1' ).val());
+        $('[name="hotel_itinerary"]').val($( 'textarea.editor2' ).val());
 //        form_data.append('hotel_overivew', editor.getData());
         var form_data = new FormData($("#add_hotel_info")[0]);
 //        var content = $( 'textarea.editor' ).val();

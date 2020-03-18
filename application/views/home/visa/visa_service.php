@@ -1,5 +1,5 @@
 <!-- Breadcrumb Area Start -->
-<section class="abh-breadcrumb-area" style="background-image: url('./assets/frontend_asset/img/visa-banner.jpg');">
+<section class="abh-breadcrumb-area" style="background-image: url('../assets/frontend_asset/img/visa-banner.jpg');">
     <div class="breadcrumb-top">
         <div class="container">
             <div class="col-lg-12">

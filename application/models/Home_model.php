@@ -156,6 +156,20 @@ class Home_model extends CI_Model{
         return $query->row_array();
     }
 
+    public function get_room_detail($id) {
+        $this->db->select('*');
+        $this->db->from('room_detail');
+        
+        $this->db->join('room_type', 'room_type.room_type_id = room_detail.room_type', 'LEFT');
+        $this->db->join('hotel', 'hotel.id = room_detail.hotel_id', 'LEFT');
+//        $this->db->join('hotel_images', 'hotel.hotel_id = hotel_images.hotel_id', 'LEFT');
+        
+        $this->db->where('hotel.id', $id);
+        
+        $query = $this->db->get();
+        return $query->row_array();
+    }
+
     public function get_all_hotel()
     {
         $this->db->select('hotel.*, countries.name AS country_name, cities.name AS city_name, hotel_gallery.gallery_image');
