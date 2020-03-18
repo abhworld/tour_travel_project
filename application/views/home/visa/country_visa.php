@@ -1,10 +1,10 @@
 <!-- Breadcrumb Area Start -->
-<section class="abh-breadcrumb-area" style="background-image: url('./assets/frontend_asset/img/hotel-banner.jpg');">
+<section class="abh-breadcrumb-area" style="background-image: url('../assets/frontend_asset/img/hotel-banner.jpg');">
     <div class="breadcrumb-top">
         <div class="container">
             <div class="col-lg-12">
                 <div class="breadcrumb-box">
-                    <h2>Argentina Visa Service</h2>
+                    <h2><?php echo $country_details["name"] ?> Visa Service</h2>
                     <ul class="breadcrumb-inn">
                         <li><a href="index.html">Home</a></li>
                         <li class="active"><a href="#">Visa service</a></li>
@@ -58,70 +58,21 @@
                             <div id="hotel-description" class="tab-pane show active">
 
                                 <div class="tab-details-inner">
-                                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                                        Lorem Ipsum has
-                                        been the industry's standard dummy text ever since the 1500s, when an
-                                        unknown printer took a
-                                        galley of type and scrambled it to make a type specimen book. It has
-                                        survived not only five
-                                        centuries, but also the leap into electronic typesetting, remaining
-                                        essentially unchanged.
-                                        It was popularised in the 1960s with the release of Letraset sheets
-                                        containing Lorem Ipsum
-                                        passages, and more recently with desktop publishing software like Aldus
-                                        PageMaker including
-                                        versions of Lorem Ipsum.</p>
+                                    <p><?php echo $country_details["description"];?></p>
                                 </div>
 
                             </div>
                             <div id="facilities" class="tab-pane">
 
                                 <div class="tab-details-inner">
-                                    <p>Food not included with package price for Makkah / Madinah (where not
-                                        specified), but
-                                        available at hotel or restaurant (approx. SR10/per lunch or dinner and
-                                        SR5/per breakfast).
-                                        Food Menu - Breakfast: Paratha / Ruti, Dall / Eggs / Vegetable, Lunch &
-                                        Diner: Chicken /
-                                        Fish, Vegetable / Vorta / Shak, Dall, Plain Rice.
-
-                                        Any kinds of personal cost or others which are not mentioned above.</p>
+                                    <p><?php echo $country_details["facilities"];?></p>
                                 </div>
 
                             </div>
                             <div id="hotel-itinerary" class="tab-pane">
 
                                 <div class="tab-details-inner">
-                                    <p>Air ticket with all taxes on Kuwait / Air Arabia / Gulf or other Airlines:
-                                        Dhaka – Jeddah –
-                                        Dhaka / Dhaka – Madinah – Jeddah – Dhaka (economy class). / Dhaka – Jeddah –
-                                        Madinah – Dhaka
-
-                                        04 Nights hotel accommodation in Makkah / Madinah.
-
-                                        Transportation Service: Jeddah/Madinah airport – Madinah Hotel – Makkah
-                                        Hotel – Jeddah
-                                        Airport.
-
-                                        Visa fee with service charge.
-
-                                        Health Insurance (Umrah).
-
-                                        Meet & Assist at Jeddah / Madinah Airport.
-
-                                        Room Service as per hotel rules.
-
-                                        Umrah Hajj guide.
-
-                                        Moyallem / Guide Servicem @ Umrah Period
-
-                                        Ziyarah / Sightseeing tour in Makkah: Mina, Arafat, Muzdalifa, Jabal-e-Noor,
-                                        Jabal-e-soor,
-                                        Jannatul Mualla etc.
-
-                                        Ziyarah / Sightseeing tour in Madinah: Masjid al-Nabawi , Jannatul Baqi ,
-                                        Masjid Quba , Imam
-                                        Ali [a]'s house, Masjid-e-Jummah etc.</p>
+                                    <p><?php echo $country_details["itinerary"];?></p>
                                 </div>
 
                             </div>

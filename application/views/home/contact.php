@@ -1,3 +1,7 @@
+ <?php
+ $company_phone = explode(";", $company_info["company_phone"]);
+ 
+ ?>
  <!-- Breadcrumb Area Start -->
       <section class="abh-breadcrumb-area">
          <div class="breadcrumb-top">
@@ -76,8 +80,12 @@
                         <div class="contact-info-desc">
                            <span>Phone:</span>
                            <ul>
-                              <li>+123 4567 8910</li>
-                              <li>+88 0123 5465</li>
+                           <?php
+                              foreach($company_phone as $phone)
+                              {
+                                 echo "<li>$phone</li>";
+                              }
+                           ?>
                            </ul>
                         </div>
                      </div>
@@ -88,8 +96,7 @@
                         <div class="contact-info-desc">
                            <span>Email:</span>
                            <ul>
-                              <li>mail@example.com</li>
-                              <li>info@sitename.net</li>
+                              <li><?php echo $company_info["company_email"];?></li>
                            </ul>
                         </div>
                      </div>
@@ -100,8 +107,7 @@
                         <div class="contact-info-desc">
                            <span>Address:</span>
                            <ul>
-                              <li>29 Division Pt</li>
-                              <li>New York, NY 10002, USA</li>
+                              <li><?php echo $company_info["company_address"];?></li>
                            </ul>
                         </div>
                      </div>

@@ -365,5 +365,17 @@ class Home_model extends CI_Model{
         return $query->result_array();
         
     }
+
+    public function getCountryDetails($country_id)
+    {
+        $this->db->select('*');
+        $this->db->from('countries');
+        $this->db->join('visa', 'visa.country_id = countries.id');
+        $this->db->where('countries.id', $country_id);
+        
+        $query = $this->db->get();
+        return $query->row_array();
+        
+    }
     
 }
