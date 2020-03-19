@@ -425,5 +425,44 @@ class Home_model extends CI_Model{
         return $query->row_array();
         
     }
+
+    public function searchHotel($restaurant, $swimming_pool, $fitness, $coffee_shop, $service_room)
+    {
+        $this->db->select('hotel.*, countries.name AS country_name, cities.name AS city_name, hotel_gallery.gallery_image');
+
+        $this->db->from('hotel');
+
+        $this->db->join('countries', 'hotel.country = countries.id', 'LEFT');
+        $this->db->join('cities', 'hotel.city = cities.id', 'LEFT');
+        $this->db->join('hotel_gallery', 'hotel.id = hotel_gallery.hotel_id', 'LEFT');
+
+
+        if(!empty($restaurant))
+            $this->db->where('hotel.restaurant', 1);
+
+        if(!empty($swimming_pool))
+            $this->db->where('hotel.swimming_pool', 1);
+
+        if(!empty($fitness))
+            $this->db->where('hotel.fitness_center', 1);
+
+        if(!empty($coffee_shop))
+            $this->db->where('hotel.coffee_shop', 1);
+
+        if(!empty($wifi))
+            $this->db->where('hotel.wifi', 1);
+
+        if(!empty($service_room))
+            $this->db->where('hotel.service_room', 1);
+
+        if(!empty($country_id))
+            $this->db->where('hotel.country', $country_id);
+        
+        
+        $query = $this->db->get();
+        
+        return $query->result_array();
+           
+    }
     
 }

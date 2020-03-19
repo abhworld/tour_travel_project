@@ -6,7 +6,9 @@ class Home extends CI_Controller {
 	public function __construct() {
         parent::__construct();
 
-        $this->load->model('home_model'); 
+		$this->load->model('home_model'); 
+        $this->load->model('common_model');
+		
     }
 
 	public function index()
@@ -202,6 +204,9 @@ class Home extends CI_Controller {
 		$data = array();
 
 		$data['all_hotel']     = $this->home_model->get_all_hotel();
+		$data['countries'] = $this->home_model->getAllInfo('countries');
+		
+
 		// echo '<pre>'; print_r($data['all_hotel']); die;
 		// $data['hotel_gallery'] = $this->home_model->get_hotel_gallery();
 
@@ -368,5 +373,24 @@ class Home extends CI_Controller {
 		$data['home_content'] = $this->load->view('home/blog', $data, TRUE);
 
 		$this->load->view('home/home_main_content', $data);
+	}
+
+	public function searchHotel()
+    {
+		$data["all_hotel"] = $this->home_model->searchHotel($_POST["restaurant"], $_POST["swimming_pool"], $_POST["fitness"], $_POST["coffee_shop"], $_POST["wifi_free"], $_POST["service_room"], $_POST["country_id"]);
+		$data["hotel_list"] = $this->load->view('home/hotel/hotel_list', $data);
+		return $data;
+		// return json_encode($data["hotel_list"]);
+	}
+
+	public function searchCityByCountry()
+    {
+		$show = '';
+		$cities = $this->common_model->getInfo('cities', 'country_id', $_POST["country_id"]);
+		foreach($cities as $city)
+			$show .= "<option value='". $city['id']."'>".$city['name']."</option>";
+
+		echo $show;
+ 
 	}
 }

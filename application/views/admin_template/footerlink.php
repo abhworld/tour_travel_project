@@ -42,7 +42,7 @@
         $('.dropify').dropify();
         $('#example').DataTable();
         $('#data-table').DataTable();
-        $(".select2").select2();
+        // $(".select2").select2();
         
         $(".js-example-tokenizer").select2({
             placeholder: 'Select an option',

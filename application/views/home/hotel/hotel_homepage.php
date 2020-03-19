@@ -26,8 +26,20 @@
                         <div class="tour-filter clearfix">
                             <form>
                                 <p>
-                                    <input type="search" placeholder="Search Tour..." id="hotel_id"/>
-                                    <i class="fa fa-search"></i>
+                                    <select id="country_id" class="select2">
+                                        <option value=''>Select country</option>
+                                        <?php 
+                                            foreach($countries as $country)
+                                            {
+                                                echo "<option value='". $country['id']."'>".$country['name']."</option>";
+                                            }
+                                        ?>
+                                    </select>
+                                </p>
+                                <p>
+                                    <select class="wide" id="city_id">
+                                        <option value=''>Select city</option>
+                                    </select>
                                 </p>
                                 <p>
                                     <input type="search" placeholder="Where To?" />
@@ -87,9 +99,6 @@
                                         <label for="wifi-free"><span></span>Wifi free</label>
                                     </li>
                                 </ul>
-                                <p>
-                                    <button type="submit">Search</button>
-                                </p>
                             </form>
                         </div>
                     </div>
@@ -113,87 +122,9 @@
                         <h2>Hotel List</h2>
                        
                     </div> -->
-                <div class="hotel-list-wrapper">
-                    <?php foreach($all_hotel as $row) { ?>
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <div class="hotel-image-inner">
-                                <div class="details-slider owl-carousel">
-                                    <div class="single-destination">
-                                        <a href="hotel-detail/<?php echo str_replace(' ', '-', strtolower($row['hotel_name'])) ;?>">
-                                            <div class="destination-image">
-                                                <img src="<?php echo base_url();?>assets/frontend_asset/img/Exterior-2.jpg" alt="destination" />
-                                            </div>
-                                        </a>
-                                    </div>
-                                    <div class="single-destination">
-                                        <a href="hotel-details.php">
-                                            <div class="destination-image">
-                                                <img src="<?php echo base_url();?>assets/frontend_asset/img/Exterior-1.jpg" alt="destination" />
-                                            </div>
-                                        </a>
-                                    </div>
-                                    <div class="single-destination">
-                                        <a href="hotel-details.php">
-                                            <div class="destination-image">
-                                                <img src="<?php echo base_url();?>assets/frontend_asset/img/Exterior-3.jpg" alt="destination" />
-                                            </div>
-                                        </a>
-                                    </div>
-                                    <div class="single-destination">
-                                        <a href="hotel-details.php">
-                                            <div class="destination-image">
-                                                <img src="<?php echo base_url();?>assets/frontend_asset/img/Exterior-4.jpg" alt="destination" />
-                                            </div>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="hotel-details-inner">
-                                <h2><?php echo $row['city_name']; ?></h2>
-                                <a href="hotel-detail/<?php echo str_replace(' ', '-', strtolower($row['hotel_name'])) ;?>"><h3><i class="fa fa-building"></i><?php echo $row['hotel_name'];?></h3></a>
-                                <h3 class="hotel-address"><i class="fa fa-map-marker"></i><?php echo $row['hotel_address']; ?>
-                                </h3>
-                                <h4>Hotel Facilities</h4>
-                                <div class="hotel-features">
-
-                                    <ul>
-                                        <?php if(isset($row['restaurant']) && $row['restaurant']) { ?>
-                                        <li><span>Restaurant</span></li>
-                                        <?php } ?>
-                                        <?php if(isset($row['swimming_pool']) && $row['swimming_pool']) { ?>
-                                        <li><span>Pool</span></li>
-                                        <?php } ?>
-                                        <?php if(isset($row['fitness_center']) && $row['fitness_center']) { ?>
-                                        <li><span>Fitness Center</span></li>
-                                        <?php } ?>
-                                        <?php if(isset($row['service_room']) && $row['service_room']) { ?>
-                                        <li><span>Service Room</span></li>
-                                        <?php } ?>
-                                        <?php if(isset($row['coffee_shop']) && $row['coffee_shop']) { ?>
-                                        <li><span>Coffee Shop</span></li>
-                                        <?php } ?>
-                                        <?php if(isset($row['wifi']) && $row['wifi']) { ?>
-                                        <li><span>Wifi Free</span></li>
-                                        <?php } ?>
-                                    </ul>
-                                </div>
-                                <div class="tour-details">
-                                    <a href="hotel-details.php"> Book Now</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="gap-30"></div>
-                    <?php } ?>
-
-                   
-
+                <div id="hotel_list" class="hotel-list-wrapper">
+		            <?php $this->load->view('home/hotel/hotel_list'); ?>
                     
-                   
-
                 </div>
             </div>
         </div>
@@ -255,3 +186,36 @@
     </div>
 </section>
 <!-- Choose Area End -->
+<script>
+function getHotelInfo()
+{
+    $.post( 
+            "home/searchHotel",
+            { 'restaurant': $("#restaurant").val(),'swimming_pool': $("#swimming-pool").val(), 'fitness': $("#fitness").val(), 'service_room': $("#service-room").val(), 'coffee_shop': $("#coffee-shop").val(), 'wifi_free': $("#wifi-free").val(), 'country_id': $("#country_id").val()},
+            function(data) {
+                console.log(data);
+
+                // var obj = JSON.parse(data);
+                $("#hotel_list").html(data); 
+            }
+        );
+}
+$('#restaurant, #fitness, #service-room, #coffee-shop, #wifi-free, #service-room').on('click', function() { 
+    getHotelInfo();
+            
+});
+$('#country_id').on('change', function() { 
+    $.post( 
+            "home/searchCityByCountry",
+            {'country_id': $("#country_id").val()},
+            function(data) {
+                console.log(data);
+
+                // var obj = JSON.parse(data);
+                $("#city_id").html(data); 
+            }
+        );
+    getHotelInfo();
+            
+});
+</script>

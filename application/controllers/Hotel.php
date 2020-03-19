@@ -502,8 +502,5 @@ class Hotel extends CI_Controller {
         redirect('edit-hotel/'.$hotel_id);
     }
 
-    public function searchHotel()
-    {
-        
-    }
+    
 }
