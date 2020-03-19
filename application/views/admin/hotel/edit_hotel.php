@@ -398,7 +398,7 @@
                     <div class="block" style="text-align: left;">
                         <h6>Serial <?php echo $i;?></h6>
                         <div class="form-row">
-                            <div class="col">
+                            <!-- <div class="col">
                                 <div class="form-group">
                                     <div class="input-group">
                                         <div class="input-group-prepend">
@@ -408,6 +408,22 @@
                                             <option value="">Choose</option>
                                             <option value="1" <?php if($room_detail['room_type'] == 1){echo 'selected';}?>>Yes</option>
                                             <option value="2">No</option>
+                                        </select>
+                                        <i class="fas fa-angle-down"></i>
+                                    </div>
+                                </div>
+                            </div> -->
+                             <div class="col">
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <label class="input-group-text" for="inputGroupSelect00" style="width: 120px;">Room Type:</label>
+                                        </div>
+                                        <select class="custom-select" name="room_type[]" id="inputGroupSelect00">
+                                            <option value="">Choose</option>
+                                            <?php foreach ($room_type as $type) {?>
+                                            <option value="<?php echo $type['room_type_id'];?>" <?php if($room_info[0]['room_type'] ==$type['room_type_id']){echo 'selected';}?>><?php echo $type['room_type'];?></option>
+                                            <?php }?>
                                         </select>
                                         <i class="fas fa-angle-down"></i>
                                     </div>
@@ -466,12 +482,12 @@
                                 </div><!-- end form-group -->
                             </div><!-- end column -->
 
-                            <div class="col">
+                            <!-- <div class="col">
                                 <div class="form-group">
                                     <label for="inputGroupSelect07" class="" style="width: 90px;">Infant:</label>
                                     <input type="text" class="form-control" name="no_of_infant[]" required id="" value="<?php echo $room_detail['no_of_infant']?>">
-                                </div><!-- end form-group -->
-                            </div><!-- end column -->
+                                </div>
+                            </div> -->
 
                         </div>
                         

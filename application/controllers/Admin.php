@@ -1286,9 +1286,13 @@ class Admin extends CI_Controller{
 //            $update_data['offer'] = '0';
 //        }
        
+        if($type != 1){
         $this->admin_model->deleteInfo($table, $table.'_id', $id);
+        }
+
         if($type == 1){
             $this->admin_model->deleteInfo('room_detail', 'hotel_id', $id);
+            $this->admin_model->deleteInfo('hotel','id', $id);
         }
         if($type == 6){
             redirect('list-air-ticket');

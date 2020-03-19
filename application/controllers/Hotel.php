@@ -67,6 +67,8 @@ class Hotel extends CI_Controller {
         }
         $this->form_validation->set_rules('hotel_address', 'hotel address', 'required');
         $this->form_validation->set_rules('hotel_description', 'hotel description', 'required');
+        $this->form_validation->set_rules('hotel_facilities', 'hotel facilities', 'required');
+        $this->form_validation->set_rules('hotel_itinerary', 'hotel itinerary', 'required');
         
         if ($this->form_validation->run() == false) {
             $errors = array();
@@ -145,8 +147,8 @@ class Hotel extends CI_Controller {
             
             $room_data = array();
             
-            $get_room_file = $this->uploadImage($_FILES['room_image'], 'uploads/hotel/room', 370, 257);
-//            echo '<pre>';print_r($get_room_file);die;
+            $get_room_file = $this->uploadImage($_FILES['room_image'], 'uploads/hotel/rooms', 370, 257);
+            // echo '<pre>';print_r($get_room_file);die;
             for ($i = 0; $i < count($post['room_type']); $i++) {
                 $room_data['hotel_id'] = $hotel_id;
                 $room_id = '';
@@ -159,7 +161,6 @@ class Hotel extends CI_Controller {
                 $room_data['no_of_guest'] = $post['no_of_guest'][$i];
                 $room_data['no_of_adult'] = $post['no_of_adult'][$i];
                 $room_data['no_of_child'] = $post['no_of_child'][$i];
-                // $room_data['no_of_infant'] = $post['no_of_infant'][$i];
                 $room_data['rent_per_night'] = $post['rent_per_night'][$i];
                 
                 if($get_room_file && $get_room_file[$i]){
@@ -416,7 +417,9 @@ class Hotel extends CI_Controller {
         
         $data['all_country'] = $this->common_model->getAllInfo('countries');
         $data['hotel_info'] = $this->common_model->getInfo('hotel', 'id', $id);
-        // echo "<pre>"; print_r($data['hotel_info']); die;
+        $data['room_type']   = $this->common_model->getAllInfo('room_type');
+        $data['room_info'] = $this->common_model->getInfo('room_detail', 'hotel_id', $id);
+        // echo "<pre>"; print_r($data['room_info']); die;
         $data['hotel_gallery_images'] = $this->admin_model->getHotelGalleryImages($id);
         $data['room_detail_info'] = $this->common_model->getInfo('room_detail', 'hotel_id', $id);
         $data['hotel_images'] = $this->admin_model->getImages($id, 1);

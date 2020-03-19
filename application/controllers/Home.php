@@ -232,8 +232,9 @@ class Home extends CI_Controller {
 		$data['hotel_detail'] = $this->home_model->get_hotel_detail($id);
         $data['hotel_destination'] = $this->home_model->get_hotel_destination($id);
         $data['hotel_gallery'] = $this->home_model->get_gallery_hotel($id);
+        $data['room_detail'] = $this->home_model->get_room_detail($id);
 
-        // echo '<pre>'; print_r($data['hotel_destination']); die;
+        // echo '<pre>'; print_r($data['room_detail']); die;
 
 		$data['company_info'] = $this->home_model->getRow('company_info', 'id', 1);
 		// echo '<pre>'; print_r($data['company_info']); die;

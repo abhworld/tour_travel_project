@@ -52,23 +52,7 @@
                                         <nav>
                                             <ul id="navigation_menu">
                                                 <li class="active"><a href="<?php echo base_url();?>">Home</a></li>
-                                                <li>
-                                                    <a href="#">Pages</a>
-                                                    <ul>
-                                                        <li><a href="<?php echo base_url();?>about-us">About Us</a></li>
-                                                        <li><a href="<?php echo base_url();?>gallery">Gallery</a></li>
-                                                        <li><a href="<?php echo base_url();?>hajj-list">Hajj List</a></li>
-                                                        <li><a href="<?php echo base_url();?>hajj-detail">Hajj Details</a></li>
-                                                        <li><a href="<?php echo base_url();?>omrah-list">Omrah List</a></li>
-                                                        <li><a href="<?php echo base_url();?>omrah-detail">Omrah Details</a></li>
-                                                        <li><a href="<?php echo base_url();?>tour-detail">Tour Details</a></li>
-                                                        <li><a href="<?php echo base_url();?>hotel-detail">Hotel Details</a></li>
-                                                        <li><a href="register.php">Register</a></li>
-                                                        <li><a href="login.php">Login</a></li>
-                                                        <li><a href="<?php echo base_url();?>blog">Blog</a></li>
-                                                        <li><a href="404.php">404 Notfound</a></li>
-                                                    </ul>
-                                                </li>
+                                                
                                                 <li>
                                                     <a href="<?php echo base_url();?>hajj-homepage">Hajj</a>
                                                 </li>
@@ -77,10 +61,7 @@
                                                 </li>
                                                 <li>
                                                     <a href="<?php echo base_url();?>visa">Visa</a>
-                                                    <ul>
-                                                    <li><a href="<?php echo base_url();?>visa-service">Visa Service</a></li>
-                                                    <li><a href="<?php echo base_url();?>country-visa">Country Visa</a></li>
-                                                    </ul>
+                                                    
                                                 </li>
                                                 <li>
                                                     <a href="<?php echo base_url();?>hotel-homepage">Hotel</a>
