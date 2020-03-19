@@ -498,4 +498,9 @@ class Hotel extends CI_Controller {
         $this->session->set_flashdata('success_msg', 'Image deleted successfully');
         redirect('edit-hotel/'.$hotel_id);
     }
+
+    public function searchHotel()
+    {
+        
+    }
 }
