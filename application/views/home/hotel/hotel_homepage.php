@@ -95,15 +95,7 @@
                     </div>
                     <div class="single-sidebar">
                         <div class="quick_contact">
-                            <h4>Contact US</h4>
-                            <p>
-                                <i class="fa fa-phone"></i>
-                                +8809639001224
-                            </p>
-                            <p>
-                                <i class="fa fa-envelope"></i>
-                                info@example.com
-                            </p>
+                            <?php  $this->load->view('home/contact_info');?>
                         </div>
                     </div>
                 </div>

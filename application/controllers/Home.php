@@ -256,11 +256,70 @@ class Home extends CI_Controller {
 		$this->load->view('home/home_main_content', $data);
 	}
 
+	public function send_booking_request() {
+        $post = $this->input->post();
+
+        echo '<pre>'; print_r($post); die;
+        
+        $data = array();
+        $this->form_validation->set_error_delimiters('', '');
+        $this->form_validation->set_rules('name', 'name', 'required');
+        // $this->form_validation->set_rules('last_name', 'last name', 'required');
+        $this->form_validation->set_rules('email_address', 'email address', 'required');
+        $this->form_validation->set_rules('phone', 'phone', 'required');
+        
+        if ($this->form_validation->run() == false) {
+            $errors = array();
+            foreach ($this->input->post() as $key => $value) {
+                $errors[$key] = form_error($key);
+            }
+            $response['errors'] = array_filter($errors); // Some might be empty
+            $response['status'] = false;
+        } else {
+            $data['type'] = $post['type'];
+            
+            if($this->input->post('package_name')){
+                $data['package_name'] = $post['package_name'];
+            }
+            $data['hotel_id'] = $post['hotel_id'];
+            $data['first_name'] = $post['name'];
+            // $data['last_name'] = $post['last_name'];
+//            $data['nationality'] = $post['nationality'];
+            $data['phone_no'] = $post['phone'];
+            $data['email_address'] = $post['email_address'];
+//            $data['contact_no'] = $post['contact_no'];
+            // $data['address'] = $post['address'];
+            $data['booking_date'] = date('Y-m-d');
+            if(isset($post['check_in'])){
+                $data['check_in'] = $post['check_in'];
+            }
+            if(isset($post['check_out'])){
+                $data['check_out'] = $post['check_out'];
+            }
+            if(isset($post['no_of_adult'])){
+                $data['no_of_adult'] = $post['no_of_adult'];
+            }
+            if(isset($post['no_of_child'])){
+                $data['no_of_child'] = $post['no_of_child'];
+            }
+            if(isset($post['booking_note'])){
+                $data['booking_note'] = $post['booking_note'];
+            }
+
+            $this->admin_model->insertInfo('booking', $data);
+
+    //        $this->send_mail($data['email_address']);
+            $response['status'] = true;
+        }
+
+        echo json_encode($response);
+    }
+
 	public function get_city_by_country(){
         $country_id = $this->input->post('country_id');
-        // $city_id = $this->input->post('city_id');
+        $city_id = $this->input->post('city_id');
         $get_all_city = $this->common_model->getInfo('cities', 'country_id', $country_id);
-        echo '<pre>'; print_r($get_all_city); die;
+        // echo '<pre>'; print_r($get_all_city); die;
         // echo '<pre>'; print_r($city_id); die;
         $city = '';
         foreach ($get_all_city as $row) {
@@ -368,7 +427,7 @@ class Home extends CI_Controller {
         
         $this->session->set_userdata($data);
         $totalRec = $this->common_model->count_all_tour_data($post);
-//        echo '<pre>';print_r($totalRec);die;
+       	
         //pagination configuration
         $data['page'] = 0;
         $config['target'] = '#tour_list_div';

@@ -22,7 +22,7 @@
     <!--Datepicker css-->
     <link rel="stylesheet" href="<?php echo base_url();?>assets/frontend_asset/css/jquery.datepicker.css">
     <!--Nice Select css-->
-    <link rel="stylesheet" href="<?php echo base_url();?>assets/frontend_asset/css/nice-select.css">
+    <!-- <link rel="stylesheet" href="<?php echo base_url();?>assets/frontend_asset/css/nice-select.css"> -->
     <!--Slicknav css-->
     <link rel="stylesheet" href="<?php echo base_url();?>assets/frontend_asset/css/slicknav.min.css">
     <!--niceCountryInput css-->

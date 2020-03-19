@@ -93,21 +93,22 @@
                      <div class="single-sidebar">
                         <div class="quick-contact">
                            <h3>Book This Tour</h3>
-                           <form>
+                           <form id="booking_request">
+                              <input type="hidden" name="type" value="2">
                               <div class="book-tour-field">
-                                 <input type="text" placeholder="Your Name">
+                                 <input type="text" placeholder="Your Name" name="name">
                               </div>
                               <div class="book-tour-field">
-                                 <input type="email" placeholder="Email Address">
+                                 <input type="email" placeholder="Email Address" name="email_address">
                               </div>
                               <div class="book-tour-field">
-                                 <input type="tel" placeholder="Phone Number">
+                                 <input type="tel" placeholder="Phone Number" name="phone">
                               </div>
                               <div class="book-tour-field">
-                                 <input id="reservation_date" name="reservation_date" placeholder="Departure Date" data-select="datepicker" type="text">
+                                 <input id="reservation_date" name="reservation_date" placeholder="Departure Date" data-select="datepicker" type="text" name="date">
                               </div>
                               <div class="book-tour-field clearfix">
-                                 <select class="wide">
+                                 <select class="wide" name="no_of_person">
                                     <option selected disabled>Number Of Person</option>
                                     <option>1</option>
                                     <option>2</option>
@@ -116,7 +117,7 @@
                                  </select>
                               </div>
                               <div class="book-tour-field">
-                                 <button type="submit">Book Now</button>
+                                 <button type="submit" id="booking_request_btn">Book Now</button>
                               </div>
                            </form>
                         </div>
@@ -126,15 +127,15 @@
                         <ul class="more-info">
                            <li>
                               <span><i class="fa fa-phone"></i> Phone Number:</span>
-                              1-567-124-44227
+                              <?php echo $company_info['company_phone'];?>
                            </li>
                            <li>
                               <span><i class="fa fa-clock-o"></i> Office Time:</span>
-                              9am - 5pm
+                              <?php echo $company_info['office_time'];?>
                            </li>
                            <li>
                               <span><i class="fa fa-map-marker"></i> Office Location:</span>
-                              5520 Quebec Place
+                              <?php echo $company_info['company_address'];?>
                            </li>
                         </ul>
                      </div>
@@ -147,3 +148,30 @@
          </div>
       </section>
       <!-- Tour Details Area End -->
+
+      <?php $this->load->view('home/booking_request_modal');?>
+
+   <script>
+    $("#booking_request_btn").click(function () {
+        
+        $(".error_msg").remove();
+        
+        $.ajax({
+            url: "home/send_booking_request",
+            type: 'POST',
+            data: $("#booking_request").serialize(),
+            success: function (response) {
+                var obj = JSON.parse(response);
+//                console.log(obj);
+                if(obj.status == true){
+                    $('#booking_request_modal').modal('show');
+                    $('#booking_request')[0].reset();
+                } else {
+                    $.each(obj.errors, function(key, val) {
+                        $('#'+key).after("<div><small class='error_msg' style='font-weight: bold;color: red;'>" + val + "</small></div>");
+                    });
+                }
+            }
+        });
+    });
+</script>

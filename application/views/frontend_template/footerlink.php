@@ -14,7 +14,7 @@
     <!-- Datepicker -->
     <script src="<?php echo base_url();?>assets/frontend_asset/js/jquery.datepicker.min.js"></script>
     <!--Nice Select js-->
-    <script src="<?php echo base_url();?>assets/frontend_asset/js/jquery.nice-select.min.js"></script>
+    <!-- <script src="<?php echo base_url();?>assets/frontend_asset/js/jquery.nice-select.min.js"></script> -->
     <!-- Way Points JS -->
     <script src="<?php echo base_url();?>assets/frontend_asset/js/waypoints-min.js"></script>
     <!-- Sticky sidebar JS -->
@@ -28,7 +28,7 @@
     <script src="<?php echo base_url();?>assets/frontend_asset/js/select2.full.js" type="text/javascript"></script>
 
     <!—- ShareThis BEGIN -—>
-    <script async src="https://platform-api.sharethis.com/js/sharethis.js#property=5e524534fb5dd10012827de6&product=sticky-share-buttons"></script>
+    <!-- <script async src="https://platform-api.sharethis.com/js/sharethis.js#property=5e524534fb5dd10012827de6&product=sticky-share-buttons"></script> -->
     <!—- ShareThis END -—>
 
     <!-- Smartsupp Live Chat script -->
@@ -53,9 +53,9 @@
         $(".select2").select2();
         
         // $(".js-example-tokenizer").select2({
-        //     placeholder: 'Select an option',
-        //     tags: true,
-        //     tokenSeparators: [',', ' ']
+        //     // placeholder: 'Select an option',
+        //     // tags: true,
+        //     // tokenSeparators: [',', ' ']
         // });
     });
     </script>

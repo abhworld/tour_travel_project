@@ -36,7 +36,7 @@
 
                                     <div class="book-tour-field">
                                         <label class="tb-label">Country</label>
-                                       <select class="form-control select2" name="country_id" data-type="1">
+                                       <select class="form-control select2" name="country_id">
                                                     <!-- <option value="">Country</option> -->
                                                     <?php foreach (get_all_info('countries') as $row) { ?>
                                                         <option value="<?php echo $row['id'] ?>" <?php if ($country_id == $row['id']) {echo 'selected';} ?>>
@@ -45,9 +45,9 @@
                                                     <?php } ?>
                                         </select>
                                     </div>
-                                    <label class="tb-label">City</label>
+
                                     <div class="book-tour-field">
-                                         <!-- <label class="tb-label">City</label> -->
+                                         <label class="tb-label">City</label>
                                             <div class="input-group">
                                                 <select class="form-control" name="city_id" data-type="1">
 
@@ -61,15 +61,7 @@
                     </div>
                     <div class="single-sidebar">
                         <div class="quick_contact">
-                            <h4>Contact US</h4>
-                            <p>
-                                <i class="fa fa-phone"></i>
-                                +8809639001224
-                            </p>
-                            <p>
-                                <i class="fa fa-envelope"></i>
-                                info@example.com
-                            </p>
+                            <?php  $this->load->view('home/contact_info');?>
                         </div>
                     </div>
                 </div>
@@ -108,6 +100,7 @@
             },
             success: function (response) {
                 var obj = JSON.parse(response);
+                console.log(obj);
                 $('[name="city_id"]').html(obj);
             }
         });
