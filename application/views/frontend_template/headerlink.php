@@ -31,3 +31,10 @@
     <link rel="stylesheet" href="<?php echo base_url();?>assets/frontend_asset/css/style.css">
     <!--Responsive css-->
     <link rel="stylesheet" href="<?php echo base_url();?>assets/frontend_asset/css/responsive.css">
+
+    <!--Jquery js-->
+    <script src="<?php echo base_url();?>assets/frontend_asset/js/jquery.min.js"></script>
+    <link href="<?php echo base_url();?>assets/frontend_asset/css/select2.css" rel="stylesheet" type="text/css"/>
+
+
+    

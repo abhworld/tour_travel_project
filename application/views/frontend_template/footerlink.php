@@ -1,5 +1,4 @@
-    <!--Jquery js-->
-    <script src="<?php echo base_url();?>assets/frontend_asset/js/jquery.min.js"></script>
+    
     <!-- Popper JS -->
     <script src="<?php echo base_url();?>assets/frontend_asset/js/popper.min.js"></script>
     <!--Bootstrap js-->
@@ -25,6 +24,9 @@
     <!--Main js-->
     <script src="<?php echo base_url();?>assets/frontend_asset/js/main.js"></script>
 
+    <script src="<?php echo base_url();?>assets/frontend_asset/js/select2.js" type="text/javascript"></script>
+    <script src="<?php echo base_url();?>assets/frontend_asset/js/select2.full.js" type="text/javascript"></script>
+
     <!—- ShareThis BEGIN -—>
     <script async src="https://platform-api.sharethis.com/js/sharethis.js#property=5e524534fb5dd10012827de6&product=sticky-share-buttons"></script>
     <!—- ShareThis END -—>
@@ -45,4 +47,15 @@
             console.log("The country was changed: " + ctr);
             //$("#selectionSpan").text(ctr);
         }
+
+        $(document).ready(function(){
+        // Basic
+        $(".select2").select2();
+        
+        // $(".js-example-tokenizer").select2({
+        //     placeholder: 'Select an option',
+        //     tags: true,
+        //     tokenSeparators: [',', ' ']
+        // });
+    });
     </script>

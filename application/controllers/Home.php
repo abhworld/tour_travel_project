@@ -7,6 +7,12 @@ class Home extends CI_Controller {
         parent::__construct();
 
         $this->load->model('home_model'); 
+        $this->load->model('common_model'); 
+
+        $this->load->library('Ajax_pagination');
+
+        $this->load->helper('text');
+        $this->load->helper('common');
     }
 
 	public function index()
@@ -250,12 +256,44 @@ class Home extends CI_Controller {
 		$this->load->view('home/home_main_content', $data);
 	}
 
+	public function get_city_by_country(){
+        $country_id = $this->input->post('country_id');
+        // $city_id = $this->input->post('city_id');
+        $get_all_city = $this->common_model->getInfo('cities', 'country_id', $country_id);
+        echo '<pre>'; print_r($get_all_city); die;
+        // echo '<pre>'; print_r($city_id); die;
+        $city = '';
+        foreach ($get_all_city as $row) {
+            $city.= '<option value="'.$row['id'].'" '.($city_id != '' && $city_id == $row['id'] ? 'selected' : '').'>'.$row['name'].'</option>';
+        }
+        
+        echo json_encode($city);
+    }
+
 	public function tour_homepage()
 	{	
 		$data = array();
 
-		$data['all_tour'] = $this->home_model->getAllInfo('tour');
+		// $data['all_tour'] = $this->home_model->getAllInfo('tour');
 		// echo '<pre>'; print_r($data['all_tour']); die;
+
+		$post['country_id'] = $this->session->userdata('tour_country');
+        $post['city_id'] = $this->session->userdata('tour_city');
+        $data = $post;
+
+		$totalRec = $this->common_model->count_all_tour_data($post);
+        //pagination configuration
+        $data['page'] = 0;
+        $config['target'] = '#tour_list_div';
+        $config['base_url'] = base_url() . 'ajaxPaginationData';
+        $config['total_rows'] = $totalRec;
+        $config['per_page'] = 12;
+        $config['link_func'] = 'searchPaginationData';
+        $this->ajax_pagination->initialize($config);
+
+        // $data['all_tour'] = $this->home_model->getAllInfo('tour');
+
+        $data['all_tour'] = $this->common_model->get_search_tour_data($post, $config["per_page"], $data['page']);
 
 		$data['company_info'] = $this->home_model->getRow('company_info', 'id', 1);
 		// echo '<pre>'; print_r($data['company_info']); die;
@@ -270,6 +308,83 @@ class Home extends CI_Controller {
 
 		$this->load->view('home/home_main_content', $data);
 	}
+
+	 public function ajaxPaginationData() {
+        $country = '';
+        $city = '';
+        if($this->session->userdata('tour_country')){
+            $country = $this->session->userdata('tour_country');
+        }
+        if($this->session->userdata('tour_city')){
+            $city = $this->session->userdata('tour_city');
+        }
+        $data['tour_country'] = $country;
+        $data['tour_city'] = $city;
+        // $data['price_start'] = $this->session->userdata('price_start');
+        // $data['price_end'] = $this->session->userdata('price_end');
+        
+        $page = $this->input->post('page');
+        if (!$page) {
+            $offset = 0;
+        } else {
+            $offset = $page;
+        }
+        $totalRec = $this->common_model->count_all_tour_data($data);
+        //pagination configuration
+        $config['target'] = '#tour_list_div';
+        $config['base_url'] = base_url() . 'ajaxPaginationData';
+        $config['total_rows'] = $totalRec;
+        $config['per_page'] = 12;
+        $config['link_func'] = 'searchPaginationData';
+        $this->ajax_pagination->initialize($config);
+        
+        $data['all_tour'] = $this->common_model->get_search_tour_data($data, $config["per_page"], $offset);
+//        echo '<pre>';print_r($data['all_tour']);die;
+        
+        $data['tour_list_div'] = $this->load->view('home/tour/tour_div/tour_div', $data, true);
+        
+        echo json_encode($data);
+    }
+
+	public function search_tour_data() {
+        $post = $this->input->post();
+        
+        $country = '';
+        $city = '';
+        if($this->input->post('country_id')){
+            $country = $post['country_id'];
+        }
+        if($this->input->post('city_id')){
+            $city = $post['city_id'];
+        }
+        $data['tour_country'] = $country;
+        $data['tour_city'] = $city;
+        // if(isset($post['price_start'])){
+        //     $data['price_start'] = $post['price_start'];
+        // }
+        // if(isset($post['price_end'])){
+        //     $data['price_end'] = $post['price_end'];
+        // }
+        
+        $this->session->set_userdata($data);
+        $totalRec = $this->common_model->count_all_tour_data($post);
+//        echo '<pre>';print_r($totalRec);die;
+        //pagination configuration
+        $data['page'] = 0;
+        $config['target'] = '#tour_list_div';
+        $config['base_url'] = base_url() . 'ajaxPaginationData';
+        $config['total_rows'] = $totalRec;
+        $config['per_page'] = 12;
+        $config['link_func'] = 'searchPaginationData';
+        $this->ajax_pagination->initialize($config);
+        
+        $data['all_tour'] = $this->common_model->get_search_tour_data($post, $config["per_page"], $data['page']);
+//        echo '<pre>';print_r($data['all_tour']);die;
+        
+        $data['tour_list_div'] = $this->load->view('home/tour/tour_div/tour_div', $data, true);
+        
+        echo json_encode($data);
+    }
 
 	public function tour_detail($name)
 	{	

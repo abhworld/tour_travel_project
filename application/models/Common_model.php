@@ -268,7 +268,7 @@ class Common_model extends CI_Model{
         return $query->result_array();
     }
     
-    public function count_all_tour_data($condition, $type) {
+    public function count_all_tour_data($condition) {
         $this->db->select('tour.*, countries.name AS country_name, cities.name AS city_name, tour_detail.*');
         $this->db->from('tour');
         
@@ -279,17 +279,17 @@ class Common_model extends CI_Model{
         // $this->db->join('package_type', 'package_type.tour_id = tour.tour_id', 'LEFT');
 
         
-        foreach ($condition as $key => $val) {
-            if($key != 'price_start' && $key != 'price_end' && $val != ''){
-                $this->db->where('tour_detail.'.$key, $val);
-            }
-            if($key == 'price_start' && $val != ''){
-                $this->db->where('tour.tour_price >=', $val);
-            }
-            if($key == 'price_end' && $val != ''){
-                $this->db->where('tour.tour_price <=', $val);
-            }
-        }
+        // foreach ($condition as $key => $val) {
+        //     if($key != 'price_start' && $key != 'price_end' && $val != ''){
+        //         $this->db->where('tour_detail.'.$key, $val);
+        //     }
+        //     if($key == 'price_start' && $val != ''){
+        //         $this->db->where('tour.tour_price >=', $val);
+        //     }
+        //     if($key == 'price_end' && $val != ''){
+        //         $this->db->where('tour.tour_price <=', $val);
+        //     }
+        // }
         // $this->db->where('package_type.type_id', $type);
         $this->db->group_by('tour.tour_id');
         
@@ -298,7 +298,7 @@ class Common_model extends CI_Model{
         return $query->num_rows();
     }
     
-    public function get_search_tour_data($condition, $limit, $start, $type) {
+    public function get_search_tour_data($condition, $limit, $start) {
         
         $this->db->select('tour.*, countries.name AS country_name, cities.name AS city_name, tour_detail.*, hotel_images.image');
         $this->db->from('tour');
@@ -310,26 +310,27 @@ class Common_model extends CI_Model{
     
         // $this->db->join('package_type', 'package_type.tour_id = tour.tour_id', 'LEFT');
         
-        foreach ($condition as $key => $val) {
-            if($key != 'price_start' && $key != 'price_end' && $val != ''){
-                $this->db->where('tour_detail.'.$key, $val);
-            }
-            if($key == 'price_start' && $val != ''){
-                $this->db->where('tour.tour_price >=', $val);
-            }
-            if($key == 'price_end' && $val != ''){
-                $this->db->where('tour.tour_price <=', $val);
-            }
-        }
-        $this->db->where('hotel_images.is_main_image', 1);
-        $this->db->where('hotel_images.type', 2);
+        // foreach ($condition as $key => $val) {
+        //     if($key != 'price_start' && $key != 'price_end' && $val != ''){
+        //         $this->db->where('tour_detail.'.$key, $val);
+        //     }
+        //     if($key == 'price_start' && $val != ''){
+        //         $this->db->where('tour.tour_price >=', $val);
+        //     }
+        //     if($key == 'price_end' && $val != ''){
+        //         $this->db->where('tour.tour_price <=', $val);
+        //     }
+        // }
+        
+        // $this->db->where('hotel_images.is_main_image', 1);
+        // $this->db->where('hotel_images.type', 2);
         // $this->db->where('package_type.type_id', $type);
         $this->db->order_by('tour.tour_id', 'DESC');
         $this->db->group_by('tour.tour_id');
         
-        if ($limit != '' || $start != '') {
-            $this->db->limit($limit, $start);
-        }
+        // if ($limit != '' || $start != '') {
+        //     $this->db->limit($limit, $start);
+        // }
         
         $query = $this->db->get();
 //        echo $this->db->last_query();
