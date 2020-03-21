@@ -69,6 +69,7 @@
                
                      </ul>
                      
+                     <?php if(!empty($tour_gallery)) { ?>
                      <div class="tour-gallery">
                         <h3>Gallery</h3>
                         
@@ -83,6 +84,9 @@
                         
                          
                      </div>
+                      
+                     <?php } ?>
+
                     
 
                      
