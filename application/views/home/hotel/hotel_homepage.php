@@ -24,42 +24,34 @@
                     <div class="single-sidebar">
                         <h3>FIND YOUR HOTEL</h3>
                         <div class="tour-filter clearfix">
-                            <form>
+                            <form id="hotel_filter_form">
                                 <p>
-                                    <input type="search" placeholder="Search Tour..." id="hotel_id"/>
-                                    <i class="fa fa-search"></i>
-                                </p>
-                                <p>
-                                    <input type="search" placeholder="Where To?" />
-                                    <i class="fa fa-tags"></i>
-                                </p>
-                                <p>
-                                    <select class="wide">
-                                        <option>Month</option>
-                                        <option>January</option>
-                                        <option>February</option>
-                                        <option>March</option>
-                                        <option>April</option>
-                                        <option>May</option>
-                                        <option>June</option>
-                                        <option>July</option>
-                                        <option>August</option>
-                                        <option>September</option>
-                                        <option>October</option>
-                                        <option>November</option>
-                                        <option>December</option>
+                                    <!-- <input type="search" placeholder="Country" id="hotel_id"/> -->
+                                    <!-- <i class="fa fa-search"></i> -->
+                                    <label class="tb-label">Country</label>
+                                    <select class="form-control select2" name="country_id">
+                                        <?php foreach (get_all_info('countries') as $row) { ?>
+                                                <option value="<?php echo $row['id'] ?>" <?php if ($country == $row['id']) {echo 'selected';} ?>>
+                                                            <?php echo $row['name'] ?>
+                                                </option>
+                                        <?php } ?>
                                     </select>
                                 </p>
                                 <p>
-                                    <select class="wide">
-                                        <option>Tour Type</option>
-                                        <option>Adventure</option>
-                                        <option>Romantic</option>
-                                        <option>Vacation</option>
-                                        <option>Explore</option>
-                                        <option>Trendy</option>
-                                    </select>
+                                    <!-- <input type="search" placeholder="City" />
+                                    <i class="fa fa-tags"></i> -->
+                                <div class="book-tour-field">
+                                    <label class="tb-label">City</label>
+                                    <div class="input-group">
+                                              
+                                                <select class="form-control" name="city_id" data-type="1">
+
+                                                </select>
+                                    </div>
+                                </div>
                                 </p>
+                               
+                                
                                 <h4 class="widget-title">FACILITIES</h4>
                                 <ul class="ceckbox_filter">
                                     <li class="checkbox">
@@ -100,7 +92,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-9">
+            <div class="col-lg-9 hotel_list">
                 <!-- <div class="site-heading">
                         <h2>Hotel List</h2>
                        
@@ -111,34 +103,18 @@
                         <div class="col-lg-6">
                             <div class="hotel-image-inner">
                                 <div class="details-slider owl-carousel">
+
                                     <div class="single-destination">
                                         <a href="hotel-detail/<?php echo str_replace(' ', '-', strtolower($row['hotel_name'])) ;?>">
                                             <div class="destination-image">
-                                                <img src="<?php echo base_url();?>assets/frontend_asset/img/Exterior-2.jpg" alt="destination" />
+                                                <img src="<?php echo base_url();?>uploads/hotel/<?php echo $row['hotel_image'];?>" alt="destination" />
                                             </div>
                                         </a>
                                     </div>
-                                    <div class="single-destination">
-                                        <a href="hotel-details.php">
-                                            <div class="destination-image">
-                                                <img src="<?php echo base_url();?>assets/frontend_asset/img/Exterior-1.jpg" alt="destination" />
-                                            </div>
-                                        </a>
-                                    </div>
-                                    <div class="single-destination">
-                                        <a href="hotel-details.php">
-                                            <div class="destination-image">
-                                                <img src="<?php echo base_url();?>assets/frontend_asset/img/Exterior-3.jpg" alt="destination" />
-                                            </div>
-                                        </a>
-                                    </div>
-                                    <div class="single-destination">
-                                        <a href="hotel-details.php">
-                                            <div class="destination-image">
-                                                <img src="<?php echo base_url();?>assets/frontend_asset/img/Exterior-4.jpg" alt="destination" />
-                                            </div>
-                                        </a>
-                                    </div>
+
+                                   
+                                    
+                                    
                                 </div>
                             </div>
                         </div>
@@ -247,3 +223,72 @@
     </div>
 </section>
 <!-- Choose Area End -->
+
+<script>
+    
+    //$(document).ready(function (){
+        //get_city_by_country('<?php //echo $country_id;?>', '<?php //echo $city_id;?>')
+    //});
+    
+    
+    $("[name='country_id']").change(function (){
+        var country = this.value;
+        var city = '';
+
+        get_city_by_country(country, city);
+        search_filter_data();
+    });
+    
+    $("[name='city_id']").change(function (){
+        search_filter_data();
+    });
+    
+    function get_city_by_country(country, city){
+        $.ajax({
+            url: "home/get_city_by_country",
+            type: 'POST',
+            data: {
+                country_id: country,
+                city_id: city
+            },
+            success: function (response) {
+                var obj = JSON.parse(response);
+                console.log(obj);
+                $('[name="city_id"]').html(obj);
+            }
+        });
+    }
+    
+    $(".radio-btn").click(function (){
+        search_filter_data();
+    });
+    
+    function searchPaginationData(page_num) {
+        page_num = page_num?page_num:0;
+        $.ajax({
+            type: 'POST',
+            url: 'home/ajaxPaginationData/'+page_num,
+            data: {page:page_num},
+            beforeSend: function () {
+                $('.loading').show();
+            },
+            success: function (msg) {
+                var hhh = JSON.parse(msg);
+                $('.hotel_list').html(hhh.hotel_list_div);
+            }
+        });
+    }
+    
+    function search_filter_data(){
+        $.ajax({
+            url: "home/search_hotel_data",
+            type: 'POST',
+            data: $("#hotel_filter_form").serialize(),
+            success(data){
+                var obj = JSON.parse(data);
+                $(".hotel_list").html(obj.hotel_list_div);
+            }
+        })
+    }
+    
+</script>
