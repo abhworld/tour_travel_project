@@ -95,6 +95,27 @@
                         <div class="form-group">
                             <div class="input-group">
                                 <div class="input-group-prepend">
+                                    <label class="input-group-text" for="inputGroupSelect00">Continents:</label>
+                                </div>
+                                <select class="custom-select" id="continent_id" name="continent_id">
+                                    <option value="">Choose Continent</option>
+                                    <?php foreach ($continents as $continent) {?>
+                                    <option value="<?php echo $continent['continent_id']?>" <?php if($visa_info[0]['continent_id'] == $continent['continent_id']){echo 'selected';}?>>
+                                        <?php echo $continent['continent_name'];?>
+                                    </option>
+                                    <?php }?>
+                                </select>
+                                <!--<i class="fas fa-angle-down"></i>-->
+                            </div>
+                        </div><!-- end form-group -->
+                    </div>
+                </div>
+                <div class="form-row">
+                 
+                    <div class="col-md">
+                        <div class="form-group">
+                            <div class="input-group">
+                                <div class="input-group-prepend">
                                     <label class="input-group-text" for="inputGroupSelect00">Country:</label>
                                 </div>
                                 <select class="custom-select" id="country_id" name="country_id" onchange="get_city('1')">

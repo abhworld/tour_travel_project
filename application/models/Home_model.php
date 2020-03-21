@@ -155,6 +155,41 @@ class Home_model extends CI_Model{
         $query = $this->db->get();
         return $query->row_array();
     }
+
+    public function get_room_detail($id) {
+        $this->db->select('*');
+        $this->db->from('room_detail');
+        
+        $this->db->join('room_type', 'room_type.room_type_id = room_detail.room_type', 'LEFT');
+        $this->db->join('hotel', 'hotel.id = room_detail.hotel_id', 'LEFT');
+//        $this->db->join('hotel_images', 'hotel.hotel_id = hotel_images.hotel_id', 'LEFT');
+        
+        $this->db->where('hotel.id', $id);
+        
+        $query = $this->db->get();
+        return $query->row_array();
+    }
+
+    public function get_all_hotel()
+    {
+        $this->db->select('hotel.*, countries.name AS country_name, cities.name AS city_name, hotel_gallery.gallery_image');
+
+        $this->db->from('hotel');
+
+        $this->db->join('countries', 'hotel.country = countries.id', 'LEFT');
+        $this->db->join('cities', 'hotel.city = cities.id', 'LEFT');
+        $this->db->join('hotel_gallery', 'hotel.id = hotel_gallery.hotel_id', 'LEFT');
+
+
+        $query = $this->db->get();
+        // echo $this->db->last_query();die;
+        return $query->result_array();
+    }
+
+    public function get_all_hotel_gallery()
+    {
+        
+    }
     
     public function get_related_hotel($country_id, $id) {
         $this->db->select('hotel.*');
@@ -180,6 +215,37 @@ class Home_model extends CI_Model{
         $query = $this->db->get();
         return $query->result_array();
     }
+
+    // public function get_hotel_detail($id) {
+    //     $this->db->select('hotel.*, countries.name AS country_name, cities.name AS city_name');
+    //     $this->db->from('hotel');
+        
+    //     // $this->db->join('hotel', 'tour.tour_id = tour_detail.tour_pri_id', 'LEFT');
+    //     $this->db->join('countries', 'hotel.country = countries.id', 'LEFT');
+    //     $this->db->join('cities', 'hotel.city = cities.id', 'LEFT');
+        
+    //     $this->db->where('hotel.id', $id);
+        
+    //     $query = $this->db->get();
+    //     return $query->result_array();
+    // }
+
+    public function get_hotel_destination($id)
+    {
+        $this->db->select('countries.name  AS country_name, cities.name AS city_name');
+
+        $this->db->from('hotel');
+
+        // $this->db->join('tour_detail', 'tour.tour_id = tour_detail.tour_pri_id', 'LEFT');
+        $this->db->join('countries', 'hotel.country = countries.id', 'LEFT');
+        $this->db->join('cities', 'hotel.city = cities.id', 'LEFT');
+
+        $this->db->where('hotel.id', $id);
+
+        $query = $this->db->get();
+        return $query->row_array();
+    }
+
 
     public function get_destination($id)
     {
@@ -208,6 +274,32 @@ class Home_model extends CI_Model{
         $query = $this->db->get();
         return $query->result_array();      
     }
+
+    public function get_gallery_hotel($id)
+    {
+        $this->db->select('*');
+
+        $this->db->from('hotel_gallery');
+
+        $this->db->where('hotel_gallery.hotel_id', $id);    
+        
+        $query = $this->db->get();
+        return $query->result_array();      
+    }
+
+    public function get_hotel_gallery()
+    {
+        $this->db->select('*');
+
+        $this->db->from('hotel_gallery');
+
+        // $this->db->where('hotel_gallery._id', $id);    
+        
+        $query = $this->db->get();
+        return $query->result_array();      
+    }
+
+
     
     public function get_related_tour($country_id, $tour_id) {
         $this->db->select('tour.*, tour_detail.*');
@@ -307,6 +399,31 @@ class Home_model extends CI_Model{
             echo json_encode($row_set); //format the array into json data
         }
 
+    }
+
+    public function getCountry($continent_id)
+    {
+        $this->db->select('*');
+        $this->db->from('continents');
+        $this->db->join('visa', 'continents.continent_id = visa.continent_id');
+        $this->db->join('countries', 'visa.country_id = countries.id');
+        $this->db->where('continents.continent_id', $continent_id);
+        
+        $query = $this->db->get();
+        return $query->result_array();
+        
+    }
+
+    public function getCountryDetails($country_id)
+    {
+        $this->db->select('*');
+        $this->db->from('countries');
+        $this->db->join('visa', 'visa.country_id = countries.id');
+        $this->db->where('countries.id', $country_id);
+        
+        $query = $this->db->get();
+        return $query->row_array();
+        
     }
     
 }

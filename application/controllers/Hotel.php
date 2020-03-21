@@ -20,7 +20,8 @@ class Hotel extends CI_Controller {
         $data['title'] = 'Add Hotel';
         
         $data['all_country'] = $this->common_model->getAllInfo('countries');
-        $data['room_type'] = $this->common_model->getAllInfo('room_type');
+        $data['room_type']   = $this->common_model->getAllInfo('room_type');
+        $data['all_type']    = $this->common_model->getAllInfo('hotel_type');
         
         $data['headerlink'] = $this->load->view('admin_template/headerlink', $data, true);
         $data['header'] = $this->load->view('admin_template/header', $data, true);
@@ -45,6 +46,18 @@ class Hotel extends CI_Controller {
         echo json_encode($city);
     }
 
+    public function get_country_by_continent(){
+        $continent_id = $this->input->post('continent_id');
+        $get_all_country = $this->common_model->getInfo('countries', 'continent_id', $continent_id);
+        
+        $country = '';
+        foreach ($get_all_country as $row) {
+            $country.= '<option value="'.$row['id'].'" '.($country_id != '' && $country_id == $row['id'] ? 'selected' : '').'>'.$row['name'].'</option>';
+        }
+        
+        echo json_encode($country);
+    }
+
 
     public function save_hotel_info() {
         $this->form_validation->set_error_delimiters('', '');
@@ -54,6 +67,8 @@ class Hotel extends CI_Controller {
         }
         $this->form_validation->set_rules('hotel_address', 'hotel address', 'required');
         $this->form_validation->set_rules('hotel_description', 'hotel description', 'required');
+        $this->form_validation->set_rules('hotel_facilities', 'hotel facilities', 'required');
+        $this->form_validation->set_rules('hotel_itinerary', 'hotel itinerary', 'required');
         
         if ($this->form_validation->run() == false) {
             $errors = array();
@@ -77,6 +92,8 @@ class Hotel extends CI_Controller {
             $data['longitude'] = $post['longitude'];
             $data['hotel_facilities'] = $post['hotel_facilities'];
             $data['hotel_itinerary'] = $post['hotel_itinerary'];
+            $data['hotel_type_id'] = $post['hotel_type_id'];
+
             
             if(isset($post['restaurant'])){
                 $data['restaurant'] = $post['restaurant'];
@@ -96,41 +113,42 @@ class Hotel extends CI_Controller {
             if(isset($post['wifi'])){
                 $data['wifi'] = $post['wifi'];
             }
+
+            
  
 //            echo '<pre>';print_r($data);die;
+            // echo '<pre>'; print_r($hotel_id); die;
             
-            $get_file_info = array();
-            if(isset($_FILES['userfile'])){
-                $get_file_info = $this->uploadHotelImage($_FILES['userfile'], 'hotel');
-            }
-            $file_data = array();
-            $i = 0;
-            if($get_file_info[0]) {
-//                foreach ($get_file_info as $file_info) {
-//                    $file_data['hotel_id'] = $hotel_id;
-//                    $file_data['image'] = $file_info;
-//                    $file_data['type'] = 1;
-//                    $file_data['is_main_image'] = 0;
-//                    if($i == 0 && !$this->input->post('hotel_id')){
-//                        $file_data['is_main_image'] = 1;
-//                    }
-//                    $this->common_model->insertId('hotel_images', $file_data);
-//
-//                    $i++;
-//                }
-                $data['hotel_image'] = $get_file_info[0];
-            }
+            
+
             
             if(isset($hotel_id)){
                 $this->common_model->updateInfo('hotel', 'id', $hotel_id, $data);
             } else {
                 $hotel_id = $this->common_model->insertId('hotel', $data);
             }
+
+            $get_gallery_file = $this->uploadImage($_FILES['gallery_image'], 'uploads/hotel/hotel_gallery', 400, 270);
+            $file_data = array();
+            $i = 0;
+            if($get_gallery_file)
+            {
+                foreach ($get_gallery_file as $file_info) 
+                {
+                    if($file_info)
+                    {
+                        $file_data['hotel_id'] = $hotel_id;
+                        $file_data['gallery_image'] = $file_info;
+                        $tour_gallery_id = $this->common_model->insertId('hotel_gallery', $file_data);
+                    }
+                    $i++;
+                }
+            }
             
             $room_data = array();
             
-            $get_room_file = $this->uploadImage($_FILES['room_image'], 'uploads/hotel/room', 370, 257);
-//            echo '<pre>';print_r($get_room_file);die;
+            $get_room_file = $this->uploadImage($_FILES['room_image'], 'uploads/hotel/rooms', 370, 257);
+            // echo '<pre>';print_r($get_room_file);die;
             for ($i = 0; $i < count($post['room_type']); $i++) {
                 $room_data['hotel_id'] = $hotel_id;
                 $room_id = '';
@@ -143,7 +161,6 @@ class Hotel extends CI_Controller {
                 $room_data['no_of_guest'] = $post['no_of_guest'][$i];
                 $room_data['no_of_adult'] = $post['no_of_adult'][$i];
                 $room_data['no_of_child'] = $post['no_of_child'][$i];
-                // $room_data['no_of_infant'] = $post['no_of_infant'][$i];
                 $room_data['rent_per_night'] = $post['rent_per_night'][$i];
                 
                 if($get_room_file && $get_room_file[$i]){
@@ -312,6 +329,73 @@ class Hotel extends CI_Controller {
         
 //        return $response;
     }
+
+    public function uploadHotelGalleryImage($FILES, $path_folder) {
+        $files = $FILES;
+//        echo '<pre>';print_r($files);die;
+        $config['upload_path'] = FCPATH . '/uploads/hotel/';
+        $config['allowed_types'] = '*';
+        $config['max_size'] = '0';
+        $this->load->library('upload');
+        
+        $images = array();
+        
+        foreach ($files['name'] as $key => $image) {
+            if($files['error'][$key] == 0){
+                $_FILES['image[]']['name']= $files['name'][$key];
+                $_FILES['image[]']['type']= $files['type'][$key];
+                $_FILES['image[]']['tmp_name']= $files['tmp_name'][$key];
+                $_FILES['image[]']['error']= $files['error'][$key];
+                $_FILES['image[]']['size']= $files['size'][$key];
+
+                $fileName = $files['name'][$key];
+
+                $config['file_name'] = $fileName;
+
+                $this->upload->initialize($config);
+                $this->load->library('image_lib');
+                
+                if ($this->upload->do_upload('image[]')) {
+                    $file_data = $this->upload->data();
+                    $images[] = $file_data['file_name'];
+                    
+                    $configi = array();
+                    if($key == 0){
+                        $configi['image_library'] = 'gd2';
+                        $configi['source_image'] = $file_data['full_path'];
+                        $configi['new_image'] = FCPATH .'uploads/hotel/hotel_main_image/' . $file_data['file_name'];
+                        $configi['maintain_ratio'] = FALSE;
+                        $configi['width'] = 370;
+                        $configi['height'] = 218;
+                        $this->image_lib->initialize($configi);
+                        $this->image_lib->resize();
+                        $this->image_lib->clear();
+                    }
+                    
+                    $config2 = array();
+                    $config2['image_library'] = 'gd2';
+                    $config2['source_image'] = $file_data['full_path'];
+                    $config2['new_image'] = FCPATH .'uploads/hotel/hotel_gallery/' . $file_data['file_name'];
+                    $config2['maintain_ratio'] = FALSE;
+                    $config2['width'] = 770;
+                    $config2['height'] = 438;
+                    
+                    $this->image_lib->initialize($config2);
+                    $this->image_lib->resize();
+                    $this->image_lib->clear();
+                    
+                } else {
+                    return false;
+                }
+            } else {
+                $images[] = '';
+            }
+        }
+
+        return $images;
+        
+//        return $response;
+    }
     
     public function all_hotel() {
         $data['title'] = 'All Hotel';
@@ -333,9 +417,15 @@ class Hotel extends CI_Controller {
         
         $data['all_country'] = $this->common_model->getAllInfo('countries');
         $data['hotel_info'] = $this->common_model->getInfo('hotel', 'id', $id);
-        // echo "<pre>"; print_r($data['hotel_info']); die;
+        $data['room_type']   = $this->common_model->getAllInfo('room_type');
+        $data['room_info'] = $this->common_model->getInfo('room_detail', 'hotel_id', $id);
+        // echo "<pre>"; print_r($data['room_info']); die;
+        $data['hotel_gallery_images'] = $this->admin_model->getHotelGalleryImages($id);
         $data['room_detail_info'] = $this->common_model->getInfo('room_detail', 'hotel_id', $id);
         $data['hotel_images'] = $this->admin_model->getImages($id, 1);
+
+        $data['type_info'] = $this->common_model->getInfo('hotel', 'id', $id);
+        $data['all_type']    = $this->common_model->getAllInfo('hotel_type');
         
 //        echo '<pre>';print_r($data['room_detail_info']);die;
         
@@ -379,10 +469,41 @@ class Hotel extends CI_Controller {
         
         redirect('edit-hotel/'.$image_info[0]['hotel_id']);
     }
+
+    public function update_hotel_gallery_image() {
+        $hotel_gallery_id = $this->input->post('hotel_gallery_id');
+        // echo '<pre>';print_r($tour_gallery_id);die;
+        $image_info = $this->common_model->getInfo('hotel_gallery', 'hotel_gallery_id', $hotel_gallery_id);
+        // echo '<pre>';print_r($image_info);die;
+        $get_file_info = $this->uploadHotelGalleryImage($_FILES['gallery_image'], 'hotel_gallery');
+        // echo '<pre>';print_r($get_file_info);die;
+        $file_path = FCPATH . 'uploads/hotel/hotel_gallery' . $image_info[0]['gallery_image'];
+        unlink($file_path);
+    
+        foreach ($get_file_info as $file_info) {
+            $file_data['hotel_id'] = $image_info[0]['hotel_id'];
+            $file_data['gallery_image'] = $file_info;
+            
+            $this->common_model->updateInfo('hotel_gallery', 'hotel_gallery_id', $hotel_gallery_id, $file_data);
+        }
+        
+        redirect('edit-hotel/'.$image_info[0]['hotel_id']);
+    }
     
     public function delete_image($id, $hotel_id) {
         $this->admin_model->deleteInfo('hotel_images', 'image_id', $id);
         $this->session->set_flashdata('success_msg', 'Image deleted successfully');
         redirect('edit-hotel/'.$hotel_id);
+    }
+
+    public function delete_hotel_gallery_image($id, $hotel_id) {
+        $this->admin_model->deleteInfo('hotel_gallery', 'hotel_gallery_id', $id);
+        $this->session->set_flashdata('success_msg', 'Image deleted successfully');
+        redirect('edit-hotel/'.$hotel_id);
+    }
+
+    public function searchHotel()
+    {
+        
     }
 }

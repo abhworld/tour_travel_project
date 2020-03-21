@@ -21,6 +21,8 @@ class Visa extends CI_Controller {
     
     public function add_visa() {
         $data['title'] = 'Add Visa';
+
+        $data['continents'] = $this->common_model->getAllInfo('continents');
         
         $data['all_country'] = $this->common_model->getAllInfo('countries');
         
@@ -37,9 +39,11 @@ class Visa extends CI_Controller {
     public function save_visa_info() {
         $this->form_validation->set_error_delimiters('', '');
         $this->form_validation->set_rules('country_id', 'country id', 'callback_check_country');
-        $this->form_validation->set_rules('basic_text', 'basic', 'required');
-        
-        
+        $this->form_validation->set_rules('continent_id', 'continent', 'required');
+        $this->form_validation->set_rules('description', 'description', 'required');
+        $this->form_validation->set_rules('facilities', 'facilities', 'required');
+        $this->form_validation->set_rules('itinerary', 'itinerary', 'required');
+ 
         if ($this->form_validation->run() == false) {
             $errors = array();
             foreach ($this->input->post() as $key => $value) {
@@ -47,6 +51,7 @@ class Visa extends CI_Controller {
             }
             $response['errors'] = array_filter($errors); // Some might be empty
             $response['status'] = false;
+
         } else {
             $post = $this->input->post();
 //            
@@ -55,26 +60,33 @@ class Visa extends CI_Controller {
             }
             
             $data['country_id'] = $post['country_id'];
-            $data['basic_text'] = $post['basic_text'];
-            $data['check_list'] = $post['check_list'];
-            $data['fee'] = $post['fee'];
-            $data['consultancy'] = $post['consultancy'];
+            $data['continent_id'] = $post['continent_id'];
+            $data['description'] = $post['description'];
+            $data['facilities'] = $post['facilities'];
+            $data['itinerary'] = $post['itinerary'];
             
-            $get_file_info = $this->uploadvisaImage($_FILES['images'], 'uploads/visa');
-            
-            if($get_file_info[0]){
-                $data['image'] = $get_file_info[0];
-            } else if($post['prev_image']){
-                $data['image'] = $post['prev_image'];
+            if($_FILES['images']["error"][0] ==  0){
+                $get_file_info = $this->uploadvisaImage($_FILES['images'], 'uploads/visa');
+                
+                if($get_file_info[0]){
+                    $data['image'] = $get_file_info[0];
+                } else if(isset($post['prev_image'])){
+                    $data['image'] = $post['prev_image'];
+                }
+            //    echo '<pre>';print_r($data);die;
+                if(isset($visa_id)){
+                    $this->common_model->updateInfo('visa', 'visa_id', $visa_id, $data);
+                } else {
+                    $visa_id = $this->common_model->insertId('visa', $data);
+                }
+                
+                $response['status'] = true;
+            }else{
+                $response['status'] = false;
+                $response['errors']['image'] = "Image is required"; // Some might be empty
+
             }
-//            echo '<pre>';print_r($data);die;
-            if(isset($visa_id)){
-                $this->common_model->updateInfo('visa', 'visa_id', $visa_id, $data);
-            } else {
-                $visa_id = $this->common_model->insertId('visa', $data);
-            }
-            
-            $response['status'] = true;
+
         }
 
         echo json_encode($response);
@@ -213,7 +225,8 @@ class Visa extends CI_Controller {
     
     public function edit_visa($id) {
         $data['title'] = 'Edit Visa';
-        
+
+        $data['continents'] = $this->common_model->getAllInfo('continents');
         $data['all_country'] = $this->common_model->getAllInfo('countries');
         $data['visa_info'] = $this->common_model->getInfo('visa', 'visa_id', $id);
 //        echo '<pre>';print_r($data['all_visa_city']);die;

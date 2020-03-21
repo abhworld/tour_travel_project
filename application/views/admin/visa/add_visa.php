@@ -89,6 +89,27 @@
             <div id="success_msg" style="margin-left: 43px;"></div>
             
             <form class="text-center" id="add_hotel_info">
+
+            <div class="form-row">
+                <div class="col-md">
+                    <div class="form-group">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <label class="input-group-text" for="inputGroupSelect00">Continent:</label>
+                            </div>
+                            <select class="custom-select" id="continent_id" name="continent_id">
+                                <option value="">Choose Continent</option>
+                                <?php foreach ($continents as $continent) {?>
+                                <option value="<?php echo $continent['continent_id']?>">
+                                    <?php echo $continent['continent_name'];?>
+                                </option>
+                                <?php }?>
+                            </select>
+                            <!--<i class="fas fa-angle-down"></i>-->
+                        </div>
+                    </div><!-- end form-group -->
+                </div>
+            </div>
                 
                 <div class="form-row">
                     <div class="col-md">
@@ -97,7 +118,7 @@
                                 <div class="input-group-prepend">
                                     <label class="input-group-text" for="inputGroupSelect00">Country:</label>
                                 </div>
-                                <select class="custom-select" id="country_id" name="country_id" onchange="get_city('1')">
+                                <select class="custom-select" id="country_id" name="country_id">
                                     <option value="">Choose Country</option>
                                     <?php foreach ($all_country as $country) {?>
                                     <option value="<?php echo $country['id']?>">
@@ -113,7 +134,7 @@
                     <div class="col-md">
                         <div class="form-group">
                             <label for="inputGroupSelect07" class="">Image:</label>
-                            <input type="file" class="form-control" name="images[]" required id="">
+                            <input type="file" class="form-control" name="images" required id="">
                         </div>
                     </div>
                 </div>
@@ -122,30 +143,25 @@
                     <div class="col-md" style="margin-bottom: 1rem;">
                         <nav>
                             <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
-                              <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-itinerary" role="tab" aria-controls="nav-home" aria-selected="true">Basic</a>
-                              <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-included" role="tab" aria-controls="nav-profile" aria-selected="false">Check List</a>
-                              <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-excluded" role="tab" aria-controls="nav-contact" aria-selected="false">Fee</a>
-                              <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-faq" role="tab" aria-controls="nav-contact" aria-selected="false">Consultancy</a>
+                              <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-itinerary" role="tab" aria-controls="nav-home" aria-selected="true">Description</a>
+                              <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-included" role="tab" aria-controls="nav-profile" aria-selected="false">Facilities</a>
+                              <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-excluded" role="tab" aria-controls="nav-contact" aria-selected="false">Itinerary</a>
                             </div>
                         </nav>
                         <div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
                             <div class="tab-pane fade show active" id="nav-itinerary" role="tabpanel" aria-labelledby="nav-home-tab">
                                 <textarea name="" class="mb-3 itinerary"></textarea>
-                                <input type="hidden" name="basic_text">
+                                <input type="hidden" name="description">
                             </div>
                             <div class="tab-pane fade" id="nav-included" role="tabpanel" aria-labelledby="nav-profile-tab">
                                 <div class="form-group">
                                     <textarea name="" class="mb-3 included"></textarea>
-                                    <input type="hidden" name="check_list">
+                                    <input type="hidden" name="facilities">
                                 </div>
                             </div>
                             <div class="tab-pane fade" id="nav-excluded" role="tabpanel" aria-labelledby="nav-contact-tab">
                                 <textarea name="" class="mb-3 excluded"></textarea>
-                                <input type="hidden" name="fee">
-                            </div>
-                            <div class="tab-pane fade" id="nav-faq" role="tabpanel" aria-labelledby="nav-contact-tab">
-                                <textarea name="" class="mb-3 faq"></textarea>
-                                <input type="hidden" name="consultancy">
+                                <input type="hidden" name="itinerary">
                             </div>
 
                         </div><!-- end detail-tabs -->
@@ -172,13 +188,12 @@
 
 <script>
     $("#add_hotel").click(function (){
-        $('[name="basic_text"]').val($( 'textarea.itinerary' ).val());
-        $('[name="check_list"]').val($( 'textarea.included' ).val());
-        $('[name="fee"]').val($( 'textarea.excluded' ).val());
-        $('[name="consultancy"]').val($( 'textarea.faq' ).val());
-
-        var form_data = new FormData($("#add_hotel_info")[0]);
+        $('[name="description"]').val($( 'textarea.itinerary' ).val());
+        $('[name="facilities"]').val($( 'textarea.included' ).val());
+        $('[name="itinerary"]').val($( 'textarea.excluded' ).val());
         
+        var form_data = new FormData($("#add_hotel_info")[0]);
+        console.log(form_data);
         $(".error_msg").html('');
         $.ajax({
             url: "visa/save_visa_info",
@@ -190,9 +205,12 @@
             data: form_data,
             success: function (response) {
                 var obj = JSON.parse(response);
-                $.each(obj.errors, function(key, val) {
-                    $('#error_message').append("<div><small class='error_msg' style='font-weight: bold;color: red;'>" + val + "</small></div>");
-                });
+                console.log(obj);
+                if(obj.status == false){
+                    $.each(obj.errors, function(key, val) {
+                        $('#error_message').append("<div><small class='error_msg' style='font-weight: bold;color: red;'>" + val + "</small></div>");
+                    });
+                }
                 if(obj.status == true){
                     $("#success_msg").show();
                     $("#success_msg").html('Account Info Updated Successfully');
@@ -205,18 +223,17 @@
         })
     });
     
-//    $("[name='country_id']").change(function (){
-////        alert(this.value);
+//    $("[name='continent_id']").change(function (){
+// //        alert(this.value);
 //        $.ajax({
-//            url: "hotel/get_city_by_country",
+//            url: "hotel/get_country_by_continent",
 //            type: 'POST',
 //            data: {
-//                country_id: this.value,
-//                city_id: ''
+//                countinent_id: this.value,
 //            },
 //            success: function (response) {
 //                var obj = JSON.parse(response);
-//                $('[name="city"]').html(obj);
+//                $('[name="country_id"]').html(obj);
 //            }
 //        })
 //    });

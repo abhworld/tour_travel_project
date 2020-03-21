@@ -44,7 +44,7 @@
                   <img src="<?php echo base_url();?>assets/frontend_asset/img/asia.png" alt="gallery">
                </div>
                <div class="content">
-                  <a href="#">
+                  <a href="<?php echo base_url();?>visa-service/2">
                      <h4 class="name">Asia</h4>
                   </a>
                </div>
@@ -56,7 +56,7 @@
                   <img src="<?php echo base_url();?>assets/frontend_asset/img/europe.png" alt="gallery">
                </div>
                <div class="content">
-                  <a href="#">
+                  <a href="<?php echo base_url();?>visa-service/3">
                      <h4 class="name">Europe</h4>
                   </a>
                </div>
@@ -68,8 +68,8 @@
                   <img src="<?php echo base_url();?>assets/frontend_asset/img/north_amarica.png" alt="gallery">
                </div>
                <div class="content">
-                  <a href="#">
-                     <h4 class="name">North Amarica</h4>
+                  <a href="<?php echo base_url();?>visa-service/4">
+                     <h4 class="name">North America</h4>
                   </a>
                </div>
             </div>
@@ -80,8 +80,8 @@
                   <img src="<?php echo base_url();?>assets/frontend_asset/img/South_America.png" alt="gallery">
                </div>
                <div class="content">
-                  <a href="#">
-                     <h4 class="name">South Amarica</h4>
+                  <a href="<?php echo base_url();?>visa-service/5">
+                     <h4 class="name">South America</h4>
                   </a>
                </div>
             </div>
@@ -92,8 +92,8 @@
                   <img src="<?php echo base_url();?>assets/frontend_asset/img/osania.png" alt="gallery">
                </div>
                <div class="content">
-                  <a href="#">
-                     <h4 class="name">Oceania</h4>
+                  <a href="<?php echo base_url();?>visa-service/6">
+                     <h4 class="name">Antarctica</h4>
                   </a>
                </div>
             </div>
@@ -104,7 +104,7 @@
                   <img src="<?php echo base_url();?>assets/frontend_asset/img/africa.png" alt="gallery">
                </div>
                <div class="content">
-                  <a href="#">
+                  <a href="<?php echo base_url();?>visa-service/1">
                      <h4 class="name">Africa</h4>
                   </a>
                </div>
@@ -126,7 +126,7 @@
                      <h2>Discover Amazing Places of the world</h2>
                      <p>Spend a best Holidays with us</p>
                      <div class="tour-details">
-                        <a href="tour-details.html"><i class="fa fa-flag"></i> Book Now</a>
+                        <!-- <a href="tour-details.html"><i class="fa fa-flag"></i> Book Now</a> -->
                      </div>
                      <!-- <div class="descount_btn">
                                     <a href="#"><img src="<?php echo base_url();?>assets/frontend_asset/img/appstore.png" alt="appstore" /></a>

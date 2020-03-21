@@ -207,6 +207,28 @@
                     </div><!-- end column -->
                     
                 </div><!-- end form-row -->
+
+                 <div class="form-row">
+                    <div class="col-md-6" id="">
+                        <div class="form-group">
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <label class="input-group-text" for="inputGroupSelect00">Hotel Type:</label>
+                                </div>
+                               
+                                <select class="custom-select" id="hotel_type" name="hotel_type_id" >
+                                    <option value="">Choose Type</option>
+                                        <?php foreach ($all_type as $type) {?>
+                                    <option value="<?php echo $type['hotel_type_id']?>" <?php if($type_info[0]['hotel_type_id'] == $type['hotel_type_id'] ){ echo 'selected';}?>>
+                                        <?php echo $type['hotel_type_name'];?>
+                                    </option>
+                                        <?php }?>
+                                </select>
+                            </div>
+                        </div><!-- end form-group -->
+                    </div> 
+                </div>
+
                 <div class="form-row">
                     <div class="col-md" style="margin-bottom: 1rem;">
                         <nav>
@@ -289,11 +311,25 @@
                     </div>
                 </div>-->
                 
-                <div class="form-row">
+                 <div class="form-row" style="margin-bottom: 20px;">
                     <div class="col-md">
-                        <label for="inputGroupSelect07" class="" style="display: block;text-align: left;font-weight: 600;font-size: 16px;">Main Image:</label>
-                        <input type="file" id="input-file-now" class="dropify" name="userfile[]" data-default-file="uploads/hotel/<?php echo $hotel_info[0]['hotel_image']?>"/>
-                        <input type="hidden" name="prev_hotel_image" value="<?php echo $hotel_info[0]['hotel_image']?>">
+                        <h6 class="text-left"> hotel Gallery Images</h6>
+                        <table class="table table-bordered" style="background-color: #fff;margin: 0px;max-width: 100%">
+                            <?php foreach ($hotel_gallery_images as $image) {?>
+                            <tr>
+                                <td><img src="uploads/hotel/hotel_gallery/<?php echo $image['gallery_image']?>" alt="images" style="width: 100px; height: 60px;"></td>
+                                <td>
+                                    <a onclick="open_image_modal('<?php echo $image['hotel_gallery_id']?>')"><i class="fas fa-edit"></i></a>
+                                    
+                                    <a href="delete-hotel-gallery-image/<?php echo $image['hotel_gallery_id'].'/'.$hotel_info[0]['id']?>">
+                                        <i class="fas fa-trash-alt"></i>
+                                    </a>
+                                    
+                                </td>
+         
+                            </tr>
+                            <?php }?>
+                        </table>
                     </div>
                 </div>
 <!--                <div class="form-row">
@@ -310,7 +346,6 @@
                                 <img id="add_img_div" onmouseover="image_hover('#f0f5f5')" onmouseout="image_hover('')" style="height: 150px; width: 150px;" src="<?= base_url() . 'uploads/add_images.png'; ?>"
                                      alt="">
                             </a>
-
                         </div>
                     </div>
                 </div>-->
@@ -363,7 +398,7 @@
                     <div class="block" style="text-align: left;">
                         <h6>Serial <?php echo $i;?></h6>
                         <div class="form-row">
-                            <div class="col">
+                            <!-- <div class="col">
                                 <div class="form-group">
                                     <div class="input-group">
                                         <div class="input-group-prepend">
@@ -373,6 +408,22 @@
                                             <option value="">Choose</option>
                                             <option value="1" <?php if($room_detail['room_type'] == 1){echo 'selected';}?>>Yes</option>
                                             <option value="2">No</option>
+                                        </select>
+                                        <i class="fas fa-angle-down"></i>
+                                    </div>
+                                </div>
+                            </div> -->
+                             <div class="col">
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <label class="input-group-text" for="inputGroupSelect00" style="width: 120px;">Room Type:</label>
+                                        </div>
+                                        <select class="custom-select" name="room_type[]" id="inputGroupSelect00">
+                                            <option value="">Choose</option>
+                                            <?php foreach ($room_type as $type) {?>
+                                            <option value="<?php echo $type['room_type_id'];?>" <?php if($room_info[0]['room_type'] ==$type['room_type_id']){echo 'selected';}?>><?php echo $type['room_type'];?></option>
+                                            <?php }?>
                                         </select>
                                         <i class="fas fa-angle-down"></i>
                                     </div>
@@ -431,12 +482,12 @@
                                 </div><!-- end form-group -->
                             </div><!-- end column -->
 
-                            <div class="col">
+                            <!-- <div class="col">
                                 <div class="form-group">
                                     <label for="inputGroupSelect07" class="" style="width: 90px;">Infant:</label>
                                     <input type="text" class="form-control" name="no_of_infant[]" required id="" value="<?php echo $room_detail['no_of_infant']?>">
-                                </div><!-- end form-group -->
-                            </div><!-- end column -->
+                                </div>
+                            </div> -->
 
                         </div>
                         
@@ -498,12 +549,12 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="hotel/update_image" method="post" enctype="multipart/form-data">
+            <form action="hotel/update_hotel_gallery_image" method="post" enctype="multipart/form-data">
                 <div class="modal-body">
-                    <input type="hidden" name="image_id" value="">
+                    <input type="hidden" name="hotel_gallery_id" value="">
                     <div class="form-group">
                         <label for="inputGroupSelect07" class="">Image:</label>
-                        <input type="file" class="form-control" name="image[]" required id="" style="border: 1px solid #ced4da;">
+                        <input type="file" class="form-control" name="gallery_image[]" required id="" style="border: 1px solid #ced4da;">
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -692,11 +743,11 @@
         $(this).parent().remove();
     });
     
-    function open_image_modal(image_id){
+    function open_image_modal(hotel_gallery_id){
         
         $('#image_modal').modal('show'); 
         
-        $("[name='image_id']").val(image_id);
+        $("[name='hotel_gallery_id']").val(hotel_gallery_id);
     }
 </script>
 

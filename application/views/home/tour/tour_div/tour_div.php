@@ -30,3 +30,5 @@
                 </div>
                 <?php } ?>
              </div>
+
+             <?php echo $this->ajax_pagination->create_links();?>

@@ -26,7 +26,7 @@
                         <div class="tour-filter clearfix">
                             <form>
                                 <p>
-                                    <input type="search" placeholder="Search Tour..." />
+                                    <input type="search" placeholder="Search Tour..." id="hotel_id"/>
                                     <i class="fa fa-search"></i>
                                 </p>
                                 <p>
@@ -95,15 +95,7 @@
                     </div>
                     <div class="single-sidebar">
                         <div class="quick_contact">
-                            <h4>Contact US</h4>
-                            <p>
-                                <i class="fa fa-phone"></i>
-                                +8809639001224
-                            </p>
-                            <p>
-                                <i class="fa fa-envelope"></i>
-                                info@example.com
-                            </p>
+                            <?php  $this->load->view('home/contact_info');?>
                         </div>
                     </div>
                 </div>
@@ -114,12 +106,13 @@
                        
                     </div> -->
                 <div class="hotel-list-wrapper">
+                    <?php foreach($all_hotel as $row) { ?>
                     <div class="row">
                         <div class="col-lg-6">
                             <div class="hotel-image-inner">
                                 <div class="details-slider owl-carousel">
                                     <div class="single-destination">
-                                        <a href="hotel-details.php">
+                                        <a href="hotel-detail/<?php echo str_replace(' ', '-', strtolower($row['hotel_name'])) ;?>">
                                             <div class="destination-image">
                                                 <img src="<?php echo base_url();?>assets/frontend_asset/img/Exterior-2.jpg" alt="destination" />
                                             </div>
@@ -151,20 +144,32 @@
                         </div>
                         <div class="col-lg-6">
                             <div class="hotel-details-inner">
-                                <h2>Makkah Hotel</h2>
-                                <h3> <i class="fa fa-building"></i>Swissotel Al Maqam</h3>
-                                <h3 class="hotel-address"><i class="fa fa-map-marker"></i>50 meters from Masjid Al Haram
+                                <h2><?php echo $row['city_name']; ?></h2>
+                                <a href="hotel-detail/<?php echo str_replace(' ', '-', strtolower($row['hotel_name'])) ;?>"><h3><i class="fa fa-building"></i><?php echo $row['hotel_name'];?></h3></a>
+                                <h3 class="hotel-address"><i class="fa fa-map-marker"></i><?php echo $row['hotel_address']; ?>
                                 </h3>
-                                <h4>Hotel Features</h4>
+                                <h4>Hotel Facilities</h4>
                                 <div class="hotel-features">
 
                                     <ul>
-                                        <li><span>Internet</span>24/hours available</li>
-                                        <li><span>Laundry</span>Available on guest’s request</li>
-                                        <li><span>Television</span>Flat TV screen in every room</li>
-                                        <li><span>Rating</span>3 Stars</li>
-                                        <li><span>Parking</span>Available</li>
-                                        <li><span>Fridge</span>Available in rooms</li>
+                                        <?php if(isset($row['restaurant']) && $row['restaurant']) { ?>
+                                        <li><span>Restaurant</span></li>
+                                        <?php } ?>
+                                        <?php if(isset($row['swimming_pool']) && $row['swimming_pool']) { ?>
+                                        <li><span>Pool</span></li>
+                                        <?php } ?>
+                                        <?php if(isset($row['fitness_center']) && $row['fitness_center']) { ?>
+                                        <li><span>Fitness Center</span></li>
+                                        <?php } ?>
+                                        <?php if(isset($row['service_room']) && $row['service_room']) { ?>
+                                        <li><span>Service Room</span></li>
+                                        <?php } ?>
+                                        <?php if(isset($row['coffee_shop']) && $row['coffee_shop']) { ?>
+                                        <li><span>Coffee Shop</span></li>
+                                        <?php } ?>
+                                        <?php if(isset($row['wifi']) && $row['wifi']) { ?>
+                                        <li><span>Wifi Free</span></li>
+                                        <?php } ?>
                                     </ul>
                                 </div>
                                 <div class="tour-details">
@@ -174,185 +179,13 @@
                         </div>
                     </div>
                     <div class="gap-30"></div>
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <div class="hotel-image-inner">
-                                <div class="details-slider owl-carousel">
-                                    <div class="single-destination">
-                                        <a href="hotel-details.php">
-                                            <div class="destination-image">
-                                                <img src="<?php echo base_url();?>assets/frontend_asset/img/Exterior-5.jpg" alt="destination" />
-                                            </div>
-                                        </a>
-                                    </div>
-                                    <div class="single-destination">
-                                        <a href="hotel-details.php">
-                                            <div class="destination-image">
-                                                <img src="<?php echo base_url();?>assets/frontend_asset/img/Exterior-6.jpg" alt="destination" />
-                                            </div>
-                                        </a>
-                                    </div>
-                                    <div class="single-destination">
-                                        <a href="hotel-details.php">
-                                            <div class="destination-image">
-                                                <img src="<?php echo base_url();?>assets/frontend_asset/img/Exterior-7.jpg" alt="destination" />
-                                            </div>
-                                        </a>
-                                    </div>
-                                    <div class="single-destination">
-                                        <a href="hotel-details.php">
-                                            <div class="destination-image">
-                                                <img src="<?php echo base_url();?>assets/frontend_asset/img/Exterior-8.jpg" alt="destination" />
-                                            </div>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="hotel-details-inner">
-                                <h2>Madina Hotel</h2>
-                                <h3> <i class="fa fa-building"></i>Al Nokhba Royal Inn</h3>
-                                <h3 class="hotel-address"><i class="fa fa-map-marker"></i>175 meters from Masjid Al
-                                    Nabawi</h3>
-                                <h4>Hotel Features</h4>
-                                <div class="hotel-features">
+                    <?php } ?>
 
-                                    <ul>
-                                        <li><span>Internet</span>24/hours available</li>
-                                        <li><span>Laundry</span>Available on guest’s request</li>
-                                        <li><span>Television</span>Flat TV screen in every room</li>
-                                        <li><span>Rating</span>3 Stars</li>
-                                        <li><span>Parking</span>Available</li>
-                                        <li><span>Fridge</span>Available in rooms</li>
-                                    </ul>
-                                </div>
-                                <div class="tour-details">
-                                    <a href="hotel-details.php"> Book Now</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="gap-30"></div>
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <div class="hotel-image-inner">
-                                <div class="details-slider owl-carousel">
-                                    <div class="single-destination">
-                                        <a href="hotel-details.php">
-                                            <div class="destination-image">
-                                                <img src="<?php echo base_url();?>assets/frontend_asset/img/Exterior-2.jpg" alt="destination" />
-                                            </div>
-                                        </a>
-                                    </div>
-                                    <div class="single-destination">
-                                        <a href="hotel-details.php">
-                                            <div class="destination-image">
-                                                <img src="<?php echo base_url();?>assets/frontend_asset/img/Exterior-1.jpg" alt="destination" />
-                                            </div>
-                                        </a>
-                                    </div>
-                                    <div class="single-destination">
-                                        <a href="hotel-details.php">
-                                            <div class="destination-image">
-                                                <img src="<?php echo base_url();?>assets/frontend_asset/img/Exterior-3.jpg" alt="destination" />
-                                            </div>
-                                        </a>
-                                    </div>
-                                    <div class="single-destination">
-                                        <a href="hotel-details.php">
-                                            <div class="destination-image">
-                                                <img src="<?php echo base_url();?>assets/frontend_asset/img/Exterior-4.jpg" alt="destination" />
-                                            </div>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="hotel-details-inner">
-                                <h2>Makkah Hotel</h2>
-                                <h3> <i class="fa fa-building"></i>Swissotel Al Maqam</h3>
-                                <h3 class="hotel-address"><i class="fa fa-map-marker"></i>50 meters from Masjid Al Haram
-                                </h3>
-                                <h4>Hotel Features</h4>
-                                <div class="hotel-features">
+                   
 
-                                    <ul>
-                                        <li><span>Internet</span>24/hours available</li>
-                                        <li><span>Laundry</span>Available on guest’s request</li>
-                                        <li><span>Television</span>Flat TV screen in every room</li>
-                                        <li><span>Rating</span>3 Stars</li>
-                                        <li><span>Parking</span>Available</li>
-                                        <li><span>Fridge</span>Available in rooms</li>
-                                    </ul>
-                                </div>
-                                <div class="tour-details">
-                                    <a href="hotel-details.php"> Book Now</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="gap-30"></div>
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <div class="hotel-image-inner">
-                                <div class="details-slider owl-carousel">
-                                    <div class="single-destination">
-                                        <a href="hotel-details.php">
-                                            <div class="destination-image">
-                                                <img src="<?php echo base_url();?>assets/frontend_asset/img/Exterior-5.jpg" alt="destination" />
-                                            </div>
-                                        </a>
-                                    </div>
-                                    <div class="single-destination">
-                                        <a href="hotel-details.php">
-                                            <div class="destination-image">
-                                                <img src="<?php echo base_url();?>assets/frontend_asset/img/Exterior-6.jpg" alt="destination" />
-                                            </div>
-                                        </a>
-                                    </div>
-                                    <div class="single-destination">
-                                        <a href="hotel-details.php">
-                                            <div class="destination-image">
-                                                <img src="<?php echo base_url();?>assets/frontend_asset/img/Exterior-7.jpg" alt="destination" />
-                                            </div>
-                                        </a>
-                                    </div>
-                                    <div class="single-destination">
-                                        <a href="hotel-details.php">
-                                            <div class="destination-image">
-                                                <img src="<?php echo base_url();?>assets/frontend_asset/img/Exterior-8.jpg" alt="destination" />
-                                            </div>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="hotel-details-inner">
-                                <h2>Madina Hotel</h2>
-                                <h3> <i class="fa fa-building"></i>Al Nokhba Royal Inn</h3>
-                                <h3 class="hotel-address"><i class="fa fa-map-marker"></i>175 meters from Masjid Al
-                                    Nabawi</h3>
-                                <h4>Hotel Features</h4>
-                                <div class="hotel-features">
+                    
+                   
 
-                                    <ul>
-                                        <li><span>Internet</span>24/hours available</li>
-                                        <li><span>Laundry</span>Available on guest’s request</li>
-                                        <li><span>Television</span>Flat TV screen in every room</li>
-                                        <li><span>Rating</span>3 Stars</li>
-                                        <li><span>Parking</span>Available</li>
-                                        <li><span>Fridge</span>Available in rooms</li>
-                                    </ul>
-                                </div>
-                                <div class="tour-details">
-                                    <a href="hotel-details.php"> Book Now</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>

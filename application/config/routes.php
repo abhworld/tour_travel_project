@@ -65,12 +65,12 @@ $route['omrah-list']      = 'home/omrah_list';
 
 //frontend visa
 $route['visa']            = 'home/visa';
-$route['visa-service']    = 'home/visa_service';
-$route['country-visa']    = 'home/country_visa';
+$route['visa-service/(:any)']    = 'home/visa_service/$1';
+$route['country-visa/(:any)']    = 'home/country_visa/$1';
 
 //frontend hotel
-$route['hotel-homepage']  = 'home/hotel_homepage';
-$route['hotel-detail']    = 'home/hotel_detail';
+$route['hotel-homepage']         = 'home/hotel_homepage';
+$route['hotel-detail/(:any)']    = 'home/hotel_detail/$1';
 
 
 //frontend tour
@@ -145,6 +145,7 @@ $route['edit-visa/(:any)'] = 'visa/edit_visa/$1';
 $route['delete-image/(:any)/(:any)']      = 'hotel/delete_image/$1/$2';
 $route['delete-tour-image/(:any)/(:any)'] = 'tour/delete_image/$1/$2';
 $route['delete-gallery-image/(:any)/(:any)'] = 'tour/delete_gallery_image/$1/$2';
+$route['delete-hotel-gallery-image/(:any)/(:any)'] = 'hotel/delete_hotel_gallery_image/$1/$2';
 $route['delete-hajj-image/(:any)/(:any)'] = 'hajj/delete_image/$1/$2';
 $route['delete-umra-image/(:any)/(:any)'] = 'umra/delete_image/$1/$2';
 
