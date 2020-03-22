@@ -24,9 +24,9 @@
                     <div class="single-sidebar">
                         <h3>FIND YOUR HOTEL</h3>
                         <div class="tour-filter clearfix">
-                            <form>
+                            <form id="hotel_filter_form">
                                 <p>
-                                    <select id="country_id" class="select2">
+                                    <select id="country_id" class="select2 form-control">
                                         <option value=''>Select country</option>
                                         <?php 
                                             foreach($countries as $country)
@@ -37,7 +37,7 @@
                                     </select>
                                 </p>
                                 <p>
-                                    <select class="wide" id="city_id">
+                                    <select class="select2 form-control" id="city_id">
                                         <option value=''>Select city</option>
                                     </select>
                                 </p>
@@ -79,14 +79,13 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-9">
+            <div class="col-lg-9 hotel_list">
                 <!-- <div class="site-heading">
                         <h2>Hotel List</h2>
                        
                     </div> -->
                 <div id="hotel_list" class="hotel-list-wrapper">
 		            <?php $this->load->view('home/hotel/hotel_list'); ?>
-                    
                 </div>
             </div>
         </div>
@@ -148,6 +147,7 @@
     </div>
 </section>
 <!-- Choose Area End -->
+
 <script>
 function getHotelInfo()
 {
@@ -166,18 +166,9 @@ $('#restaurant, #fitness, #service-room, #coffee-shop, #wifi-free, #service-room
     getHotelInfo();
             
 });
-$('#country_id').on('change', function() { 
-    $.post( 
-            "home/searchCityByCountry",
-            {'country_id': $("#country_id").val()},
-            function(data) {
-                console.log(data);
-
-                // var obj = JSON.parse(data);
-                $("#city_id").html(data); 
-            }
-        );
+$('#country_id, #city_id').on('change', function() { 
     getHotelInfo();
             
 });
 </script>
+

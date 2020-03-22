@@ -184,89 +184,89 @@ class Common_model extends CI_Model{
         return $query->result_array();
     }
     
-    public function count_all_hotel_data($table, $condition) {
+//     public function count_all_hotel_data($table, $condition) {
         
-        $this->db->select($table.'.*, countries.name AS country_name, cities.name AS city_name');
-        $this->db->from($table);
+//         $this->db->select($table.'.*, countries.name AS country_name, cities.name AS city_name');
+//         $this->db->from($table);
         
-        $this->db->join('countries', $table.'.country = countries.id', 'LEFT');
-        $this->db->join('cities', $table.'.city = cities.id', 'LEFT');
-        $this->db->join('room_detail', $table.'.id = room_detail.hotel_id', 'LEFT');
+//         $this->db->join('countries', $table.'.country = countries.id', 'LEFT');
+//         $this->db->join('cities', $table.'.city = cities.id', 'LEFT');
+//         $this->db->join('room_detail', $table.'.id = room_detail.hotel_id', 'LEFT');
         
-        foreach ($condition as $key => $val) {
-            if($key != 'room_type' && $key != 'price_start' && $key != 'price_end' && $key != 'no_of_adult' && $key != 'no_of_child' && $val != ''){
-                $this->db->where($table.'.'.$key, $val);
-            }
+//         foreach ($condition as $key => $val) {
+//             if($key != 'room_type' && $key != 'price_start' && $key != 'price_end' && $key != 'no_of_adult' && $key != 'no_of_child' && $val != ''){
+//                 $this->db->where($table.'.'.$key, $val);
+//             }
             
-            if($key == 'room_type' && $val != ''){
-                $this->db->where('room_detail.room_type', $val);
-            }
-            if($key == 'price_start' && $val != ''){
-                $this->db->where('room_detail.rent_per_night >=', $val);
-            }
-            if($key == 'price_end' && $val != ''){
-                $this->db->where('room_detail.rent_per_night <=', $val);
-            }
-            if($key == 'no_of_adult' && $val != ''){
-                $this->db->where('room_detail.no_of_adult', $val);
-            }
-            if($key == 'no_of_child' && $val != ''){
-                $this->db->where('room_detail.no_of_child', $val);
-            }
-        }
+//             if($key == 'room_type' && $val != ''){
+//                 $this->db->where('room_detail.room_type', $val);
+//             }
+//             if($key == 'price_start' && $val != ''){
+//                 $this->db->where('room_detail.rent_per_night >=', $val);
+//             }
+//             if($key == 'price_end' && $val != ''){
+//                 $this->db->where('room_detail.rent_per_night <=', $val);
+//             }
+//             if($key == 'no_of_adult' && $val != ''){
+//                 $this->db->where('room_detail.no_of_adult', $val);
+//             }
+//             if($key == 'no_of_child' && $val != ''){
+//                 $this->db->where('room_detail.no_of_child', $val);
+//             }
+//         }
         
-        $this->db->group_by($table.'.id');
+//         $this->db->group_by($table.'.id');
         
-        $query = $this->db->get();
-//        echo $this->db->last_query();
-        return $query->num_rows();
-    }
+//         $query = $this->db->get();
+// //        echo $this->db->last_query();
+//         return $query->num_rows();
+//     }
     
-    public function get_search_hotel_data($table, $condition, $limit, $start) {
+//     public function get_search_hotel_data($table, $condition, $limit, $start) {
         
-        $this->db->select($table.'.*, countries.name AS country_name, cities.name AS city_name');
-        $this->db->from($table);
+//         $this->db->select($table.'.*, countries.name AS country_name, cities.name AS city_name');
+//         $this->db->from($table);
         
-        $this->db->join('countries', $table.'.country = countries.id', 'LEFT');
-        $this->db->join('cities', $table.'.city = cities.id', 'LEFT');
-        $this->db->join('room_detail', $table.'.id = room_detail.hotel_id', 'LEFT');
-//        $this->db->join('hotel_images', $table.'.hotel_id = hotel_images.hotel_id', 'LEFT');
-//        
-//        $this->db->where($table.'_images.is_main_image', '1');
-//        $this->db->where('hotel_images.type', '1');
-        foreach ($condition as $key => $val) {
-            if($key != 'room_type' && $key != 'price_start' && $key != 'price_end' && $key != 'no_of_adult' && $key != 'no_of_child' && $val != ''){
-                $this->db->where($table.'.'.$key, $val);
-            }
+//         $this->db->join('countries', $table.'.country = countries.id', 'LEFT');
+//         $this->db->join('cities', $table.'.city = cities.id', 'LEFT');
+//         $this->db->join('room_detail', $table.'.id = room_detail.hotel_id', 'LEFT');
+// //        $this->db->join('hotel_images', $table.'.hotel_id = hotel_images.hotel_id', 'LEFT');
+// //        
+// //        $this->db->where($table.'_images.is_main_image', '1');
+// //        $this->db->where('hotel_images.type', '1');
+//         foreach ($condition as $key => $val) {
+//             if($key != 'room_type' && $key != 'price_start' && $key != 'price_end' && $key != 'no_of_adult' && $key != 'no_of_child' && $val != ''){
+//                 $this->db->where($table.'.'.$key, $val);
+//             }
             
-            if($key == 'room_type' && $val != ''){
-                $this->db->where('room_detail.room_type', $val);
-            }
-            if($key == 'price_start' && $val != ''){
-                $this->db->where('room_detail.rent_per_night >=', $val);
-            }
-            if($key == 'price_end' && $val != ''){
-                $this->db->where('room_detail.rent_per_night <=', $val);
-            }
-            if($key == 'no_of_adult' && $val != ''){
-                $this->db->where('room_detail.no_of_adult >=', $val);
-            }
-            if($key == 'no_of_child' && $val != ''){
-                $this->db->where('room_detail.no_of_child >=', $val);
-            }
-        }
+//             if($key == 'room_type' && $val != ''){
+//                 $this->db->where('room_detail.room_type', $val);
+//             }
+//             if($key == 'price_start' && $val != ''){
+//                 $this->db->where('room_detail.rent_per_night >=', $val);
+//             }
+//             if($key == 'price_end' && $val != ''){
+//                 $this->db->where('room_detail.rent_per_night <=', $val);
+//             }
+//             if($key == 'no_of_adult' && $val != ''){
+//                 $this->db->where('room_detail.no_of_adult >=', $val);
+//             }
+//             if($key == 'no_of_child' && $val != ''){
+//                 $this->db->where('room_detail.no_of_child >=', $val);
+//             }
+//         }
         
-        $this->db->group_by($table.'.id');
-        $this->db->order_by($table.'.id', 'DESC');
+//         $this->db->group_by($table.'.id');
+//         $this->db->order_by($table.'.id', 'DESC');
         
-        if ($limit != '' || $start != '') {
-            $this->db->limit($limit, $start);
-        }
+//         if ($limit != '' || $start != '') {
+//             $this->db->limit($limit, $start);
+//         }
         
-        $query = $this->db->get();
-//        echo $this->db->last_query();
-        return $query->result_array();
-    }
+//         $query = $this->db->get();
+// //        echo $this->db->last_query();
+//         return $query->result_array();
+//     }
     
     public function count_all_tour_data($condition) {
         $this->db->select('tour.*, countries.name AS country_name, cities.name AS city_name, tour_detail.*');
@@ -292,6 +292,36 @@ class Common_model extends CI_Model{
         }
         // $this->db->where('package_type.type_id', $type);
         $this->db->group_by('tour.tour_id');
+        
+        $query = $this->db->get();
+//        echo $this->db->last_query();
+        return $query->num_rows();
+    }
+
+    public function count_all_hotel_data($condition) {
+        $this->db->select('hotel.*, countries.name AS country_name, cities.name AS city_name');
+        $this->db->from('hotel');
+        
+        // $this->db->join('tour_detail', 'tour.tour_id = tour_detail.tour_pri_id', 'LEFT');
+        $this->db->join('countries', 'hotel.id = countries.id', 'LEFT');
+        $this->db->join('cities', 'hotel.id = cities.id', 'LEFT');
+
+        // $this->db->join('package_type', 'package_type.tour_id = tour.tour_id', 'LEFT');
+
+        
+        foreach ($condition as $key => $val) {
+            if($key != 'price_start' && $key != 'price_end' && $val != ''){
+                $this->db->where('hotel.'.$key, $val);
+            }
+            // if($key == 'price_start' && $val != ''){
+            //     $this->db->where('tour.tour_price >=', $val);
+            // }
+            // if($key == 'price_end' && $val != ''){
+            //     $this->db->where('tour.tour_price <=', $val);
+            // }
+        }
+        // $this->db->where('package_type.type_id', $type);
+        $this->db->group_by('hotel.id');
         
         $query = $this->db->get();
 //        echo $this->db->last_query();
@@ -327,6 +357,46 @@ class Common_model extends CI_Model{
         // $this->db->where('package_type.type_id', $type);
         $this->db->order_by('tour.tour_id', 'DESC');
         $this->db->group_by('tour.tour_id');
+        
+        // if ($limit != '' || $start != '') {
+        //     $this->db->limit($limit, $start);
+        // }
+        
+        $query = $this->db->get();
+//        echo $this->db->last_query();
+        return $query->result_array();
+
+    }
+
+    public function get_search_hotel_data($condition, $limit, $start) {
+        
+        $this->db->select('hotel.*, countries.name AS country_name, cities.name AS city_name, tour_detail.*, hotel_images.image');
+        $this->db->from('hotel');
+        
+        // $this->db->join('tour_detail', 'tour.tour_id = tour_detail.tour_pri_id', 'LEFT');
+        // $this->db->join('hotel_images', 'tour.tour_id = hotel_images.hotel_id', 'LEFT');
+        $this->db->join('countries', 'hotel.country = countries.id', 'LEFT');
+        $this->db->join('cities', 'hotel.city = cities.id', 'LEFT');
+    
+        // $this->db->join('package_type', 'package_type.tour_id = tour.tour_id', 'LEFT');
+        
+        foreach ($condition as $key => $val) {
+            if($key != 'price_start' && $key != 'price_end' && $val != ''){
+                $this->db->where('hotel.'.$key, $val);
+            }
+            // if($key == 'price_start' && $val != ''){
+            //     $this->db->where('tour.tour_price >=', $val);
+            // }
+            // if($key == 'price_end' && $val != ''){
+            //     $this->db->where('tour.tour_price <=', $val);
+            // }
+        }
+        
+        // $this->db->where('hotel_images.is_main_image', 1);
+        // $this->db->where('hotel_images.type', 2);
+        // $this->db->where('package_type.type_id', $type);
+        $this->db->order_by('hotel.id', 'DESC');
+        $this->db->group_by('hotel.id');
         
         // if ($limit != '' || $start != '') {
         //     $this->db->limit($limit, $start);

@@ -134,7 +134,7 @@
                     <div class="col-md">
                         <div class="form-group">
                             <label for="inputGroupSelect07" class="">Image:</label>
-                            <input type="file" class="form-control" name="images" required id="">
+                            <input type="file" class="form-control" name="images[]" required id="">
                         </div>
                     </div>
                 </div>

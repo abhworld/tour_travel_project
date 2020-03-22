@@ -146,32 +146,26 @@
                     <div class="col-md" style="margin-bottom: 1rem;">
                         <nav>
                             <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
-                              <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-itinerary" role="tab" aria-controls="nav-home" aria-selected="true">Basic</a>
-                              <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-included" role="tab" aria-controls="nav-profile" aria-selected="false">Check List</a>
-                              <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-excluded" role="tab" aria-controls="nav-contact" aria-selected="false">Fee</a>
-                              <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-faq" role="tab" aria-controls="nav-contact" aria-selected="false">Consultancy</a>
+                              <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-itinerary" role="tab" aria-controls="nav-home" aria-selected="true">Description</a>
+                              <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-included" role="tab" aria-controls="nav-profile" aria-selected="false">Facilities</a>
+                              <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-excluded" role="tab" aria-controls="nav-contact" aria-selected="false">Itinerary</a>
                             </div>
                         </nav>
                         <div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
                             <div class="tab-pane fade show active" id="nav-itinerary" role="tabpanel" aria-labelledby="nav-home-tab">
-                                <textarea name="" class="mb-3 itinerary"><?php echo $visa_info[0]['basic_text']?></textarea>
-                                <input type="hidden" name="basic_text">
+                                <textarea name="" class="mb-3 itinerary"><?php echo $visa_info[0]['description']?></textarea>
+                                <input type="hidden" name="description">
                             </div>
                             <div class="tab-pane fade" id="nav-included" role="tabpanel" aria-labelledby="nav-profile-tab">
                                 <div class="form-group">
-                                    <textarea name="" class="mb-3 included"><?php echo $visa_info[0]['check_list']?></textarea>
-                                    <input type="hidden" name="check_list">
+                                    <textarea name="" class="mb-3 included"><?php echo $visa_info[0]['facilities']?></textarea>
+                                    <input type="hidden" name="facilities">
                                 </div>
                             </div>
                             <div class="tab-pane fade" id="nav-excluded" role="tabpanel" aria-labelledby="nav-contact-tab">
-                                <textarea name="" class="mb-3 excluded"><?php echo $visa_info[0]['fee']?></textarea>
-                                <input type="hidden" name="fee">
+                                <textarea name="" class="mb-3 excluded"><?php echo $visa_info[0]['itinerary']?></textarea>
+                                <input type="hidden" name="itinerary">
                             </div>
-                            <div class="tab-pane fade" id="nav-faq" role="tabpanel" aria-labelledby="nav-contact-tab">
-                                <textarea name="" class="mb-3 faq"><?php echo $visa_info[0]['consultancy']?></textarea>
-                                <input type="hidden" name="consultancy">
-                            </div>
-
                         </div><!-- end detail-tabs -->
                     </div><!-- end column -->
                     
@@ -196,10 +190,9 @@
 
 <script>
     $("#add_visa").click(function (){
-        $('[name="basic_text"]').val($( 'textarea.itinerary' ).val());
-        $('[name="check_list"]').val($( 'textarea.included' ).val());
-        $('[name="fee"]').val($( 'textarea.excluded' ).val());
-        $('[name="consultancy"]').val($( 'textarea.faq' ).val());
+        $('[name="description"]').val($( 'textarea.itinerary' ).val());
+        $('[name="facilities"]').val($( 'textarea.included' ).val());
+        $('[name="itinerary"]').val($( 'textarea.excluded' ).val());
 
         var form_data = new FormData($("#add_visa_info")[0]);
         

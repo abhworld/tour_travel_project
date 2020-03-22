@@ -180,7 +180,6 @@ class Home_model extends CI_Model{
         $this->db->join('cities', 'hotel.city = cities.id', 'LEFT');
         $this->db->join('hotel_gallery', 'hotel.id = hotel_gallery.hotel_id', 'LEFT');
 
-
         $query = $this->db->get();
         // echo $this->db->last_query();die;
         return $query->result_array();
@@ -188,6 +187,9 @@ class Home_model extends CI_Model{
 
     public function get_all_hotel_gallery()
     {
+        $this->db->select('hotel_gallery.gallery_image');
+
+        $this->db->from('hotel_gallery');
         
     }
     

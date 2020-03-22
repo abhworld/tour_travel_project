@@ -205,13 +205,36 @@ class Home extends CI_Controller {
 
 	public function hotel_homepage()
 	{	
+		$data['hotels']     = $this->home_model->get_all_hotel();
+		$new_hotel_array = array();
+		foreach($data['hotels'] as $row) {
+			$new_hotel_array[$row['id']][] = $row;
+		}
+		// echo '<pre>';print_r($new_hotel_array);die;
+		// echo '<pre>';print_r($data['all_hotel']);die;
 		$data = array();
 
-		$data['all_hotel']     = $this->home_model->get_all_hotel();
+		$post['country'] = $this->session->userdata('tour_country');
+        $post['city'] = $this->session->userdata('tour_city');
+        $data = $post;
+
+        $totalRec = $this->common_model->count_all_hotel_data($post);
+        //pagination configuration
+        $data['page'] = 0;
+        $config['target'] = '#hotel_list_div';
+        $config['base_url'] = base_url() . 'ajaxPaginationData';
+        $config['total_rows'] = $totalRec;
+        $config['per_page'] = 12;
+        $config['link_func'] = 'searchPaginationData';
+        $this->ajax_pagination->initialize($config);
+
+		// $data['all_hotel']     = $this->home_model->get_all_hotel();
+		$data['all_hotel']     = $new_hotel_array;
+
 		$data['countries'] = $this->home_model->getAllInfo('countries');
 		
 
-		// echo '<pre>'; print_r($data['all_hotel']); die;
+		// echo '<pre>'; print_r($data['all_hotel']);echo "</pre>"; die;
 		// $data['hotel_gallery'] = $this->home_model->get_hotel_gallery();
 
 		// echo '<pre>'; print_r($data['hotel_info']); die;
@@ -229,6 +252,46 @@ class Home extends CI_Controller {
 
 		$this->load->view('home/home_main_content', $data);
 	}
+
+	public function search_hotel_data() {
+        $post = $this->input->post();
+        
+        $country = '';
+        $city = '';
+        if($this->input->post('country_id')){
+            $country = $post['country_id'];
+        }
+        if($this->input->post('city_id')){
+            $city = $post['city_id'];
+        }
+        $data['tour_country'] = $country;
+        $data['tour_city'] = $city;
+        // if(isset($post['price_start'])){
+        //     $data['price_start'] = $post['price_start'];
+        // }
+        // if(isset($post['price_end'])){
+        //     $data['price_end'] = $post['price_end'];
+        // }
+        
+        $this->session->set_userdata($data);
+        $totalRec = $this->common_model->count_all_tour_data($post);
+       	
+        //pagination configuration
+        $data['page'] = 0;
+        $config['target'] = '#hotel_list_div';
+        $config['base_url'] = base_url() . 'ajaxPaginationData';
+        $config['total_rows'] = $totalRec;
+        $config['per_page'] = 12;
+        $config['link_func'] = 'searchPaginationData';
+        $this->ajax_pagination->initialize($config);
+        
+        $data['all_tour'] = $this->common_model->get_search_hotel_data($post, $config["per_page"], $data['page']);
+//        echo '<pre>';print_r($data['all_tour']);die;
+        
+        $data['hotel_list_div'] = $this->load->view('home/hotel/hotel_homepage', $data, true);
+        
+        echo json_encode($data);
+    }
 
 	public function hotel_detail($name)
 	{	
@@ -549,7 +612,17 @@ class Home extends CI_Controller {
 
 	public function searchHotel()
     {
-		$data["all_hotel"] = $this->home_model->searchHotel($_POST["restaurant"], $_POST["swimming_pool"], $_POST["fitness"], $_POST["coffee_shop"], $_POST["wifi_free"], $_POST["service_room"], $_POST["country_id"]);
+		// $data['hotels']     = $this->home_model->get_all_hotel();
+		// $new_hotel_array = array();
+		// foreach($data['hotels'] as $row) {
+		// 	$new_hotel_array[$row['id']][] = $row;
+		// }
+		$hotels = $this->home_model->searchHotel($_POST["restaurant"], $_POST["swimming_pool"], $_POST["fitness"], $_POST["coffee_shop"], $_POST["wifi_free"], $_POST["service_room"], $_POST["country_id"]);
+		$new_hotel_array = array();
+		foreach($hotels as $row) {
+			$new_hotel_array[$row['id']][] = $row;
+		}
+		$data["all_hotel"] = $new_hotel_array;
 		$data["hotel_list"] = $this->load->view('home/hotel/hotel_list', $data);
 		return $data;
 		// return json_encode($data["hotel_list"]);
