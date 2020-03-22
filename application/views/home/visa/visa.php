@@ -126,7 +126,7 @@
                      <h2>Discover Amazing Places of the world</h2>
                      <p>Spend a best Holidays with us</p>
                      <div class="tour-details">
-                        <a href="tour-details.html"><i class="fa fa-flag"></i> Book Now</a>
+                        <!-- <a href="tour-details.html"><i class="fa fa-flag"></i> Book Now</a> -->
                      </div>
                      <!-- <div class="descount_btn">
                                     <a href="#"><img src="<?php echo base_url();?>assets/frontend_asset/img/appstore.png" alt="appstore" /></a>

@@ -41,37 +41,7 @@
                                         <option value=''>Select city</option>
                                     </select>
                                 </p>
-                                <p>
-                                    <input type="search" placeholder="Where To?" />
-                                    <i class="fa fa-tags"></i>
-                                </p>
-                                <p>
-                                    <select class="wide">
-                                        <option>Month</option>
-                                        <option>January</option>
-                                        <option>February</option>
-                                        <option>March</option>
-                                        <option>April</option>
-                                        <option>May</option>
-                                        <option>June</option>
-                                        <option>July</option>
-                                        <option>August</option>
-                                        <option>September</option>
-                                        <option>October</option>
-                                        <option>November</option>
-                                        <option>December</option>
-                                    </select>
-                                </p>
-                                <p>
-                                    <select class="wide">
-                                        <option>Tour Type</option>
-                                        <option>Adventure</option>
-                                        <option>Romantic</option>
-                                        <option>Vacation</option>
-                                        <option>Explore</option>
-                                        <option>Trendy</option>
-                                    </select>
-                                </p>
+                               
                                 <h4 class="widget-title">FACILITIES</h4>
                                 <ul class="ceckbox_filter">
                                     <li class="checkbox">
@@ -104,15 +74,7 @@
                     </div>
                     <div class="single-sidebar">
                         <div class="quick_contact">
-                            <h4>Contact US</h4>
-                            <p>
-                                <i class="fa fa-phone"></i>
-                                +8809639001224
-                            </p>
-                            <p>
-                                <i class="fa fa-envelope"></i>
-                                info@example.com
-                            </p>
+                            <?php  $this->load->view('home/contact_info');?>
                         </div>
                     </div>
                 </div>
