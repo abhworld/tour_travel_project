@@ -26,21 +26,21 @@
                         <div class="tour-filter clearfix">
                             <form id="hotel_filter_form">
                                 <p>
-                                    <!-- <input type="search" placeholder="Country" id="hotel_id"/> -->
-                                    <!-- <i class="fa fa-search"></i> -->
-                                    <label class="tb-label">Country</label>
+                                    <input type="search" placeholder="Country" id="hotel_id"/>
+                                    <i class="fa fa-search"></i>
+                                    <!-- <label class="tb-label">Country</label>
                                     <select class="form-control select2" name="country_id">
                                         <?php foreach (get_all_info('countries') as $row) { ?>
                                                 <option value="<?php echo $row['id'] ?>" <?php if ($country == $row['id']) {echo 'selected';} ?>>
                                                             <?php echo $row['name'] ?>
                                                 </option>
                                         <?php } ?>
-                                    </select>
+                                    </select> -->
                                 </p>
                                 <p>
-                                    <!-- <input type="search" placeholder="City" />
-                                    <i class="fa fa-tags"></i> -->
-                                <div class="book-tour-field">
+                                    <input type="search" placeholder="City" />
+                                    <i class="fa fa-tags"></i>
+                               <!--  <div class="book-tour-field">
                                     <label class="tb-label">City</label>
                                     <div class="input-group">
                                               
@@ -48,7 +48,7 @@
 
                                                 </select>
                                     </div>
-                                </div>
+                                </div> -->
                                 </p>
                                
                                 
@@ -231,64 +231,64 @@
     //});
     
     
-    $("[name='country_id']").change(function (){
-        var country = this.value;
-        var city = '';
+    // $("[name='country_id']").change(function (){
+    //     var country = this.value;
+    //     var city = '';
 
-        get_city_by_country(country, city);
-        search_filter_data();
-    });
+    //     get_city_by_country(country, city);
+    //     search_filter_data();
+    // });
     
-    $("[name='city_id']").change(function (){
-        search_filter_data();
-    });
+    // $("[name='city_id']").change(function (){
+    //     search_filter_data();
+    // });
     
-    function get_city_by_country(country, city){
-        $.ajax({
-            url: "home/get_city_by_country",
-            type: 'POST',
-            data: {
-                country_id: country,
-                city_id: city
-            },
-            success: function (response) {
-                var obj = JSON.parse(response);
-                console.log(obj);
-                $('[name="city_id"]').html(obj);
-            }
-        });
-    }
+    // function get_city_by_country(country, city){
+    //     $.ajax({
+    //         url: "home/get_city_by_country",
+    //         type: 'POST',
+    //         data: {
+    //             country_id: country,
+    //             city_id: city
+    //         },
+    //         success: function (response) {
+    //             var obj = JSON.parse(response);
+    //             console.log(obj);
+    //             $('[name="city_id"]').html(obj);
+    //         }
+    //     });
+    // }
     
-    $(".radio-btn").click(function (){
-        search_filter_data();
-    });
+    // $(".radio-btn").click(function (){
+    //     search_filter_data();
+    // });
     
-    function searchPaginationData(page_num) {
-        page_num = page_num?page_num:0;
-        $.ajax({
-            type: 'POST',
-            url: 'home/ajaxPaginationData/'+page_num,
-            data: {page:page_num},
-            beforeSend: function () {
-                $('.loading').show();
-            },
-            success: function (msg) {
-                var hhh = JSON.parse(msg);
-                $('.hotel_list').html(hhh.hotel_list_div);
-            }
-        });
-    }
+    // function searchPaginationData(page_num) {
+    //     page_num = page_num?page_num:0;
+    //     $.ajax({
+    //         type: 'POST',
+    //         url: 'home/ajaxPaginationData/'+page_num,
+    //         data: {page:page_num},
+    //         beforeSend: function () {
+    //             $('.loading').show();
+    //         },
+    //         success: function (msg) {
+    //             var hhh = JSON.parse(msg);
+    //             $('.hotel_list').html(hhh.hotel_list_div);
+    //         }
+    //     });
+    // }
     
-    function search_filter_data(){
-        $.ajax({
-            url: "home/search_hotel_data",
-            type: 'POST',
-            data: $("#hotel_filter_form").serialize(),
-            success(data){
-                var obj = JSON.parse(data);
-                $(".hotel_list").html(obj.hotel_list_div);
-            }
-        })
-    }
+    // function search_filter_data(){
+    //     $.ajax({
+    //         url: "home/search_hotel_data",
+    //         type: 'POST',
+    //         data: $("#hotel_filter_form").serialize(),
+    //         success(data){
+    //             var obj = JSON.parse(data);
+    //             $(".hotel_list").html(obj.hotel_list_div);
+    //         }
+    //     })
+    // }
     
 </script>

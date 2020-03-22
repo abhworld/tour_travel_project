@@ -298,35 +298,35 @@ class Common_model extends CI_Model{
         return $query->num_rows();
     }
 
-    public function count_all_hotel_data($condition) {
-        $this->db->select('hotel.*, countries.name AS country_name, cities.name AS city_name');
-        $this->db->from('hotel');
+//     public function count_all_hotel_data($condition) {
+//         $this->db->select('hotel.*, countries.name AS country_name, cities.name AS city_name');
+//         $this->db->from('hotel');
         
-        // $this->db->join('tour_detail', 'tour.tour_id = tour_detail.tour_pri_id', 'LEFT');
-        $this->db->join('countries', 'hotel.id = countries.id', 'LEFT');
-        $this->db->join('cities', 'hotel.id = cities.id', 'LEFT');
+//         // $this->db->join('tour_detail', 'tour.tour_id = tour_detail.tour_pri_id', 'LEFT');
+//         $this->db->join('countries', 'hotel.id = countries.id', 'LEFT');
+//         $this->db->join('cities', 'hotel.id = cities.id', 'LEFT');
 
-        // $this->db->join('package_type', 'package_type.tour_id = tour.tour_id', 'LEFT');
+//         // $this->db->join('package_type', 'package_type.tour_id = tour.tour_id', 'LEFT');
 
         
-        foreach ($condition as $key => $val) {
-            if($key != 'price_start' && $key != 'price_end' && $val != ''){
-                $this->db->where('hotel.'.$key, $val);
-            }
-            // if($key == 'price_start' && $val != ''){
-            //     $this->db->where('tour.tour_price >=', $val);
-            // }
-            // if($key == 'price_end' && $val != ''){
-            //     $this->db->where('tour.tour_price <=', $val);
-            // }
-        }
-        // $this->db->where('package_type.type_id', $type);
-        $this->db->group_by('hotel.id');
+//         foreach ($condition as $key => $val) {
+//             if($key != 'price_start' && $key != 'price_end' && $val != ''){
+//                 $this->db->where('hotel.'.$key, $val);
+//             }
+//             // if($key == 'price_start' && $val != ''){
+//             //     $this->db->where('tour.tour_price >=', $val);
+//             // }
+//             // if($key == 'price_end' && $val != ''){
+//             //     $this->db->where('tour.tour_price <=', $val);
+//             // }
+//         }
+//         // $this->db->where('package_type.type_id', $type);
+//         $this->db->group_by('hotel.id');
         
-        $query = $this->db->get();
-//        echo $this->db->last_query();
-        return $query->num_rows();
-    }
+//         $query = $this->db->get();
+// //        echo $this->db->last_query();
+//         return $query->num_rows();
+//     }
     
     public function get_search_tour_data($condition, $limit, $start) {
         
@@ -368,45 +368,45 @@ class Common_model extends CI_Model{
 
     }
 
-    public function get_search_hotel_data($condition, $limit, $start) {
+//     public function get_search_hotel_data($condition, $limit, $start) {
         
-        $this->db->select('hotel.*, countries.name AS country_name, cities.name AS city_name, tour_detail.*, hotel_images.image');
-        $this->db->from('hotel');
+//         $this->db->select('hotel.*, countries.name AS country_name, cities.name AS city_name, tour_detail.*, hotel_images.image');
+//         $this->db->from('hotel');
         
-        // $this->db->join('tour_detail', 'tour.tour_id = tour_detail.tour_pri_id', 'LEFT');
-        // $this->db->join('hotel_images', 'tour.tour_id = hotel_images.hotel_id', 'LEFT');
-        $this->db->join('countries', 'hotel.country = countries.id', 'LEFT');
-        $this->db->join('cities', 'hotel.city = cities.id', 'LEFT');
+//         // $this->db->join('tour_detail', 'tour.tour_id = tour_detail.tour_pri_id', 'LEFT');
+//         // $this->db->join('hotel_images', 'tour.tour_id = hotel_images.hotel_id', 'LEFT');
+//         $this->db->join('countries', 'hotel.country = countries.id', 'LEFT');
+//         $this->db->join('cities', 'hotel.city = cities.id', 'LEFT');
     
-        // $this->db->join('package_type', 'package_type.tour_id = tour.tour_id', 'LEFT');
+//         // $this->db->join('package_type', 'package_type.tour_id = tour.tour_id', 'LEFT');
         
-        foreach ($condition as $key => $val) {
-            if($key != 'price_start' && $key != 'price_end' && $val != ''){
-                $this->db->where('hotel.'.$key, $val);
-            }
-            // if($key == 'price_start' && $val != ''){
-            //     $this->db->where('tour.tour_price >=', $val);
-            // }
-            // if($key == 'price_end' && $val != ''){
-            //     $this->db->where('tour.tour_price <=', $val);
-            // }
-        }
+//         foreach ($condition as $key => $val) {
+//             if($key != 'price_start' && $key != 'price_end' && $val != ''){
+//                 $this->db->where('hotel.'.$key, $val);
+//             }
+//             // if($key == 'price_start' && $val != ''){
+//             //     $this->db->where('tour.tour_price >=', $val);
+//             // }
+//             // if($key == 'price_end' && $val != ''){
+//             //     $this->db->where('tour.tour_price <=', $val);
+//             // }
+//         }
         
-        // $this->db->where('hotel_images.is_main_image', 1);
-        // $this->db->where('hotel_images.type', 2);
-        // $this->db->where('package_type.type_id', $type);
-        $this->db->order_by('hotel.id', 'DESC');
-        $this->db->group_by('hotel.id');
+//         // $this->db->where('hotel_images.is_main_image', 1);
+//         // $this->db->where('hotel_images.type', 2);
+//         // $this->db->where('package_type.type_id', $type);
+//         $this->db->order_by('hotel.id', 'DESC');
+//         $this->db->group_by('hotel.id');
         
-        // if ($limit != '' || $start != '') {
-        //     $this->db->limit($limit, $start);
-        // }
+//         // if ($limit != '' || $start != '') {
+//         //     $this->db->limit($limit, $start);
+//         // }
         
-        $query = $this->db->get();
-//        echo $this->db->last_query();
-        return $query->result_array();
+//         $query = $this->db->get();
+// //        echo $this->db->last_query();
+//         return $query->result_array();
 
-    }
+//     }
     
     public function get_city_with_country() {
         $this->db->select('cities.*, countries.name as country_name');
