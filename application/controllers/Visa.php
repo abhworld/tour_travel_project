@@ -173,11 +173,12 @@ class Visa extends CI_Controller {
     
     public function uploadvisaImage($FILES, $path_folder) {
         $files = $FILES;
-//        echo '<pre>';print_r($files);die;
+       // echo '<pre>';print_r($files);die;
         $config['upload_path'] = FCPATH . '/'.$path_folder.'/';
         $config['allowed_types'] = '*';
         $config['max_size'] = '0';
-        $this->load->library('upload');
+        $this->load->library('image_lib');
+        $this->load->library('upload', $config);
         
         $images = array();
         

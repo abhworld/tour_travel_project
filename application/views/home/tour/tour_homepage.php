@@ -37,7 +37,7 @@
                                     <div class="book-tour-field">
                                         <label class="tb-label">Country</label>
                                        <select class="form-control select2" name="country_id">
-                                                    <!-- <option value="">Country</option> -->
+                                                    <option value="">Select Country</option>
                                                     <?php foreach (get_all_info('countries') as $row) { ?>
                                                         <option value="<?php echo $row['id'] ?>" <?php if ($country_id == $row['id']) {echo 'selected';} ?>>
                                                             <?php echo $row['name'] ?>

@@ -8,6 +8,8 @@ class Home extends CI_Controller {
 
         $this->load->model('home_model'); 
         $this->load->model('common_model'); 
+        $this->load->model('admin_model'); 
+
 
         $this->load->library('Ajax_pagination');
 
@@ -214,19 +216,20 @@ class Home extends CI_Controller {
 		// echo '<pre>';print_r($data['all_hotel']);die;
 		$data = array();
 
-		$post['country'] = $this->session->userdata('tour_country');
-        $post['city'] = $this->session->userdata('tour_city');
-        $data = $post;
+		// $post['country'] = $this->session->userdata('tour_country');
+  //       $post['city'] = $this->session->userdata('tour_city');
+       // $data = $post;
 
-        $totalRec = $this->common_model->count_all_hotel_data($post);
-        //pagination configuration
-        $data['page'] = 0;
-        $config['target'] = '#hotel_list_div';
-        $config['base_url'] = base_url() . 'ajaxPaginationData';
-        $config['total_rows'] = $totalRec;
-        $config['per_page'] = 12;
-        $config['link_func'] = 'searchPaginationData';
-        $this->ajax_pagination->initialize($config);
+        // $totalRec = $this->common_model->count_all_hotel_data($post);
+        // //pagination configuration
+        // $data['page'] = 0;
+        // $config['target'] = '#hotel_list_div';
+        // $config['base_url'] = base_url() . 'ajaxPaginationData';
+        // $config['total_rows'] = $totalRec;
+        // $config['per_page'] = 12;
+        // $config['link_func'] = 'searchPaginationData';
+        // $this->ajax_pagination->initialize($config);
+        $data['hotel_gallery'] =
 
 		// $data['all_hotel']     = $this->home_model->get_all_hotel();
 		$data['all_hotel']     = $new_hotel_array;
@@ -253,45 +256,45 @@ class Home extends CI_Controller {
 		$this->load->view('home/home_main_content', $data);
 	}
 
-	public function search_hotel_data() {
-        $post = $this->input->post();
+// 	public function search_hotel_data() {
+//         $post = $this->input->post();
         
-        $country = '';
-        $city = '';
-        if($this->input->post('country_id')){
-            $country = $post['country_id'];
-        }
-        if($this->input->post('city_id')){
-            $city = $post['city_id'];
-        }
-        $data['tour_country'] = $country;
-        $data['tour_city'] = $city;
-        // if(isset($post['price_start'])){
-        //     $data['price_start'] = $post['price_start'];
-        // }
-        // if(isset($post['price_end'])){
-        //     $data['price_end'] = $post['price_end'];
-        // }
+//         $country = '';
+//         $city = '';
+//         if($this->input->post('country_id')){
+//             $country = $post['country_id'];
+//         }
+//         if($this->input->post('city_id')){
+//             $city = $post['city_id'];
+//         }
+//         $data['country'] = $country;
+//         $data['city'] = $city;
+//         // if(isset($post['price_start'])){
+//         //     $data['price_start'] = $post['price_start'];
+//         // }
+//         // if(isset($post['price_end'])){
+//         //     $data['price_end'] = $post['price_end'];
+//         // }
         
-        $this->session->set_userdata($data);
-        $totalRec = $this->common_model->count_all_tour_data($post);
+//         $this->session->set_userdata($data);
+//         $totalRec = $this->common_model->count_all_tour_data($post);
        	
-        //pagination configuration
-        $data['page'] = 0;
-        $config['target'] = '#hotel_list_div';
-        $config['base_url'] = base_url() . 'ajaxPaginationData';
-        $config['total_rows'] = $totalRec;
-        $config['per_page'] = 12;
-        $config['link_func'] = 'searchPaginationData';
-        $this->ajax_pagination->initialize($config);
+//         //pagination configuration
+//         $data['page'] = 0;
+//         $config['target'] = '#hotel_list_div';
+//         $config['base_url'] = base_url() . 'ajaxPaginationData';
+//         $config['total_rows'] = $totalRec;
+//         $config['per_page'] = 12;
+//         $config['link_func'] = 'searchPaginationData';
+//         $this->ajax_pagination->initialize($config);
         
-        $data['all_tour'] = $this->common_model->get_search_hotel_data($post, $config["per_page"], $data['page']);
-//        echo '<pre>';print_r($data['all_tour']);die;
+//         $data['all_tour'] = $this->common_model->get_search_hotel_data($post, $config["per_page"], $data['page']);
+// //        echo '<pre>';print_r($data['all_tour']);die;
         
-        $data['hotel_list_div'] = $this->load->view('home/hotel/hotel_homepage', $data, true);
+//         $data['hotel_list_div'] = $this->load->view('home/hotel/hotel_homepage', $data, true);
         
-        echo json_encode($data);
-    }
+//         echo json_encode($data);
+//     }
 
 	public function hotel_detail($name)
 	{	
@@ -306,7 +309,7 @@ class Home extends CI_Controller {
         $data['hotel_gallery'] = $this->home_model->get_gallery_hotel($id);
         $data['room_detail'] = $this->home_model->get_room_detail($id);
 
-        // echo '<pre>'; print_r($data['room_detail']); die;
+        // echo '<pre>'; print_r($data['hotel_detail']); die;
 
 		$data['company_info'] = $this->home_model->getRow('company_info', 'id', 1);
 		// echo '<pre>'; print_r($data['company_info']); die;
@@ -325,7 +328,7 @@ class Home extends CI_Controller {
 	public function send_booking_request() {
         $post = $this->input->post();
 
-        echo '<pre>'; print_r($post); die;
+        // echo '<pre>'; print_r($post); die;
         
         $data = array();
         $this->form_validation->set_error_delimiters('', '');
@@ -347,7 +350,13 @@ class Home extends CI_Controller {
             if($this->input->post('package_name')){
                 $data['package_name'] = $post['package_name'];
             }
-            $data['hotel_id'] = $post['hotel_id'];
+            if($this->input->post('hotel_id')){
+            	$data['hotel_id'] = $post['hotel_id'];
+            }
+
+            if($this->input->post('visa_id')){
+            	$data['visa_id'] = $post['visa_id'];
+            }
             $data['first_name'] = $post['name'];
             // $data['last_name'] = $post['last_name'];
 //            $data['nationality'] = $post['nationality'];
@@ -382,16 +391,19 @@ class Home extends CI_Controller {
     }
 
 	public function get_city_by_country(){
+		// echo '<pre>'; echo "string"; die;
         $country_id = $this->input->post('country_id');
-        $city_id = $this->input->post('city_id');
+        // echo '<pre>'; print_r($country_id); die;
+        // $city_id = $this->input->post('city_id');
         $get_all_city = $this->common_model->getInfo('cities', 'country_id', $country_id);
         // echo '<pre>'; print_r($get_all_city); die;
         // echo '<pre>'; print_r($city_id); die;
         $city = '';
         foreach ($get_all_city as $row) {
-            $city.= '<option value="'.$row['id'].'" '.($city_id != '' && $city_id == $row['id'] ? 'selected' : '').'>'.$row['name'].'</option>';
+            // $city.= '<option value="'.$row['id'].'" '.($city_id != '' && $city_id == $row['id'] ? 'selected' : '').'>'.$row['name'].'</option>';
+             $city.= '<option value="'.$row['id'].'">'.$row['name'].'</option>';
         }
-        
+        // echo '<pre>'; print_r($city); die;
         echo json_encode($city);
     }
 
@@ -473,6 +485,7 @@ class Home extends CI_Controller {
 
 	public function search_tour_data() {
         $post = $this->input->post();
+        // echo '<pre>'; print_r($post); die;
         
         $country = '';
         $city = '';

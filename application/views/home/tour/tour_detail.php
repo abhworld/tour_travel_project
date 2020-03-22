@@ -97,8 +97,11 @@
                      <div class="single-sidebar">
                         <div class="quick-contact">
                            <h3>Book This Tour</h3>
-                           <form id="booking_request">
+                           <form id="booking_request" method="post">
                               <input type="hidden" name="type" value="2">
+                              <input type="hidden" name="package_name" value="<?php echo $tour_detail[0]['package_name']?>">
+                              <input type="hidden" name="hotel_id" value="<?php echo $tour_detail[0]['tour_id']?>">
+
                               <div class="book-tour-field">
                                  <input type="text" placeholder="Your Name" name="name">
                               </div>
@@ -121,7 +124,7 @@
                                  </select>
                               </div>
                               <div class="book-tour-field">
-                                 <button type="submit" id="booking_request_btn">Book Now</button>
+                                 <button type="button" id="booking_request_btn">Book Now</button>
                               </div>
                            </form>
                         </div>
@@ -157,16 +160,16 @@
 
    <script>
     $("#booking_request_btn").click(function () {
-        
+
         $(".error_msg").remove();
-        
+       
         $.ajax({
-            url: "home/send_booking_request",
+            url: "<?php echo base_url();?>"+'/home/send_booking_request',
             type: 'POST',
             data: $("#booking_request").serialize(),
             success: function (response) {
                 var obj = JSON.parse(response);
-//                console.log(obj);
+               // console.log(obj);
                 if(obj.status == true){
                     $('#booking_request_modal').modal('show');
                     $('#booking_request')[0].reset();

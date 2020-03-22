@@ -219,30 +219,35 @@
                         <div class="book-hotel-wrapper">
                         <div class="quick-contact">
                            <h3>Book This Hotel</h3>
-                           <form>
+                           <form id="booking_request">
+
+                              <input type="hidden" name="type" value="1">
+                              
+                              <input type="hidden" name="hotel_id" value="<?php echo $hotel_detail['id']?>">
+
                               <div class="book-tour-field">
-                                 <input type="text" placeholder="Your Name">
+                                 <input type="text" placeholder="Your Name" name="name">
                               </div>
                               <div class="book-tour-field">
-                                 <input type="email" placeholder="Email Address">
+                                 <input type="email" placeholder="Email Address" name="email_address">
                               </div>
                               <div class="book-tour-field">
-                                 <input type="tel" placeholder="Phone Number">
+                                 <input type="tel" placeholder="Phone Number" name="phone">
                               </div>
                               <div class="book-tour-field">
                                  <input id="reservation_date" name="reservation_date" placeholder="Booking Date" data-select="datepicker" type="text">
                               </div>
-                              <div class="book-tour-field clearfix">
-                                 <select class="wide">
+                             <!--  <div class="book-tour-field clearfix">
+                                 <select class="wide"  name="no_of_person">
                                     <option selected disabled>Type of Room</option>
                                     <option>Double</option>
                                     <option>Single</option>
                                     <option>King</option>
                                     <option>Couple</option>
                                  </select>
-                              </div>
+                              </div> -->
                               <div class="book-tour-field">
-                                 <button type="submit">Book Now</button>
+                                 <button type="button" id="booking_request_btn">Book Now</button>
                               </div>
                            </form>
                         </div>
@@ -409,3 +414,30 @@
         </div><!-- End map section -->
     </div>
 </div>
+
+<?php $this->load->view('home/booking_request_modal');?>
+
+<script>
+    $("#booking_request_btn").click(function () {
+        
+        $(".error_msg").remove();
+        
+        $.ajax({
+            url: "<?php echo base_url();?>"+'/home/send_booking_request',
+            type: 'POST',
+            data: $("#booking_request").serialize(),
+            success: function (response) {
+                var obj = JSON.parse(response);
+//                console.log(obj);
+                if(obj.status == true){
+                    $('#booking_request_modal').modal('show');
+                    $('#booking_request')[0].reset();
+                } else {
+                    $.each(obj.errors, function(key, val) {
+                        $('#'+key).after("<div><small class='error_msg' style='font-weight: bold;color: red;'>" + val + "</small></div>");
+                    });
+                }
+            }
+        });
+    });
+</script>
