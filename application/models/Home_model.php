@@ -428,7 +428,7 @@ class Home_model extends CI_Model{
         
     }
 
-    public function searchHotel($restaurant, $swimming_pool, $fitness, $coffee_shop, $service_room)
+    public function searchHotel($restaurant, $swimming_pool, $fitness, $coffee_shop, $service_room, $country_id, $city_id)
     {
         $this->db->select('hotel.*, countries.name AS country_name, cities.name AS city_name, hotel_gallery.gallery_image');
 
@@ -438,6 +438,11 @@ class Home_model extends CI_Model{
         $this->db->join('cities', 'hotel.city = cities.id', 'LEFT');
         $this->db->join('hotel_gallery', 'hotel.id = hotel_gallery.hotel_id', 'LEFT');
 
+        if(!empty($country_id))
+            $this->db->where('hotel.country', $country_id);
+
+        if(!empty($city_id))
+            $this->db->where('hotel.city', $city_id);
 
         if(!empty($restaurant))
             $this->db->where('hotel.restaurant', 1);
@@ -457,12 +462,11 @@ class Home_model extends CI_Model{
         if(!empty($service_room))
             $this->db->where('hotel.service_room', 1);
 
-        if(!empty($country_id))
-            $this->db->where('hotel.country', $country_id);
         
         
         $query = $this->db->get();
-        
+        echo $this->db->last_query();
+        die;
         return $query->result_array();
            
     }
