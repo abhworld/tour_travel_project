@@ -49,6 +49,8 @@ class Visa extends CI_Controller {
             foreach ($this->input->post() as $key => $value) {
                 $errors[$key] = form_error($key);
             }
+        var_dump($errors);die();
+
             $response['errors'] = array_filter($errors); // Some might be empty
             $response['status'] = false;
 
@@ -65,7 +67,13 @@ class Visa extends CI_Controller {
             $data['facilities'] = $post['facilities'];
             $data['itinerary'] = $post['itinerary'];
             
-            if($_FILES['images']["error"][0] ==  0){
+            if(!isset($visa_id) && $_FILES['images']["error"][0] !=  0){
+                // echo 123123;die;
+                $response['status'] = false;
+                $response['errors']['image'] = "Image is required"; // Some might be empty
+                
+            } else{
+                
                 $get_file_info = $this->uploadvisaImage($_FILES['images'], 'uploads/visa');
                 
                 if($get_file_info[0]){
@@ -74,17 +82,15 @@ class Visa extends CI_Controller {
                     $data['image'] = $post['prev_image'];
                 }
             //    echo '<pre>';print_r($data);die;
-                if(isset($visa_id)){
-                    $this->common_model->updateInfo('visa', 'visa_id', $visa_id, $data);
-                } else {
-                    $visa_id = $this->common_model->insertId('visa', $data);
-                }
                 
                 $response['status'] = true;
-            }else{
-                $response['status'] = false;
-                $response['errors']['image'] = "Image is required"; // Some might be empty
-
+            }
+            // echo 'sdfsd';die;
+            if(isset($visa_id)){
+                // echo 2;die;
+                $this->common_model->updateInfo('visa', 'visa_id', $visa_id, $data);
+            } else {
+                $visa_id = $this->common_model->insertId('visa', $data);
             }
 
         }

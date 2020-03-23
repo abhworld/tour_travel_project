@@ -23,6 +23,8 @@
     <script src="<?php echo base_url();?>assets/frontend_asset/js/niceCountryInput.js"></script>
     <!--Main js-->
     <script src="<?php echo base_url();?>assets/frontend_asset/js/main.js"></script>
+    <script src="assets/admin_asset/js/select2.js" type="text/javascript"></script>
+    <script src="assets/admin_asset/js/select2.full.js" type="text/javascript"></script>
 
     <script src="<?php echo base_url();?>assets/frontend_asset/js/select2.js" type="text/javascript"></script>
     <script src="<?php echo base_url();?>assets/frontend_asset/js/select2.full.js" type="text/javascript"></script>

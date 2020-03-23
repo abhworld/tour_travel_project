@@ -26,32 +26,22 @@
                         <div class="tour-filter clearfix">
                             <form id="hotel_filter_form">
                                 <p>
-                                    <input type="search" placeholder="Country" id="hotel_id"/>
-                                    <i class="fa fa-search"></i>
-                                    <!-- <label class="tb-label">Country</label>
-                                    <select class="form-control select2" name="country_id">
-                                        <?php foreach (get_all_info('countries') as $row) { ?>
-                                                <option value="<?php echo $row['id'] ?>" <?php if ($country == $row['id']) {echo 'selected';} ?>>
-                                                            <?php echo $row['name'] ?>
-                                                </option>
-                                        <?php } ?>
-                                    </select> -->
+                                    <select id="country_id" class="select2 form-control">
+                                        <option value=''>Select country</option>
+                                        <?php 
+                                            foreach($countries as $country)
+                                            {
+                                                echo "<option value='". $country['id']."'>".$country['name']."</option>";
+                                            }
+                                        ?>
+                                    </select>
                                 </p>
                                 <p>
-                                    <input type="search" placeholder="City" />
-                                    <i class="fa fa-tags"></i>
-                               <!--  <div class="book-tour-field">
-                                    <label class="tb-label">City</label>
-                                    <div class="input-group">
-                                              
-                                                <select class="form-control" name="city_id" data-type="1">
-
-                                                </select>
-                                    </div>
-                                </div> -->
+                                    <select class="select2 form-control" id="city_id">
+                                        <option value=''>Select city</option>
+                                    </select>
                                 </p>
                                
-                                
                                 <h4 class="widget-title">FACILITIES</h4>
                                 <ul class="ceckbox_filter">
                                     <li class="checkbox">
@@ -79,9 +69,6 @@
                                         <label for="wifi-free"><span></span>Wifi free</label>
                                     </li>
                                 </ul>
-                                <p>
-                                    <button type="submit">Search</button>
-                                </p>
                             </form>
                         </div>
                     </div>
@@ -97,74 +84,9 @@
                         <h2>Hotel List</h2>
                        
                     </div> -->
-                <div class="hotel-list-wrapper">
-                    <?php foreach($all_hotel as $row) { ?>
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <div class="hotel-image-inner">
-                                <div class="details-slider owl-carousel">
 
-                                    <div class="single-destination">
-                                        <a href="hotel-detail/<?php echo str_replace(' ', '-', strtolower($row['hotel_name'])) ;?>">
-                                            <div class="destination-image">
-                                                <img src="<?php echo base_url();?>uploads/hotel/<?php echo $row['hotel_image'];?>" alt="destination" />
-                                            </div>
-                                        </a>
-                                    </div>
-
-                                   
-                                    
-                                    
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="hotel-details-inner">
-                                <h2><?php echo $row['city_name']; ?></h2>
-                                <a href="hotel-detail/<?php echo str_replace(' ', '-', strtolower($row['hotel_name'])) ;?>"><h3><i class="fa fa-building"></i><?php echo $row['hotel_name'];?></h3></a>
-                                <h3 class="hotel-address"><i class="fa fa-map-marker"></i><?php echo $row['hotel_address']; ?>
-                                </h3>
-
-                                <?php if(!empty($row)) {?>
-                                <h4>Hotel Facilities</h4>
-                                <div class="hotel-features">
-
-                                    <ul>
-                                        <?php if(isset($row['restaurant']) && $row['restaurant']) { ?>
-                                        <li><span>Restaurant</span></li>
-                                        <?php } ?>
-                                        <?php if(isset($row['swimming_pool']) && $row['swimming_pool']) { ?>
-                                        <li><span>Pool</span></li>
-                                        <?php } ?>
-                                        <?php if(isset($row['fitness_center']) && $row['fitness_center']) { ?>
-                                        <li><span>Fitness Center</span></li>
-                                        <?php } ?>
-                                        <?php if(isset($row['service_room']) && $row['service_room']) { ?>
-                                        <li><span>Service Room</span></li>
-                                        <?php } ?>
-                                        <?php if(isset($row['coffee_shop']) && $row['coffee_shop']) { ?>
-                                        <li><span>Coffee Shop</span></li>
-                                        <?php } ?>
-                                        <?php if(isset($row['wifi']) && $row['wifi']) { ?>
-                                        <li><span>Wifi Free</span></li>
-                                        <?php } ?>
-                                    </ul>
-                                </div>
-                                <?php } ?>
-
-                                <div class="tour-details">
-                                    <a href="hotel-detail/<?php echo str_replace(' ', '-', strtolower($row['hotel_name'])) ;?>"> Book Now</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="gap-30"></div>
-                    <?php } ?>
-
-                   
-
-                    
-                   
+                <div id="hotel_list" class="hotel-list-wrapper">
+		            <?php $this->load->view('home/hotel/hotel_list'); ?>
 
                 </div>
             </div>
@@ -229,70 +151,26 @@
 <!-- Choose Area End -->
 
 <script>
-    
-    //$(document).ready(function (){
-        //get_city_by_country('<?php //echo $country_id;?>', '<?php //echo $city_id;?>')
-    //});
-    
-    
-    // $("[name='country_id']").change(function (){
-    //     var country = this.value;
-    //     var city = '';
+function getHotelInfo()
+{
+    $.post( 
+            "home/searchHotel",
+            { 'restaurant': $("#restaurant").val(),'swimming_pool': $("#swimming-pool").val(), 'fitness': $("#fitness").val(), 'service_room': $("#service-room").val(), 'coffee_shop': $("#coffee-shop").val(), 'wifi_free': $("#wifi-free").val(), 'country_id': $("#country_id").val()},
+            function(data) {
+                console.log(data);
 
-    //     get_city_by_country(country, city);
-    //     search_filter_data();
-    // });
-    
-    // $("[name='city_id']").change(function (){
-    //     search_filter_data();
-    // });
-    
-    // function get_city_by_country(country, city){
-    //     $.ajax({
-    //         url: "home/get_city_by_country",
-    //         type: 'POST',
-    //         data: {
-    //             country_id: country,
-    //             city_id: city
-    //         },
-    //         success: function (response) {
-    //             var obj = JSON.parse(response);
-    //             console.log(obj);
-    //             $('[name="city_id"]').html(obj);
-    //         }
-    //     });
-    // }
-    
-    // $(".radio-btn").click(function (){
-    //     search_filter_data();
-    // });
-    
-    // function searchPaginationData(page_num) {
-    //     page_num = page_num?page_num:0;
-    //     $.ajax({
-    //         type: 'POST',
-    //         url: 'home/ajaxPaginationData/'+page_num,
-    //         data: {page:page_num},
-    //         beforeSend: function () {
-    //             $('.loading').show();
-    //         },
-    //         success: function (msg) {
-    //             var hhh = JSON.parse(msg);
-    //             $('.hotel_list').html(hhh.hotel_list_div);
-    //         }
-    //     });
-    // }
-    
-    // function search_filter_data(){
-    //     $.ajax({
-    //         url: "home/search_hotel_data",
-    //         type: 'POST',
-    //         data: $("#hotel_filter_form").serialize(),
-    //         success(data){
-    //             var obj = JSON.parse(data);
-    //             $(".hotel_list").html(obj.hotel_list_div);
-    //         }
-    //     })
-    // }
-    
+                // var obj = JSON.parse(data);
+                $("#hotel_list").html(data); 
+            }
+        );
+}
+$('#restaurant, #fitness, #service-room, #coffee-shop, #wifi-free, #service-room').on('click', function() { 
+    getHotelInfo();
+            
+});
+$('#country_id, #city_id').on('change', function() { 
+    getHotelInfo();
+            
+});
 </script>
+

@@ -207,6 +207,13 @@ class Home extends CI_Controller {
 
 	public function hotel_homepage()
 	{	
+		$data['hotels']     = $this->home_model->get_all_hotel();
+		$new_hotel_array = array();
+		foreach($data['hotels'] as $row) {
+			$new_hotel_array[$row['id']][] = $row;
+		}
+		// echo '<pre>';print_r($new_hotel_array);die;
+		// echo '<pre>';print_r($data['all_hotel']);die;
 		$data = array();
 
 		// $post['country'] = $this->session->userdata('tour_country');
@@ -224,8 +231,13 @@ class Home extends CI_Controller {
         // $this->ajax_pagination->initialize($config);
         $data['hotel_gallery'] =
 
-		$data['all_hotel']     = $this->home_model->get_all_hotel();
-		// echo '<pre>'; print_r($data['all_hotel']); die;
+		// $data['all_hotel']     = $this->home_model->get_all_hotel();
+		$data['all_hotel']     = $new_hotel_array;
+
+		$data['countries'] = $this->home_model->getAllInfo('countries');
+		
+
+		// echo '<pre>'; print_r($data['all_hotel']);echo "</pre>"; die;
 		// $data['hotel_gallery'] = $this->home_model->get_hotel_gallery();
 
 		// echo '<pre>'; print_r($data['hotel_info']); die;
@@ -609,5 +621,34 @@ class Home extends CI_Controller {
 		$data['home_content'] = $this->load->view('home/blog', $data, TRUE);
 
 		$this->load->view('home/home_main_content', $data);
+	}
+
+	public function searchHotel()
+    {
+		// $data['hotels']     = $this->home_model->get_all_hotel();
+		// $new_hotel_array = array();
+		// foreach($data['hotels'] as $row) {
+		// 	$new_hotel_array[$row['id']][] = $row;
+		// }
+		$hotels = $this->home_model->searchHotel($_POST["restaurant"], $_POST["swimming_pool"], $_POST["fitness"], $_POST["coffee_shop"], $_POST["wifi_free"], $_POST["service_room"], $_POST["country_id"]);
+		$new_hotel_array = array();
+		foreach($hotels as $row) {
+			$new_hotel_array[$row['id']][] = $row;
+		}
+		$data["all_hotel"] = $new_hotel_array;
+		$data["hotel_list"] = $this->load->view('home/hotel/hotel_list', $data);
+		return $data;
+		// return json_encode($data["hotel_list"]);
+	}
+
+	public function searchCityByCountry()
+    {
+		$show = '';
+		$cities = $this->common_model->getInfo('cities', 'country_id', $_POST["country_id"]);
+		foreach($cities as $city)
+			$show .= "<option value='". $city['id']."'>".$city['name']."</option>";
+
+		echo $show;
+ 
 	}
 }
