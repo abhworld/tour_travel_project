@@ -275,10 +275,12 @@
                                 </div>
                             </div>
                             <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
-                                <textarea name="hotel_facilities" id="editor" class="mb-3 editor"><?php echo $hotel_info[0]['hotel_facilities']?></textarea>
+                                <textarea name="hotel_facilities" id="editor1" class="mb-3 editor1"><?php echo $hotel_info[0]['hotel_facilities']?></textarea>
+                                <input type="hidden" name="hotel_facilities">
                             </div>
                             <div class="tab-pane fade" id="nav-contact1" role="tabpanel" aria-labelledby="nav-contact-tab">
-                                <textarea name="hotel_itinerary" id="editor" class="mb-3 editor"><?php echo $hotel_info[0]['hotel_itinerary']?></textarea>
+                                <textarea name="hotel_itinerary" id="editor2" class="mb-3 editor2"><?php echo $hotel_info[0]['hotel_itinerary']?></textarea>
+                                <input type="hidden" name="hotel_itinerary">
                             </div>
                             
                           </div>
@@ -576,8 +578,8 @@
     $("#add_hotel").click(function (){
         $('[name="hotel_description"]').val($( 'textarea.editor' ).val());
         // $('[name="hotel_address"]').val($( 'textarea.editor' ).val());
-        $('[name="hotel_facilities"]').val($( 'textarea.editor' ).val());
-        $('[name="hotel_itinerary"]').val($( 'textarea.editor' ).val());
+        $('[name="hotel_facilities"]').val($( 'textarea.editor1' ).val());
+        $('[name="hotel_itinerary"]').val($( 'textarea.editor2' ).val());
 //        form_data.append('hotel_overivew', editor.getData());
         var form_data = new FormData($("#add_hotel_info")[0]);
 //        var content = $( 'textarea.editor' ).val();

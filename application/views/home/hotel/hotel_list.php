@@ -55,7 +55,7 @@ foreach($all_hotel as $key => $row) {?>
                                     </ul>
                                 </div>
                                 <div class="tour-details">
-                                    <a href="hotel-details.php"> Book Now</a>
+                                    <a href="hotel-detail/<?php echo str_replace(' ', '-', strtolower($row[0]['hotel_name'])) ;?>"> Book Now</a>
                                 </div>
                             </div>
                         </div>

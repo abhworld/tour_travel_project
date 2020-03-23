@@ -1,3 +1,12 @@
+
+<style>
+    #map{
+        width: 100%;
+        height: 250px;
+        margin-top: 35px;
+    }
+</style>
+
 <!-- Breadcrumb Area Start -->
 <section class="abh-breadcrumb-area" style="background-image: url('../assets/frontend_asset/img/hotel-banner.jpg');">
     <div class="breadcrumb-top">
@@ -300,122 +309,107 @@
         </div>
 
     </div> -->
-
-    <div class="map-section-full">
-        <div class="abh-map-sec">
-            <div class="abh-maps-wraper location-wrapper">
-                <div class="map">
-                    <iframe
-                        src="https://maps.google.com/maps?width=100%&amp;height=600&amp;hl=en&amp;q=Gulshan%202%2C%20Dhaka%20-%201212%2C%20Bangladesh+(ABH%20CRM)&amp;ie=UTF8&amp;t=&amp;z=17&amp;iwloc=B&amp;output=embed"></iframe>
+<div class="map-block">
+            <div class="map-info">
+                <h3 class="title-style-2">How To Find Us</h3>
+                <p class="address">
+                    <i class="fa fa-map-marker"></i> 
+                    <?php echo $hotel_detail['hotel_address']?>
+                </p><!--
+                <p class="phone">
+                    <i class="fa fa-phone"></i> 910-740-6026</p>
+                <p class="mail">
+                    <a href="mailto:domain@expooler.com">
+                        <i class="fa fa-envelope-o"></i>domain@expooler.com</a>
+                </p>-->
+                <div class="footer-block">
+                    <a class="btn btn-open-map">Open Map</a>
                 </div>
-                <div class="location location-1" data-placement="left" data-toggle="tooltip" data-html="true" title='<h2 class="location-name">Gulshan 2, Dhaka</h2>
-                        <p class="location-des">Gulshan 2, Dhaka - 1212, Bangladesh <br>House: 24/A CWN (B), Road: 36</p>
-                        <p>Tel: +8809639001224 <br>
-                            Email: info@abhworld.com</p>'>
-
-                    <div class="location_indicator indicator-1"></div>
-                    <div class="location-info d-block d-md-none">
-                        <h2 class="location-name">Gulshan 2, Dhaka - 1212</h2>
-                        <p class="location-des">Gulshan 2, Dhaka - 1212, Bangladesh <br>House: 24/A CWN (B), Road: 36</p>
-                        <p class="location-tel">Tel: +8809639001224 <br>
-                            Email: info@abhworld.com</p>
-
-                    </div>
-                </div>
-                <div class="location location-2" data-placement="left" data-toggle="tooltip" data-html="true" title='<h2 class="location-name">Gulshan 2, Dhaka</h2>
-                        <p class="location-des">Gulshan 2, Dhaka - 1212, Bangladesh <br>House: 24/A CWN (B), Road: 36</p>
-                        <p>Tel: +8809639001224 <br>
-                            Email: info@abhworld.com</p>'>
-
-                            <div class="location_indicator indicator-1"></div>
-                    <div class="location-info d-block d-md-none">
-                        <h2 class="location-name">Gulshan 2, Dhaka - 1212</h2>
-                        <p class="location-des">Gulshan 2, Dhaka - 1212, Bangladesh <br>House: 24/A CWN (B), Road: 36</p>
-                        <p class="location-tel">Tel: +8809639001224 <br>
-                            Email: info@abhworld.com</p>
-
-                    </div>
-                </div>
-                <div class="location location-3" data-placement="left" data-toggle="tooltip" data-html="true" title='<h2 class="location-name">Gulshan 2, Dhaka</h2>
-                        <p class="location-des">Gulshan 2, Dhaka - 1212, Bangladesh <br>House: 24/A CWN (B), Road: 36</p>
-                        <p>Tel: +8809639001224 <br>
-                            Email: info@abhworld.com</p>'>
-
-                            <div class="location_indicator indicator-1"></div>
-                    <div class="location-info d-block d-md-none">
-                        <h2 class="location-name">Gulshan 2, Dhaka - 1212</h2>
-                        <p class="location-des">Gulshan 2, Dhaka - 1212, Bangladesh <br>House: 24/A CWN (B), Road: 36</p>
-                        <p class="location-tel">Tel: +8809639001224 <br>
-                            Email: info@abhworld.com</p>
-
-                    </div>
-                </div>
-                <div class="location location-4" data-placement="left" data-toggle="tooltip" data-html="true" title='<h2 class="location-name">Gulshan 2, Dhaka</h2>
-                        <p class="location-des">Gulshan 2, Dhaka - 1212, Bangladesh <br>House: 24/A CWN (B), Road: 36</p>
-                        <p>Tel: +8809639001224 <br>
-                            Email: info@abhworld.com</p>'>
-
-                            <div class="location_indicator indicator-1"></div>
-                    <div class="location-info d-block d-md-none">
-                        <h2 class="location-name">Gulshan 2, Dhaka - 1212</h2>
-                        <p class="location-des">Gulshan 2, Dhaka - 1212, Bangladesh <br>House: 24/A CWN (B), Road: 36</p>
-                        <p class="location-tel">Tel: +8809639001224 <br>
-                            Email: info@abhworld.com</p>
-
-                    </div>
-                </div>
-                <div class="location location-5" data-placement="left" data-toggle="tooltip" data-html="true" title='<h2 class="location-name">Gulshan 2, Dhaka</h2>
-                        <p class="location-des">Gulshan 2, Dhaka - 1212, Bangladesh <br>House: 24/A CWN (B), Road: 36</p>
-                        <p>Tel: +8809639001224 <br>
-                            Email: info@abhworld.com</p>'>
-
-                            <div class="location_indicator indicator-1"></div>
-                    <div class="location-info d-block d-md-none">
-                        <h2 class="location-name">Gulshan 2, Dhaka - 1212</h2>
-                        <p class="location-des">Gulshan 2, Dhaka - 1212, Bangladesh <br>House: 24/A CWN (B), Road: 36</p>
-                        <p class="location-tel">Tel: +8809639001224 <br>
-                            Email: info@abhworld.com</p>
-
-                    </div>
-                </div>
-                <div class="location location-6" data-placement="left" data-toggle="tooltip" data-html="true" title='<h2 class="location-name">Gulshan 2, Dhaka</h2>
-                        <p class="location-des">Gulshan 2, Dhaka - 1212, Bangladesh <br>House: 24/A CWN (B), Road: 36</p>
-                        <p>Tel: +8809639001224 <br>
-                            Email: info@abhworld.com</p>'>
-
-                            <div class="location_indicator indicator-1"></div>
-                    <div class="location-info d-block d-md-none">
-                        <h2 class="location-name">Gulshan 2, Dhaka - 1212</h2>
-                        <p class="location-des">Gulshan 2, Dhaka - 1212, Bangladesh <br>House: 24/A CWN (B), Road: 36</p>
-                        <p class="location-tel">Tel: +8809639001224 <br>
-                            Email: info@abhworld.com</p>
-
-                    </div>
-                </div>
-                <div class="location location-7" data-placement="left" data-toggle="tooltip" data-html="true" title='<h2 class="location-name">Gulshan 2, Dhaka</h2>
-                        <p class="location-des">Gulshan 2, Dhaka - 1212, Bangladesh <br>House: 24/A CWN (B), Road: 36</p>
-                        <p>Tel: +8809639001224 <br>
-                            Email: info@abhworld.com</p>'>
-
-                            <div class="location_indicator indicator-1"></div>
-                    <div class="location-info d-block d-md-none">
-                        <h2 class="location-name">Gulshan 2, Dhaka - 1212</h2>
-                        <p class="location-des">Gulshan 2, Dhaka - 1212, Bangladesh <br>House: 24/A CWN (B), Road: 36</p>
-                        <p class="location-tel">Tel: +8809639001224 <br>
-                            Email: info@abhworld.com</p>
-
-                    </div>
-                    <!-- end location info -->
-                </div>
-                <!-- end location -->
-
             </div>
-            <!-- end ts maps wrapper -->
-        </div><!-- End map section -->
-    </div>
+            <div id="map"></div>
 </div>
 
 <?php $this->load->view('home/booking_request_modal');?>
+
+<script>
+    function initMap() {
+
+        var longitude = <?php echo $hotel_detail['longitude']?>;
+        var latitude = <?php echo $hotel_detail['latitude']?>;
+
+        var myLatlng = new google.maps.LatLng(latitude,longitude);
+    //    alert(myLatlng);
+        var map = new google.maps.Map(document.getElementById('map'), {
+          center: myLatlng,
+          zoom: 15
+        });
+        var input = document.getElementById('searchInput');
+        map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+
+        var autocomplete = new google.maps.places.Autocomplete(input);
+        autocomplete.bindTo('bounds', map);
+
+        var infowindow = new google.maps.InfoWindow();
+        var marker = new google.maps.Marker({
+            position: myLatlng,
+            map: map
+    //        anchorPoint: new google.maps.Point(0, -29)
+        });
+
+        autocomplete.addListener('place_changed', function() {
+            infowindow.close();
+            marker.setVisible(false);
+            var place = autocomplete.getPlace();
+            if (!place.geometry) {
+                window.alert("Autocomplete's returned place contains no geometry");
+                return;
+            }
+
+            // If the place has a geometry, then present it on a map.
+            if (place.geometry.viewport) {
+                map.fitBounds(place.geometry.viewport);
+            } else {
+                map.setCenter(place.geometry.location);
+                map.setZoom(17);
+            }
+            marker.setIcon(({
+                url: place.icon,
+                size: new google.maps.Size(71, 71),
+                origin: new google.maps.Point(0, 0),
+                anchor: new google.maps.Point(17, 34),
+                scaledSize: new google.maps.Size(35, 35)
+            }));
+            marker.setPosition(place.geometry.location);
+            marker.setVisible(true);
+
+            var address = '';
+            if (place.address_components) {
+                address = [
+                  (place.address_components[0] && place.address_components[0].short_name || ''),
+                  (place.address_components[1] && place.address_components[1].short_name || ''),
+                  (place.address_components[2] && place.address_components[2].short_name || '')
+                ].join(' ');
+            }
+
+            infowindow.setContent('<div><strong>' + place.name + '</strong><br>' + address);
+            infowindow.open(map, marker);
+
+            //Location details
+            for (var i = 0; i < place.address_components.length; i++) {
+                if(place.address_components[i].types[0] == 'postal_code'){
+                    document.getElementById('postal_code').innerHTML = place.address_components[i].long_name;
+                }
+                if(place.address_components[i].types[0] == 'country'){
+                    document.getElementById('country').innerHTML = place.address_components[i].long_name;
+                }
+            }
+            document.getElementById('location').innerHTML = place.formatted_address;
+            document.getElementById('latitude').value = place.geometry.location.lat();
+            document.getElementById('longitude').value = place.geometry.location.lng();
+        });
+    }
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC9x8mCn5-P8XUl59uGqwmmcU6Alt1qza8&libraries=places&language=en&callback=initMap" async defer></script>
 
 <script>
     $("#booking_request_btn").click(function () {
