@@ -149,8 +149,10 @@ class Home extends CI_Controller {
 
 		$data['company_info'] = $this->home_model->getRow('company_info', 'id', 1);
 		$data['continents'] = $this->home_model->getAllInfo('continents');
+		$data['countries'] = $this->home_model->getAllInfo('countries');
 
-		// echo '<pre>'; print_r($data['company_info']); die;
+
+		// echo '<pre>'; print_r($data['countries']); die;
 		$data['title'] = 'Visa |';
 		$data['headerlink'] = $this->load->view('frontend_template/headerlink', $data, TRUE);
 		$data['header'] = $this->load->view('frontend_template/header', $data, TRUE);
@@ -630,7 +632,9 @@ class Home extends CI_Controller {
 		// foreach($data['hotels'] as $row) {
 		// 	$new_hotel_array[$row['id']][] = $row;
 		// }
-		$hotels = $this->home_model->searchHotel($_POST["restaurant"], $_POST["swimming_pool"], $_POST["fitness"], $_POST["coffee_shop"], $_POST["wifi_free"], $_POST["service_room"], $_POST["country_id"]);
+		$post = $this->input->post();
+		var_dump($post["data"]);die;
+		$hotels = $this->home_model->searchHotel($post["restaurant"], $post["swimming_pool"], $post["fitness"], $post["coffee_shop"], $post["wifi_free"], $post["service_room"], $post["country_id"], $post["city_id"]);
 		$new_hotel_array = array();
 		foreach($hotels as $row) {
 			$new_hotel_array[$row['id']][] = $row;

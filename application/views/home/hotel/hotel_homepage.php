@@ -45,27 +45,27 @@
                                 <h4 class="widget-title">FACILITIES</h4>
                                 <ul class="ceckbox_filter">
                                     <li class="checkbox">
-                                        <input class="checkbox-spin" type="checkbox" id="restaurant">
+                                        <input name="facilities" class="checkbox-spin" type="checkbox" id="restaurant" value="1">
                                         <label for="restaurant"><span></span>Restaurant</label>
                                     </li>
                                     <li class="checkbox">
-                                        <input class="checkbox-spin" type="checkbox" id="swimming-pool">
+                                        <input name="facilities" class="checkbox-spin" type="checkbox" id="swimming-pool" value="1">
                                         <label for="swimming-pool"><span></span>Swimming Pool</label>
                                     </li>
                                     <li class="checkbox">
-                                        <input class="checkbox-spin" type="checkbox" id="fitness">
+                                        <input name="facilities" class="checkbox-spin" type="checkbox" id="fitness" value="1">
                                         <label for="fitness"><span></span>Fitness</label>
                                     </li>
                                     <li class="checkbox">
-                                        <input class="checkbox-spin" type="checkbox" id="service-room">
+                                        <input name="facilities" class="checkbox-spin" type="checkbox" id="service-room" value="1">
                                         <label for="service-room"><span></span>Service room</label>
                                     </li>
                                     <li class="checkbox">
-                                        <input class="checkbox-spin" type="checkbox" id="coffee-shop">
+                                        <input name="facilities" class="checkbox-spin" type="checkbox" id="coffee-shop" value="1">
                                         <label for="coffee-shop"><span></span>Coffee shop</label>
                                     </li>
                                     <li class="checkbox">
-                                        <input class="checkbox-spin" type="checkbox" id="wifi-free">
+                                        <input name="facilities" class="checkbox-spin" type="checkbox" id="wifi-free" value="1">
                                         <label for="wifi-free"><span></span>Wifi free</label>
                                     </li>
                                 </ul>
@@ -151,11 +151,17 @@
 <!-- Choose Area End -->
 
 <script>
-function getHotelInfo()
+$("[name='facilities']").click(function (){
+    // alert(4);
+        // alert($("[name='facilities']").attr('id'));
+        getHotelInfo($("[name='facilities']").attr('id'));
+    });
+function getHotelInfo(id)
 {
+    var idd = id;
     $.post( 
             "home/searchHotel",
-            { 'restaurant': $("#restaurant").val(),'swimming_pool': $("#swimming-pool").val(), 'fitness': $("#fitness").val(), 'service_room': $("#service-room").val(), 'coffee_shop': $("#coffee-shop").val(), 'wifi_free': $("#wifi-free").val(), 'country_id': $("#country_id").val()},
+            { data: $("#hotel_filter_form").serialize()},
             function(data) {
                 console.log(data);
 
@@ -164,10 +170,11 @@ function getHotelInfo()
             }
         );
 }
-$('#restaurant, #fitness, #service-room, #coffee-shop, #wifi-free, #service-room').on('click', function() { 
-    getHotelInfo();
+// $('#restaurant, #fitness, #service-room, #coffee-shop, #wifi-free, #service-room').on('click', function() { 
+
+//     getHotelInfo();
             
-});
+// });
 $('#country_id, #city_id').on('change', function() { 
     getHotelInfo();
             

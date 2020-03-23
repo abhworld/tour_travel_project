@@ -24,10 +24,21 @@
             <div class="visa-search-wrapper">
                <p>Apply for visa to countries that do not have diplomatic mission in Bangladesh.</p>
                <h2>Need Visa Information ?</h2>
-               <div class="niceCountryInputSelector" data-selectedcountry="US" data-showspecial="false"
+               <!-- <div class="niceCountryInputSelector" data-selectedcountry="US" data-showspecial="false"
                   data-showflags="false" data-i18nall="All selected" data-i18nnofilter="No selection"
                   data-i18nfilter="Filter" data-onchangecallback="onChangeCallback">
-               </div>
+               </div> -->
+               <select id="country_id" class="select2 form-control">
+                  <option value=''>Select country</option>
+                  <?php 
+                     foreach($countries as $country)
+                     {
+                        echo "<option value='". $country['id']."'>".$country['name']."</option>";
+                     }
+                  ?>
+               </select>
+		<?php //echo '<pre>'; print_r($countries); die;?>
+
             </div>
          </div>
       </div>
@@ -148,3 +159,8 @@
    </div>
 </section>
 <!-- Discount Area End -->
+<script>
+   $('#country_id').on('change', function() { 
+      window.location.replace("<?php echo base_url();?>"+'country-visa/'+$('#country_id').val());
+   });
+</script>
