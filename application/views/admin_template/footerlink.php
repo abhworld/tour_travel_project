@@ -85,6 +85,23 @@
         allowedContent: true,
         toolbarCanCollapse : false
     });
+
+    $('.editor2').ckeditor({
+        height: 200,
+        extraPlugins : 'simage, ckeditor_wiris, htmlwriter',
+        filebrowserBrowseUrl: '/assets/uploads?type=Images',
+        filebrowserUploadUrl: 'imageUpload',
+        toolbar: [
+        { name: 'clipboard', groups: [ 'clipboard', 'undo' ], items: [ 'NewPage','Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Undo', 'Redo' ] },
+        { name: 'basicstyles', items: [ 'Bold', 'Italic','Underline','Strike','Subscript', 'Superscript', '-', 'SImage', 'Source', 'Table' ] },
+        '/',
+        { name: 'document', items: [ 'RemoveFormat','Maximize', 'ShowBlocks','TextColor', 'BGColor','-', 'Templates','Link', 'addFile'] },
+        '/',
+        { name: 'styles', items: [ 'Styles', 'Format','Font','FontSize'] },
+        ],
+        allowedContent: true,
+        toolbarCanCollapse : false
+    });
     
     $('.itinerary').ckeditor({
         height: 200,
