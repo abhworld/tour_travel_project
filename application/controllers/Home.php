@@ -633,8 +633,8 @@ class Home extends CI_Controller {
 		// 	$new_hotel_array[$row['id']][] = $row;
 		// }
 		$post = $this->input->post();
-		var_dump($post["data"]);die;
-		$hotels = $this->home_model->searchHotel($post["restaurant"], $post["swimming_pool"], $post["fitness"], $post["coffee_shop"], $post["wifi_free"], $post["service_room"], $post["country_id"], $post["city_id"]);
+		// var_dump($post);die;
+		$hotels = $this->home_model->searchHotel($post);
 		$new_hotel_array = array();
 		foreach($hotels as $row) {
 			$new_hotel_array[$row['id']][] = $row;

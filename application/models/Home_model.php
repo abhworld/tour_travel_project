@@ -179,6 +179,8 @@ class Home_model extends CI_Model{
         $this->db->join('countries', 'hotel.country = countries.id', 'LEFT');
         $this->db->join('cities', 'hotel.city = cities.id', 'LEFT');
         $this->db->join('hotel_gallery', 'hotel.id = hotel_gallery.hotel_id', 'LEFT');
+        $this->db->order_by('hotel.id', 'DESC');
+
 
         $query = $this->db->get();
         // echo $this->db->last_query();die;
@@ -428,7 +430,7 @@ class Home_model extends CI_Model{
         
     }
 
-    public function searchHotel($restaurant, $swimming_pool, $fitness, $coffee_shop, $service_room, $country_id, $city_id)
+    public function searchHotel($data)
     {
         $this->db->select('hotel.*, countries.name AS country_name, cities.name AS city_name, hotel_gallery.gallery_image');
 
@@ -437,36 +439,37 @@ class Home_model extends CI_Model{
         $this->db->join('countries', 'hotel.country = countries.id', 'LEFT');
         $this->db->join('cities', 'hotel.city = cities.id', 'LEFT');
         $this->db->join('hotel_gallery', 'hotel.id = hotel_gallery.hotel_id', 'LEFT');
+        $this->db->order_by('hotel.id', 'DESC');
+
 
         if(!empty($country_id))
-            $this->db->where('hotel.country', $country_id);
+            $this->db->where('hotel.country', $data["country_id"]);
 
-        if(!empty($city_id))
-            $this->db->where('hotel.city', $city_id);
+        if(!empty($data["city_id"]))
+            $this->db->where('hotel.city', $data["city_id"]);
 
-        if(!empty($restaurant))
+        if(!empty($data["restaurant"]))
             $this->db->where('hotel.restaurant', 1);
 
-        if(!empty($swimming_pool))
+        if(!empty($data["swimming_pool"]))
             $this->db->where('hotel.swimming_pool', 1);
 
-        if(!empty($fitness))
+        if(!empty($data["fitness"]))
             $this->db->where('hotel.fitness_center', 1);
 
-        if(!empty($coffee_shop))
+        if(!empty($data["coffee_shop"]))
             $this->db->where('hotel.coffee_shop', 1);
 
-        if(!empty($wifi))
+        if(!empty($data["wifi"]))
             $this->db->where('hotel.wifi', 1);
 
-        if(!empty($service_room))
+        if(!empty($data["service_room"]))
             $this->db->where('hotel.service_room', 1);
-
         
         
         $query = $this->db->get();
-        echo $this->db->last_query();
-        die;
+        // echo $this->db->last_query();
+        // die;
         return $query->result_array();
            
     }

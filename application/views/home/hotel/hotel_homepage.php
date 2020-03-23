@@ -151,32 +151,98 @@
 <!-- Choose Area End -->
 
 <script>
-$("[name='facilities']").click(function (){
-    // alert(4);
-        // alert($("[name='facilities']").attr('id'));
-        getHotelInfo($("[name='facilities']").attr('id'));
+    $('#restaurant').click(function (){
+            $.post( 
+                "home/searchHotel",
+                { restaurant: $("#restaurant").val()},
+                function(data) {
+                    console.log(data);
+                    $("#hotel_list").html(data); 
+                }
+            );
     });
-function getHotelInfo(id)
-{
-    var idd = id;
-    $.post( 
+    $('#swimming-pool').click(function (){
+        $.post( 
             "home/searchHotel",
-            { data: $("#hotel_filter_form").serialize()},
+            { swimming_pool: $("#swimming-pool").val()},
             function(data) {
-                console.log(data);
-
-                // var obj = JSON.parse(data);
                 $("#hotel_list").html(data); 
             }
         );
-}
+    });
+    $('#fitness').click(function (){
+        $.post( 
+            "home/searchHotel",
+            { fitness: $("#fitness").val()},
+            function(data) {
+                $("#hotel_list").html(data); 
+            }
+        );
+    });
+    $('#service-room').click(function (){
+        $.post( 
+            "home/searchHotel",
+            { service_room: $("#service-room").val()},
+            function(data) {
+                $("#hotel_list").html(data); 
+            }
+        );
+    });
+    $('#coffee-shop').click(function (){
+        $.post( 
+            "home/searchHotel",
+            { coffee_shop: $("#coffee-shop").val()},
+            function(data) {
+                $("#hotel_list").html(data); 
+            }
+        );
+    });
+    $('#wifi-free').click(function (){
+        $.post( 
+            "home/searchHotel",
+            { wifi_free: $("#wifi-free").val()},
+            function(data) {
+                $("#hotel_list").html(data); 
+            }
+        );
+    });
+    
 // $('#restaurant, #fitness, #service-room, #coffee-shop, #wifi-free, #service-room').on('click', function() { 
 
 //     getHotelInfo();
             
 // });
-$('#country_id, #city_id').on('change', function() { 
-    getHotelInfo();
+
+$('#country_id').on('change', function() { 
+    $.post( 
+            "home/searchHotel",
+            { country_id: $("#country_id").val()},
+            function(data) {
+                $("#hotel_list").html(data); 
+            }
+        );
+        
+    $.post( 
+        "home/searchCityByCountry",
+        {'country_id': $("#country_id").val()},
+        function(data) {
+            console.log(data);
+
+            // var obj = JSON.parse(data);
+            $("#city_id").html(data); 
+        }
+    );
+            
+});
+
+$('#city_id').on('change', function() { 
+    $.post( 
+            "home/searchHotel",
+            { city_id: $("#city_id").val()},
+            function(data) {
+                $("#hotel_list").html(data); 
+            }
+        );
             
 });
 </script>
