@@ -84,8 +84,10 @@
                         <h2>Hotel List</h2>
                        
                     </div> -->
+
                 <div id="hotel_list" class="hotel-list-wrapper">
 		            <?php $this->load->view('home/hotel/hotel_list'); ?>
+
                 </div>
             </div>
         </div>
