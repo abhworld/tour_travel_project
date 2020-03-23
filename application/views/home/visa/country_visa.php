@@ -101,7 +101,7 @@
                         <div class="quick-contact">
                            <h3><?php echo $country_details["name"] ?> Visa</h3>
                            <form id="booking_request">
-                            <input type="hidden" name="type" value="5">
+                            <input type="hidden" name="type" value="6">
                             <input type="hidden" name="visa_id" value="<?php echo $country_details['visa_id']?>">
                               <div class="book-tour-field">
                                  <input type="text" placeholder="Your Name" name="name">

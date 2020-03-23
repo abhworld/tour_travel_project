@@ -273,7 +273,7 @@
                                 <input type="hidden" name="hotel_facilities">
                             </div>
                             <div class="tab-pane fade" id="nav-contact1" role="tabpanel" aria-labelledby="nav-contact-tab">
-                                <textarea name="" id="editor2" class="mb-3 editor2"></textarea>
+                                <textarea name="hotel_itinerary" id="editor2" class="mb-3 editor2"></textarea>
                                 <input type="hidden" name="hotel_itinerary">
                             </div>
                             

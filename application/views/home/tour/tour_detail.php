@@ -24,7 +24,7 @@
                <div class="col-lg-8">
                   <div class="tour-details-left">
                      <div class="tour-details-head">
-                        <h3><?php echo $tour_detail[0]['package_name'];?> <span> <span class="tour_price"><?php echo $tour_detail[0]['tour_price'];?></span> / per person </span></h3>
+                        <h3><?php echo $tour_detail[0]['package_name'];?> <span> <span class="tour_price">৳ <?php echo $tour_detail[0]['tour_price'];?></span> / per person </span></h3>
                         <div class="tour_duration">
                                     <p>
                                         <i class="fa fa-hourglass-half"></i>
@@ -44,7 +44,9 @@
                         <li><span>Accommodation </span>All Inclusive</li>
                         <?php } ?>
                         <li>
+                          <?php if($tour_detail[0]['insurance'] || $tour_detail[0]['five_star_accommodation'] ||  $tour_detail[0]['airport_transfer'] || $tour_detail[0]['breakfast'] || $tour_detail[0]['personal_guide'] || $tour_detail[0]['two_days_long_city_tour']) { ?>
                            <span>What´s Included</span>
+                          <?php }?>
                            <ul>
                               <?php if(isset($tour_detail[0]['insurance']) && $tour_detail[0]['insurance']){?>
                               <li><i class="fa fa-check-circle"></i>Travel Insurance</li>

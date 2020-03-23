@@ -124,6 +124,8 @@
                                 <a href="hotel-detail/<?php echo str_replace(' ', '-', strtolower($row['hotel_name'])) ;?>"><h3><i class="fa fa-building"></i><?php echo $row['hotel_name'];?></h3></a>
                                 <h3 class="hotel-address"><i class="fa fa-map-marker"></i><?php echo $row['hotel_address']; ?>
                                 </h3>
+
+                                <?php if(!empty($row)) {?>
                                 <h4>Hotel Facilities</h4>
                                 <div class="hotel-features">
 
@@ -148,8 +150,10 @@
                                         <?php } ?>
                                     </ul>
                                 </div>
+                                <?php } ?>
+
                                 <div class="tour-details">
-                                    <a href="hotel-details.php"> Book Now</a>
+                                    <a href="hotel-detail/<?php echo str_replace(' ', '-', strtolower($row['hotel_name'])) ;?>"> Book Now</a>
                                 </div>
                             </div>
                         </div>

@@ -1,4 +1,4 @@
- <div class="row">
+     <div class="row">
                <?php foreach($all_tour as $row) { ?>
                 <div class="col-lg-6">
                     <div class="single-popular-tour">
@@ -22,7 +22,7 @@
                                     <a href="tour-detail/<?php echo str_replace(' ', '-', strtolower($row['package_name']))?>"> Book Now</a>
                                 </div>
                                 <div class="tour-desc-price">
-                                    <p><?php echo $row['tour_price'];?></p>
+                                    <p> ৳ <?php echo $row['tour_price'];?></p>
                                 </div>
                             </div>
                         </div>
