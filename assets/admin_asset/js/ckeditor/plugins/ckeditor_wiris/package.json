@@ -29,7 +29,7 @@
   },
   "main": "plugin.src.js",
   "devDependencies": {
-    "@babel/core": "^7.0.0",
+    "@babel/core": "^7.20.12",
     "@babel/preset-env": "^7.0.0",
     "babel-loader": "^8.0.2",
     "css-loader": "^1.0.0",
